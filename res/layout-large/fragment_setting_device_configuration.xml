@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40px"
+        android:layout_marginRight="20px"
+        android:layout_marginTop="12px" >
+
+        <TextView
+            android:id="@+id/selectedDeviceTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/setup"
+            android:text="DEVICE CONFIGURATION"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="invisible" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/setup"
+            android:text="DEVICE CONFIGURATION"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"/>
+
+<!--         <Button -->
+<!--             android:id="@+id/setup" -->
+<!--             android:layout_width="wrap_content" -->
+<!--             android:layout_height="wrap_content" -->
+<!--             android:layout_alignParentRight="true" -->
+<!--             android:background="#616161" -->
+<!--             android:textSize="2sp" -->
+<!--             android:text="@string/account_setting" -->
+<!--             android:visibility="invisible" /> -->
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="3dp"
+        android:layout_marginLeft="40px"
+        android:layout_marginRight="20px"
+        android:layout_marginTop="8px"
+        android:background="#1a000000"
+        android:orientation="horizontal" >
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollViewDeviceConfig"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40px"
+        android:layout_marginRight="20px" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/phone_setting_button_sip"
+                android:layout_width="fill_parent"
+                android:layout_height="60px"
+                android:background="@android:color/transparent"
+                android:gravity="left|center_vertical"
+                android:text="@string/string_SIP"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#1a000000"
+                android:orientation="vertical" />
+
+            <Button
+                android:id="@+id/phone_setting_button_outbound_call"
+                android:layout_width="fill_parent"
+                android:layout_height="60px"
+                android:background="@android:color/transparent"
+                android:gravity="left|center_vertical"
+                android:text="@string/string_outbound_call"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#1a000000"
+                android:orientation="vertical" />
+
+            <Button
+                android:id="@+id/phone_setting_button_inbound_call"
+                android:layout_width="fill_parent"
+                android:layout_height="60px"
+                android:background="@android:color/transparent"
+                android:gravity="left|center_vertical"
+                android:text="@string/string_inbound_call"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#1a000000"
+                android:orientation="vertical" />
+
+            <Button
+                android:id="@+id/phone_setting_button_security_function"
+                android:layout_width="fill_parent"
+                android:layout_height="60px"
+                android:background="@android:color/transparent"
+                android:gravity="left|center_vertical"
+                android:text="@string/string_security_function"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#1a000000"
+                android:orientation="vertical" />
+
+            <Button
+                android:id="@+id/phone_setting_button_event_server"
+                android:layout_width="fill_parent"
+                android:layout_height="60px"
+                android:background="@android:color/transparent"
+                android:gravity="left|center_vertical"
+                android:text="@string/string_event_server"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#1a000000"
+
+                android:orientation="vertical" />
+
+            <Button
+                android:id="@+id/phone_setting_button_event_setting"
+                android:layout_width="fill_parent"
+                android:layout_height="60px"
+                android:background="@android:color/transparent"
+                android:gravity="left|center_vertical"
+                android:text="@string/string_event_settings"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#1a000000"
+                android:orientation="vertical" />
+
+            <Button
+                android:id="@+id/phone_setting_button_email_notif"
+                android:layout_width="fill_parent"
+                android:layout_height="60px"
+                android:background="@android:color/transparent"
+                android:gravity="left|center_vertical"
+                android:text="@string/string_email_notif"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#1a000000"
+                android:orientation="vertical" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40px"
+                android:layout_marginRight="20px"
+                android:layout_marginTop="20px"
+                android:gravity="center_horizontal"
+                android:text="IMPORTANT: Always press save after changing settings."
+                android:textSize="18sp" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

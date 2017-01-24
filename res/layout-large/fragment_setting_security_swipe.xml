@@ -1,0 +1,51 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:glowpad="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/doorpadhomescreen"
+    android:layout_height="match_parent" >
+
+    <DigitalClock
+        android:id="@+id/swipeDigitalClock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="200dp"
+        android:textColor="#ffffff"
+        android:textSize="100sp" />
+
+    <TextView
+        android:id="@+id/swipetvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/swipeDigitalClock"
+        android:layout_alignLeft="@+id/swipeDigitalClock"
+        android:text="DATE"
+        android:textColor="#ffffff"
+        android:textSize="22sp" />
+
+    <com.ntek.wallpad.glowpadview.GlowPadView
+        android:id="@+id/glow_pad_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="700dp"
+        android:layout_marginTop="130dp"
+        android:focusable="true"
+        android:gravity="center"
+        android:visibility="visible"
+        glowpad:directionDescriptions="@array/snooze_dismiss_direction_descriptions"
+        glowpad:feedbackCount="1"
+        glowpad:glowRadius="@dimen/glowpadview_glow_radius"
+        glowpad:handleDrawable="@drawable/ic_alarm_alert_touch_handle"
+        glowpad:innerRadius="@dimen/glowpadview_inner_radius"
+        glowpad:outerRadius="@dimen/glowpadview_target_placement_radius"
+        glowpad:outerRingDrawable="@drawable/ic_alarm_alert_outerring"
+        glowpad:pointDrawable="@drawable/ic_lockscreen_glowdot"
+        glowpad:snapMargin="@dimen/glowpadview_snap_margin"
+        glowpad:targetDescriptions="@array/snooze_dismiss_descriptions"
+        glowpad:targetDrawables="@array/snooze_dismiss_drawables"
+        glowpad:vibrationDuration="20" />
+
+</RelativeLayout>

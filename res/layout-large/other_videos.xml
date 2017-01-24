@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="800dp"
+    android:layout_height="684dp"
+    android:layout_gravity="center"
+    android:background="@android:color/white" >
+
+    <LinearLayout
+        android:id="@+id/other_header"
+        android:layout_width="fill_parent"
+        android:layout_height="115dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/other_tv_videosetting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="32dp"
+            android:text="Video Setting"
+            android:textColor="#212121"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/other_sv"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_below="@+id/other_header"
+        android:fadeScrollbars="false"
+        android:scrollbarSize="100dp" >
+
+        <RadioGroup
+            android:id="@+id/setupguide_rg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="32dp" >
+
+            <RadioButton
+                android:id="@+id/other_SQCIF"
+                android:layout_width="wrap_content"
+                android:layout_height="108dp"
+                android:button="@drawable/custom_radio_btn"
+                android:checked="true"
+                android:paddingLeft="20dp"
+                android:text="SQCIF (128 X 98)"
+                android:textColor="#424242"
+                android:textSize="28sp" />
+
+            <RadioButton
+                android:id="@+id/other_QCIF"
+                android:layout_width="wrap_content"
+                android:layout_height="108dp"
+                android:button="@drawable/custom_radio_btn"
+                android:paddingLeft="20dp"
+                android:text="QCIF (176 X 144)"
+                android:textColor="#424242"
+                android:textSize="28sp" />
+
+            <RadioButton
+                android:id="@+id/other_QVGA"
+                android:layout_width="wrap_content"
+                android:layout_height="108dp"
+                android:button="@drawable/custom_radio_btn"
+                android:checked="true"
+                android:paddingLeft="20dp"
+                android:text="QVGA (320 X 240)"
+                android:textColor="#424242"
+                android:textSize="28sp" />
+
+            <RadioButton
+                android:id="@+id/other_CIF"
+                android:layout_width="wrap_content"
+                android:layout_height="108dp"
+                android:button="@drawable/custom_radio_btn"
+                android:paddingLeft="20dp"
+                android:text="CIF (352 X 288)"
+                android:textColor="#424242"
+                android:textSize="28sp" />
+
+            <RadioButton
+                android:id="@+id/other_HVGA"
+                android:layout_width="wrap_content"
+                android:layout_height="108dp"
+                android:button="@drawable/custom_radio_btn"
+                android:checked="true"
+                android:paddingLeft="20dp"
+                android:text="HVGA  (480 X 320)"
+                android:textColor="#424242"
+                android:textSize="28sp" />
+
+            <RadioButton
+                android:id="@+id/other_VGA"
+                android:layout_width="wrap_content"
+                android:layout_height="108dp"
+                android:button="@drawable/custom_radio_btn"
+                android:paddingLeft="20dp"
+                android:text="VGA (640 X 480)"
+                android:textColor="#424242"
+                android:textSize="28sp" />
+
+            <RadioButton
+                android:id="@+id/other_4CIF"
+                android:layout_width="wrap_content"
+                android:layout_height="108dp"
+                android:button="@drawable/custom_radio_btn"
+                android:checked="true"
+                android:paddingLeft="20dp"
+                android:text="4CIF  (704 X 576)"
+                android:textColor="#424242"
+                android:textSize="28sp" />
+
+            <RadioButton
+                android:id="@+id/other_SVGA"
+                android:layout_width="wrap_content"
+                android:layout_height="108dp"
+                android:button="@drawable/custom_radio_btn"
+                android:paddingLeft="20dp"
+                android:text="SVGA (800 X 600)"
+                android:textColor="#424242"
+                android:textSize="28sp" />
+
+            <RadioButton
+                android:id="@+id/other_720P"
+                android:layout_width="wrap_content"
+                android:layout_height="108dp"
+                android:button="@drawable/custom_radio_btn"
+                android:paddingLeft="20dp"
+                android:text="720P (1280 X 720)"
+                android:textColor="#424242"
+                android:textSize="28sp" />
+        </RadioGroup>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/other_ll"
+        android:layout_width="match_parent"
+        android:layout_height="144dp"
+        android:layout_below="@+id/other_sv"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/other_cancel"
+            android:layout_width="216dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="380dp"
+            android:background="@android:color/transparent"
+            android:text="Cancel"
+            android:textColor="#607d8b"
+            android:textSize="36sp" />
+
+        <Button
+            android:id="@+id/other_ok"
+            android:layout_width="216dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:text="OK"
+            android:textColor="#607d8b"
+            android:textSize="36sp" />
+    </LinearLayout>
+
+</RelativeLayout>

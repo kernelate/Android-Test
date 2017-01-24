@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+
+    <string name="app_name">WallPad</string>
+    <string name="doubango_revision">1247</string>
+    <string name="spinner_ipversion">Select IP version</string>
+    <string name="spinner_pcscf_discovery">Select PCSCF Discovery Mode</string>
+    <string name="spinner_transport">Select Network Transport</string>
+    <!-- Strings -->
+    <string name="day_today">Today</string>
+    <string name="day_yesterday">Yesterday</string>
+    <string name="copyright" formatted="false">    IMSDroid/v%s (doubango r%s), Copyright © 2010-2015 Doubango Telecom. All rights reserved.\n\n
+    IMSDroid is free software: you can redistribute it and/or modify it under the terms of
+    the GNU General Public License as published by the Free Software Foundation, either version 3
+    of the License, or (at your option) any later version.\n
+    \n
+    IMSDroid is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+    without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU General Public License for more details.\n
+    \n
+    You should have received a copy of the GNU General Public License along
+    with this program; if not, write to the Free Software Foundation, Inc.,
+    59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.\n
+    \n
+    For more information about the project: http://code.google.com/p/imsdroid/.\n
+    Addition copyright information: http://code.google.com/p/imsdroid/wiki/Copyrigths. \n
+</string>
+    <string name="string_answer">Answer</string>
+    <string name="string_endcall">End Call</string>
+    <string name="string_speaker_on">Speaker ON</string>
+    <string name="string_speaker_off">Speaker OFF</string>
+    <string name="string_mute_on">Mute ON</string>
+    <string name="string_mute_off">Mute OFF</string>
+    <string name="string_hold">Hold</string>
+    <string name="string_resume">Resume</string>
+    <string name="string_send_video">Send Video</string>
+    <string name="string_stop_video">Stop Video</string>
+    <string name="string_switch_camera">Switch camera</string>
+    <string name="string_call_terminated">Call Terminated</string>
+    <string name="string_incall">In Call</string>
+    <string name="string_call_incoming">Incoming Call</string>
+    <string name="string_call_outgoing">Outgoing Call</string>
+    <string name="string_call_cancelled">Call cancelled</string>
+    <string name="string_password_empty">Log-in Password is empty...</string>
+    <string name="string_id_empty">Log-in ID is empty...</string>
+    <string name="string_connection_lost">Connection lost...</string>
+    <string name="string_invalid_login_password">Invalid Log-in Password...</string>
+    <string name="string_connection_fail">Connection Failed...</string>
+    <string name="string_invalid_login_id">Invalid Log-in ID...</string>
+    <string name="UNNAMED_DOORTALK">UNNAMED_DOORTALK</string>
+
+    <!-- FragmentSettingsSip XML Strings -->
+    <string name="My_Profile">My Profile</string>
+    <string name="string_save">Save</string>
+    <string name="string_config_save">Configuration Save</string>
+    <string name="My_Display_Name">My Display Name</string>
+    <string name="string_My_Number">My Number</string>
+    <string name="string_Doortalk_Number">Doortalk Number</string>
+    <string name="string_Early">3GPP Early IMS Security</string>
+    <string name="string_SIP">SIP</string>
+    <string name="string_IP_Address">IP Address</string>
+    <string name="string_Log_in">Login</string>
+    <string name="string_Login_id">Login ID</string>
+    <string name="string_ID">ID</string>
+    <string name="string_Password">Password</string>
+    <string name="string_port">Port</string>
+    <string name="string_Advance">Advance</string>
+    <string name="string_Go_to_Advance_Settings">Go to Advance Settings</string>
+    <string name="string_Enable_Ice">Enable ICE</string>
+    <string name="string_Hack_Aor">Hack the AoR</string>
+    <string name="string_Enable_Stun">Enable STUN/TURN</string>
+    <string name="string_Stun_Optiongs">STUN/Turn Server Options</string>
+    <string name="string_Discover_Stun">Discover STUN/TURN Server</string>
+    <string name="string_Use_STUN">Use this STUN/TURN Server</string>
+    <string name="string_Stun_Address">STUN/TURN Server Address</string>
+    <string name="string_numb_viagenie">numb.viagenie.ca</string>
+    <string name="string_Stun_Port">STUN/TURN Server Port</string>
+    <string name="string_sample_natt_port">3478</string>
+    <string name="string_connecting_device">Connecting to device...</string>
+    <string name="Event_Inquiry_Active">Active</string>
+    <string name="Event_Inquiry_Pending">Pending</string>
+    <string name="Event_Inquiry_Discard">Discard</string>
+    <string name="Other">Others</string>
+    <string name="Security">Security</string>
+    <string name="sip_settings">SIP Settings</string>
+    <string name="doortalk_setting">Doortalk Settings</string>
+    <string name="string_UserID">User ID</string>
+    <string name="string_Signin">Sign In</string>
+    <string name="string_Manual">Manual</string>
+    <string name="string_Ipadd">IP Address</string>
+    <string name="string_identity_name_mynumber_empty">Display Name and SIP Call ID is Empty</string>
+    <string name="string_identity_name_ipaddress_empty">Display Name and IP address is Empty</string>
+    <string name="string_identity_name_port_empty">Display Name and Port is Empty</string>
+    <string name="string_identity_name_password_empty">Display Name and Password is Empty</string>
+    <string name="string_identity_mynumber_ipaddress_empty">SIP Call ID and IP address is Empty</string>
+    <string name="string_identity_mynumber_port_empty">SIP Call ID and Port is Empty</string>
+    <string name="string_identity_mynumber_password_empty">SIP Call ID and Password is Empty</string>
+    <string name="string_identity_ipaddress_port_empty">IP address and Port is Empty</string>
+    <string name="string_identity_ipaddress_password_empty">IP address and Password is Empty</string>
+    <string name="string_identity_port_password_empty">Port and Password is Empty</string>
+    <string name="string_no_profile">Your Profile is not yet set</string>
+    
+    
+    <!-- FragmentSettingsSip OnCode Strings -->
+    <string name="string_identity_name_empty">My Display Name is Empty.</string>
+    <string name="string_identity_mynumber_empty">My Number is Empty.</string>
+    <string name="string_identity_password_empty">Password is Empty.</string>
+    <string name="string_identity_port_empty">Port is Empty.</string>
+    <string name="string_identity_ipaddress_empty">IP address is Empty.</string>
+    <string name="string_identity_callnumber_empty">CallNumber is Empty.</string>
+    <string name="string_identity_save_db">Success Saving To Database</string>
+    <string name="string_identity_save_db_error">Error Saving To Database</string>
+    <string name="string_identity_setting_save">Settings Saved</string>
+    <string name="string_please_wait">Please wait ...</string>
+    <string name="string_scanning_network">Scanning the network ...</string>
+    <string name="network_status_change">The network state has changed.\nPlease wait until it changes to green Ball.</string>
+    <string name="string_send_data">Sending data configuration...</string>
+    <string name="Enabled">Enabled</string>
+    <string name="Disabled">Disabled</string>
+
+    <!-- FragmentSettingSipConfiguration -->
+    <string name="string_setupsipdoortalk_displayname_empty">SIP Setup : Display Name is Empty.</string>
+    <string name="string_setupsipdoortalk_doortalknumber_empty">SIP Setup : DoorTalk Number is Empty.</string>
+    <string name="string_setupsipdoortalk_password_empty">SIP Setup : Password is Empty.</string>
+    <string name="string_setupsipdoortalk_ipaddress_empty">SIP Setup : IP Address is Empty.</string>
+    <string name="string_setupsipdoortalk_port_empty">SIP Setup : PORT is Empty.</string>
+    <string name="string_delete">Delete</string>
+    <string name="DHCP">DHCP</string>
+    <string name="Static">Static</string>
+    <string name="Ethernet_cable">Ethernet/Cable</string>
+    <string name="WIFI">WI-Fi</string>
+
+    <!-- Colors -->
+    <color name="color_black">#000000</color>
+    <color name="color_white">#FFFFFF</color>
+    <color name="color_violet">#9900FF</color>
+    <color name="color_gray">#736F6E</color>
+    <color name="color_dark">#161C27</color>
+    <color name="color_light">#4D6288</color>
+    <color name="transparent">#29000000</color>
+    <color name="color_lightgray">#e6e6e6</color>
+    <color name="color_medyo_black">#212121</color>
+    <color name="color_black_disabled">#cbcbcb</color>
+    
+
+    <!-- PHONE -->
+
+    <string name="phone_contact_name">Contact Name</string>
+    <string name="phone_contact_detail">Contact Detail</string>
+    <string name="phone_video_call">Video Call</string>
+    <string name="phone_voice_call">Voice Call</string>
+    <string name="phone_history_date_time">Date and Time</string>
+    <string name="phone_history_all">ALL</string>
+    <string name="phone_history_calls">CALLS</string>
+    <string name="phone_history_motion_detect">MOTION DETECT</string>
+    <string name="phone_history_door_control">DOOR CONTROL</string>
+    <string name="phone_contact_phone">PHONE</string>
+    <string name="phone_contact_security">SECURITY</string>
+    <string name="phone_dialpad_one">1</string>
+    <string name="phone_dialpad_two">2</string>
+    <string name="phone_dialpad_three">3</string>
+    <string name="phone_dialpad_four">4</string>
+    <string name="phone_dialpad_five">5</string>
+    <string name="phone_dialpad_six">6</string>
+    <string name="phone_dialpad_seven">7</string>
+    <string name="phone_dialpad_eight">8</string>
+    <string name="phone_dialpad_nine">9</string>
+    <string name="phone_dialpad_zero">0</string>
+    <string name="phone_dialpad_asterisk">*</string>
+    <string name="phone_dialpad_hash">#</string>
+    <string name="phone_dialpad_ABC">ABC</string>
+    <string name="phone_dialpad_DEF">DEF</string>
+    <string name="phone_dialpad_GHI">GHI</string>
+    <string name="phone_dialpad_JKL">JKL</string>
+    <string name="phone_dialpad_MNO">MNO</string>
+    <string name="phone_dialpad_PQRS">PQRS</string>
+    <string name="phone_dialpad_TUV">TUV</string>
+    <string name="phone_dialpad_WXYZ">WXYZ</string>
+    <string name="phone_dialpad_plus">+</string>
+
+    <!-- History for gcm message -->
+    <string name="string_get_gcm_msg_obj_detect">Object Detected</string>
+    <string name="gcm_deleted">From GCM: server deleted %1$d pending messages!</string>
+    <string name="gcm_error">From GCM: error (%1$s).</string>
+    <string name="gcm_recoverable_error">From GCM: recoverable error (%1$s).</string>
+    <string name="string_get_gcm_msg_door_status_change">Door Status Change</string>
+    <string name="Status_approved">Status - This device has already been approved</string>
+    <string name="Status_approval">Status - This device is waiting for approval</string>
+    <string name="Settings_Event_Settings_Submit">Submit</string>
+    <string name="Status_information">Status - Please fill out and submit information</string>
+    <string name="string_doorcontrol_type_enable">Enable</string>
+    <string name="string_doorcontrol_type_disable">Disable</string>
+    <string name="string_motion_type_enable">Enable</string>
+    <string name="string_motion_type_disable">Disable</string>
+    <string name="string_registration_update_failed">Update Failed</string>
+
+    <!-- DTControl -->
+    <string name="dtcontrol_app_name">DTControl</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_manage_list">ManageListActivity</string>
+    <string name="title_activity_select_door_talk_manaul">SelectDoorTalkManaulActivity</string>
+    <string name="getrelay_lock">Lock</string>
+    <string name="getrelay_unlock">UnLock</string>
+    <string name="getrelay_error">Error</string>
+    <string name="lock_setrelay_success">Lock Success</string>
+    <string name="lock_setrelay_failed">Lock Failed</string>
+    <string name="unlock_setrelay_success">UnLock Success</string>
+    <string name="unlock_setrelay_failed">UnLock Failed</string>
+    <string name="Missed_calls">Missed</string>
+    <string name="Dialer">Dialer</string>
+    <string name="Forward">Forward</string>
+    <string name="AllContacts">All Contacts</string>
+    <string name="Loading">Loading...</string>
+    <string name="string_client_event_inquiry_data_loading">Loading new Data to the Server</string>
+    <string name="current">Current:</string>
+    <string name="account_setting">Account Setting</string>
+    <string name="id">ID</string>
+    <string name="string_new">New:</string>
+    <string name="retype">Retype:</string>
+    <string name="string_cancel">Cancel</string>
+    <string name="string_name">Name</string>
+    <string name="string_new_id">New ID</string>
+    <string name="string_old_password">Old password</string>
+    <string name="string_new_password">New Password</string>
+    <string name="string_retype_password">Retype password</string>
+    <string name="string_add">Add</string>
+    <string name="string_receive_number">Receive Number</string>
+    <string name="string_type_receive_number">Type receive number here</string>
+    <string name="string_information">Information</string>
+    <string name="string_type_name">Type name here</string>
+    <string name="string_priority">Priority</string>
+    <string name="string_type_priority">Type priority here</string>
+    <string name="string_search_for_doortalk">Searching for DoorTalk device in the network</string>
+    <string name="string_succes">Success</string>
+    <string name="string_successful">Succeeded to add software device, now you have control of it</string>
+    <string name="string_ok">OK</string>
+    <string name="string_delete_item">Are you sure you want to delete it?</string>
+    <string name="string_motion_detect">Motion Detect</string>
+    <string name="string_enable">Enable</string>
+    <string name="string_disable">Disable</string>
+    <string name="string_event_server">Event Server</string>
+    <string name="string_event_server_ip">Event Server Ip</string>
+    <string name="string_type_event_server_ip">Type event server ip here</string>
+    <string name="string_type_port">Type port number here</string>
+    <string name="string_connect">Connect</string>
+    <string name="string_ip_setting">IP Setting</string>
+    <string name="string_dhcp">DHCP</string>
+    <string name="string_static">Static</string>
+    <string name="string_network_setup">Network Type</string>
+    <string name="string_ethernet">Ethernet/Cable</string>
+    <string name="string_wifi">Wi-Fi</string>
+    <string name="string_warning">Warning</string>
+    <string name="string_warning_message">Same contact name already exists</string>
+    <string name="string_add_contact">Add Contact</string>
+    <string name="string_done">Done</string>
+    <string name="string_phone">Phone</string>
+    <string name="string_delete_contact">Are you want to delete Contact Name from your device contact list?</string>
+    <string name="string_edit_remove_contact">Edit or Remove Contact</string>
+    <string name="string_edit">Edit Contact</string>
+    <string name="string_remove">Delete Contact</string>
+    <string name="string_security_sensor">Security Sensor</string>
+    <string name="string_sensor_type">Sensor Type</string>
+    <string name="string_door_control">Door Control</string>
+    <string name="string_notification_setting">Notification Setting</string>
+    <string name="string_status_lock">Status : Locked </string>
+    <string name="string_notify_time">Notify if lock exceeds 30 secs</string>
+    <string name="string_status_unlock">Status : Unlocked </string>
+    <string name="string_select_wifi">Select Wi-FI network</string>
+    <string name="string_scan">Scan</string>
+    <string name="string_sensitivity_control">Sensitivity Control</string>
+    <string name="string_sensitivity">Sensitivity</string>
+    <string name="string_add_email">Add Email</string>
+    <string name="string_email">Email</string>
+    <string name="string_type_email">Type your e-mail here</string>
+    <string name="string_notification">Notification</string>
+    <string name="string_sip">SIP</string>
+    <string name="string_display_name">Display Name</string>
+    <string name="string_call_id">Call ID</string>
+    <string name="string_update_setting">Update Settings</string>
+    <string name="string_update_message">Connection with the event Server is required in order to use multi-notification feature.</string>
+    <string name="string_volume_control">Volume Control</string>
+    <string name="string_sound">Sound</string>
+    <string name="string_call">Call</string>
+    <string name="string_device_name">Device Name</string>
+    <string name="string_status">Status:</string>
+    <string name="string_locked">Locked</string>
+    <string name="string_door_lock_list">Door Lock List</string>
+    <string name="string_invalid">INVALID</string>
+    <string name="string_error">ERROR</string>
+    <string name="string_my_door_device">My Door Device</string>
+    <string name="string_device_list">SEARCHED DEVICE LIST</string>
+    <string name="string_door_configuration">Door Devices Configuration</string>
+    <string name="string_automatic">Automatic</string>
+    <string name="string_manual">Manual</string>
+    <string name="string_ip_hint">192.168.1.1</string>
+    <string name="string_port_hint">5555</string>
+    <string name="string_contact_sample">Caller Name</string>
+    <string name="string_sip_setting">SIP SETTING</string>
+    <string name="string_my_sip">My Sip</string>
+    <string name="string_event_setting">EVENT SETTING</string>
+    <string name="string_available_doortalk">Available Doortalk</string>
+    <string name="string_outbound_call">Call List Outbound Calls</string>
+    <string name="string_inbound_call">Call List Inbound Call-Blocking</string>
+    <string name="string_security_function">Security Function</string>
+    <string name="string_event_settings">Event Settings</string>
+    <string name="string_email_notif">Email Notification</string>
+    <string name="string_device_tittle">Unnamed DoorTalk / Device configuration</string>
+    <string name="string_email_notif_tittle">Unnamed DoorTalk / Email Notification</string>
+    <string name="string_text_status">Status</string>
+    <string name="string_client_information">Client Information</string>
+    <string name="string_save_email">Email: abcd@yahoo.com</string>
+    <string name="string_tittle_event_notif">Unnamed DoorTalk / Device configuration / Event Notification settings</string>
+    <string name="string_my_info">My Information</string>
+    <string name="string_email_hint">abcd@yahoo.com</string>
+    <string name="string_notif">NOTIFICATIONS</string>
+    <string name="string_motion_detection">Motion detection</string>
+    <string name="string_all">All</string>
+    <string name="string_caller">Caller</string>
+    <string name="string_network_setting">Network Setting</string>
+    <string name="string_network_setup_button">Network Setup</string>
+    <string name="string_network">NETWORK</string>
+    <string name="string_ip_settings">IP Setting</string>
+    <string name="string_ssid">SSID</string>
+    <string name="string_wifi_network">my-network</string>
+    <string name="string_advance_option">Advance Options</string>
+    <string name="string_gateway">Gateway</string>
+    <string name="string_subnet">Subnetmask</string>
+    <string name="string_dns_one">DNS 1</string>
+    <string name="string_dns_two">DNS 2</string>
+    <string name="string_outbound_tittle">Unnamed DoorTalk / Outbound Call</string>
+    <string name="string_add_outbond_call">Add</string>
+    <string name="string_security_tittle">Unnamed DoorTalk / Security Functions</string>
+    <string name="string_on">On</string>
+    <string name="string_security_door_control">Security sensor - Door Control</string>
+    <string name="string_off">Off</string>
+    <string name="string_unnamed_doorTalk">Unnamed DoorTalk</string>
+    <string name="string_device_configuration">Device Configuration</string>
+    <string name="string_sip_address">Sip Server Address</string>
+    <string name="string_address">www.sbean.co.kr</string>
+    <string name="string_sip_port">Sip Server Port</string>
+    <string name="string_capabilities">capabilities</string>
+    <string name="string_front">Front Door</string>
+    <string name="string_unlock">Unlocked</string>
+    <string name="string_url">URL</string>
+    <string name="string_type_number">Type number here</string>
+    <string name="string_setting_event_server">Settings_Event_Server</string>
+    <string name="notification">notification</string>
+    <string name="sipresponses_unregistration_ok">sip responses unregistration ok</string>
+    <string name="string_autotimer">Enable this feature to automatically reactivate lock after a specified time (in seconds).
+         Auto lock time can be set to a minimum of 3 sseconds only \n\nSetting 0 seconds will disable auto lock function</string>
+         
+    
+
+    <string-array name="phone_header_spinner_options">
+        <item>Edit</item>
+        <item>Delete</item>
+    </string-array>
+
+    <string name="abc">abc</string>
+
+</resources>

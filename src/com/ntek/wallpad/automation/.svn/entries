@@ -1,0 +1,34 @@
+10
+
+dir
+2734
+svn://ntekcam2.iptime.org/repos/12_Project_2015/DoorPad_PROJECT/Wallpad/trunk/Wallpad/src/com/ntek/wallpad/automation
+svn://ntekcam2.iptime.org/repos
+
+
+
+2015-03-26T08:25:43.911438Z
+2104
+wilson
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+5bcb1b06-d4bf-4075-bc9c-f53103275329
+
+tcp
+dir
+
+utils
+dir
+

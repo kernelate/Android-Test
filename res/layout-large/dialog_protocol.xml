@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="600px"
+    android:layout_height="wrap_content"
+    android:background="@drawable/corner_layout_style"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16px"
+            android:text="Protocol"
+            android:textColor="#29b6f6"
+            android:textSize="22px"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="2px"
+            android:background="#29b6f6"
+            android:orientation="vertical"
+            android:textColor="#29b6f6" >
+        </LinearLayout>
+
+        <RadioGroup
+            android:id="@+id/dialog_radiogroup"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16px" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_margin="16px"
+                android:weightSum="10" >
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:text="Http://"
+                    android:textColor="@color/color_black"
+                    android:textSize="18px" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:text="Https://"
+                    android:textColor="@color/color_black"
+                    android:textSize="18px" />
+            </LinearLayout>
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#b2b2b2" >
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1px"
+                android:background="@drawable/corner_layout_style"
+                android:text="@string/string_cancel"
+                android:textColor="@color/color_black"
+                android:textSize="22px" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

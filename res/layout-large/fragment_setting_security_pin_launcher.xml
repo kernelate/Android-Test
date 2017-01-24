@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/doorpadhomescreen"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="app.num.patternlockview.MainActivity" >
+
+    <DigitalClock
+        android:id="@+id/pinDigitalClock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="200dp"
+        android:textColor="#ffffff"
+        android:textSize="72px" />
+
+    <TextView
+        android:id="@+id/pintvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pinDigitalClock"
+        android:layout_marginLeft="100dp"
+        android:text="DATE"
+        android:textColor="#ffffff"
+        android:textSize="22sp" />
+
+    <EditText
+        android:id="@+id/pinEt"
+        android:layout_width="470dp"
+        android:layout_height="72dp"
+        android:layout_marginLeft="600dp"
+        android:layout_marginTop="230dp"
+        android:singleLine="true"
+        android:inputType="textPassword"
+        android:textColor="@color/color_black"
+        android:textSize="30sp" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/pin_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="990dp"
+        android:layout_marginTop="230dp"
+        android:background="@drawable/backpin" />
+
+    <Button
+        android:id="@+id/pin_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/pinEt"
+        android:layout_below="@+id/pinEt"
+        android:background="@drawable/onepin" />
+
+    <Button
+        android:id="@+id/pin_two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pinEt"
+        android:layout_toRightOf="@+id/pin_one"
+        android:background="@drawable/twopin" />
+
+    <Button
+        android:id="@+id/pin_three"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pinEt"
+        android:layout_toRightOf="@+id/pin_two"
+        android:background="@drawable/threepin" />
+
+    <Button
+        android:id="@+id/pin_four"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/pinEt"
+        android:layout_below="@+id/pin_one"
+        android:background="@drawable/fourpin" />
+
+    <Button
+        android:id="@+id/pin_five"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pin_two"
+        android:layout_toRightOf="@+id/pin_four"
+        android:background="@drawable/fivepin" />
+
+    <Button
+        android:id="@+id/pin_six"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pin_three"
+        android:layout_toRightOf="@+id/pin_five"
+        android:background="@drawable/sixpin" />
+
+    <Button
+        android:id="@+id/pin_seven"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/pinEt"
+        android:layout_below="@+id/pin_four"
+        android:background="@drawable/sevenpin" />
+
+    <Button
+        android:id="@+id/pin_eight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pin_five"
+        android:layout_toRightOf="@+id/pin_seven"
+        android:background="@drawable/eightpin" />
+
+    <Button
+        android:id="@+id/pin_nine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pin_six"
+        android:layout_toRightOf="@+id/pin_eight"
+        android:background="@drawable/ninepin" />
+
+    <Button
+        android:id="@+id/pin_zero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/pin_eight"
+        android:layout_below="@+id/pin_eight"
+        android:background="@drawable/zeropin" />
+
+    <Button
+        android:id="@+id/pin_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pin_nine"
+        android:layout_toRightOf="@+id/pin_zero"
+        android:background="@drawable/okpin" />
+
+</RelativeLayout>

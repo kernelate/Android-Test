@@ -1,0 +1,421 @@
+package com.ntek.wallpad.Screens.Fragment;
+
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.Fragment;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
+import com.ntek.wallpad.R;
+import com.ntek.wallpad.Utils.CommonUtilities;
+import com.ntek.wallpad.Utils.NotificationEmailFacebookData;
+import com.ntek.wallpad.network.Global;
+import com.ntek.wallpad.network.SocClient;
+
+@SuppressLint("ValidFragment")
+public class FragmentSettingEmailNotification extends Fragment
+{
+	private final static String TAG = FragmentSettingEmailNotification.class.getCanonicalName();
+	
+	private View view;
+	private ListView lvEmailNotificationList;
+	private Button btnAddEmail;
+	private TextView tvTitleHeader;
+	
+	private Dialog mAddEmailDialog;
+	private DialogHolder mHolder;
+	
+	private Button mSavebtn;
+	
+	private BroadcastReceiver mBroadcastReceiver;
+	
+	private ArrayList<NotificationEmailFacebookData> mNotificationData;
+	private ArrayList<NotificationEmailFacebookData> mNotificationHolder;
+	private EmailFbAdapter mAdapter;
+
+	private String motion_onoff = "";
+	private String doorcontrol_onoff = "";
+	private String mDeviceName;
+	
+	public FragmentSettingEmailNotification(String deviceName)
+	{
+		Log.i(TAG, "FragmentSettingEmailNotification");
+		this.mDeviceName = deviceName;
+	}
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		
+		mBroadcastReceiver = new BroadcastReceiver() {
+			@Override
+			public void onReceive(Context context, Intent intent) {
+				String action = intent.getAction();
+				if (action.equals("com.smartbean.notification.accounts.result"))
+				{
+					String result = intent.getStringExtra("result");
+					Toast.makeText(getActivity(), "Update " + result, Toast.LENGTH_LONG).show();
+					new Thread(new SocClient("doortalk", CommonUtilities.soc_port, getActivity())).start();
+					//RingProgressDialogManager.hide();
+				}else if (action.equals("com.smartbean.servertalk.action.NOTIFICATION_CHANNEL_ACCOUNTS"))
+				{
+					Toast.makeText(getActivity(), "Connection Lost", Toast.LENGTH_LONG).show();
+				}else if (action.equals("com.smartbean.servertalk.action.doortalk"))
+				{
+					initializeList();
+				}
+			}
+		};
+		
+	}
+	
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		view = inflater.inflate(R.layout.fragment_setting_email_notification, container, false);
+		initializeUI();
+		return view;
+	}
+
+
+	protected void initializeUI() {
+		// TODO Auto-generated method stub
+		tvTitleHeader = (TextView) view.findViewById(R.id.title);
+		lvEmailNotificationList = (ListView) view.findViewById(R.id.setting_listview_email_list);
+		btnAddEmail = (Button) view.findViewById(R.id.setting_button_add_email);
+		mSavebtn = (Button) view.findViewById(R.id.settings_email_notification_button_save);
+		
+		tvTitleHeader.setText("EMAIL CLIENTS"); //FIXME CHANGE THIS TO @STRING RESOURCE
+		
+		btnAddEmail.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				displayAddEmailDialog();
+			}
+		});
+		
+		mSavebtn.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+//				 RingProgressDialogManager.show(ScreenEventEmailFacebook.this, getString(R.string.Loading),
+//					 getString(R.string.string_send_data));
+					Global.getInstance().setNotificationChannelAccounts(mNotificationData);
+					new Thread(new SocClient("notification_channel_accounts", CommonUtilities.soc_port,getActivity())).start();
+			}
+		});
+		
+		initializeList();
+	}
+	
+	private void initializeList()
+	{
+		mNotificationData = Global.getInstance().getNotificationChannelAccounts();
+		if (mNotificationData == null) mNotificationData = new ArrayList<NotificationEmailFacebookData>();
+		mNotificationHolder = new ArrayList<NotificationEmailFacebookData>(mNotificationData);
+		for (NotificationEmailFacebookData data : mNotificationData)
+		{
+			if  (data.isDelete())
+			{
+				mNotificationHolder.remove(data);
+			}
+		}
+		mAdapter = new EmailFbAdapter(mNotificationHolder);
+		lvEmailNotificationList.setAdapter(mAdapter);
+	}
+	
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		IntentFilter intentFilter = new IntentFilter();
+		intentFilter.addAction("com.smartbean.notification.accounts.result");
+		intentFilter.addAction("com.smartbean.servertalk.action.NOTIFICATION_CHANNEL_ACCOUNTS");
+		intentFilter.addAction("com.smartbean.servertalk.action.doortalk");
+		getActivity().registerReceiver(mBroadcastReceiver, intentFilter);
+	}
+	
+	@Override
+	public void onPause() {
+		super.onPause();
+		if (mBroadcastReceiver != null)
+		{
+			getActivity().unregisterReceiver(mBroadcastReceiver);
+		}
+	}
+	
+	//setting_device_email_adapter
+	//dialog_setting_add_email
+
+	private class DialogHolder 
+	{
+		private EditText mEmailEt;
+		private ToggleButton tbMotionDetect;
+		private ToggleButton tbDoorControl;
+	}
+
+	
+	protected void displayAddEmailDialog() {
+		mAddEmailDialog = new Dialog(getActivity());
+		mAddEmailDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		mAddEmailDialog.setCancelable(true);
+		mAddEmailDialog.setContentView(R.layout.dialog_add_email_client);
+
+		mHolder = new DialogHolder();
+		mHolder.mEmailEt = (EditText) mAddEmailDialog.findViewById(R.id.dialog_add_email_client_edittext_email);
+		mHolder.tbDoorControl = (ToggleButton) mAddEmailDialog.findViewById(R.id.dialog_add_email_client_toggle_motion_detection);
+		mHolder.tbMotionDetect = (ToggleButton) mAddEmailDialog.findViewById(R.id.dialog_add_email_client_toggle_door_control);
+
+		doorcontrol_onoff = "disabled";	//default value
+		motion_onoff = "disabled"; 	//default value
+
+		
+		mHolder.tbDoorControl.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) 
+			{
+				if(isChecked == true)
+				{
+					doorcontrol_onoff = "enabled";
+				}
+				else
+				{
+					doorcontrol_onoff = "disabled";
+				}
+			}
+		});
+		
+		mHolder.tbMotionDetect.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) 
+			{
+				if(isChecked == true)
+				{
+					motion_onoff = "enabled";
+				}
+				else
+				{
+					motion_onoff = "disabled";
+				}
+			}
+		});
+
+		Button saveButton = (Button) mAddEmailDialog.findViewById(R.id.dialog_add_email_client_button_ok);
+		saveButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (mHolder.mEmailEt.getText().toString().trim().isEmpty()) {
+					Toast.makeText(getActivity(), "Please fill up the email", Toast.LENGTH_LONG).show();
+					return;
+				}
+				
+				if (!EmailFormatValidator.getInstance().validate((mHolder.mEmailEt.getText().toString()))){
+					Toast.makeText(getActivity(), "Please enter a valid email", Toast.LENGTH_LONG).show();
+					return;
+				}
+				
+				if (mAdapter.checkIfExist(mHolder.mEmailEt.getText().toString()))
+				{
+					Toast.makeText(getActivity(), "The Email you entered already exist", Toast.LENGTH_LONG).show();
+					return;
+				}
+
+				NotificationEmailFacebookData data = new NotificationEmailFacebookData();
+				data.setmEmail(mHolder.mEmailEt.getText().toString());
+				data.setmDoorControl_ONOFF(doorcontrol_onoff);
+				data.setmMotion_ONOFF(motion_onoff);
+				data.setmChannelCode("NOTIFICATION_EMAIL"); // TODO CHANGE THIS
+				mAdapter.addData(data);
+				mAddEmailDialog.dismiss();
+			}
+		});
+		mAddEmailDialog.show();
+	}
+	
+	static class EmailFormatValidator {
+		private Pattern pattern;
+		private Matcher matcher;
+		private static EmailFormatValidator mThis;
+
+		private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+				+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
+		public EmailFormatValidator() {
+			pattern = Pattern.compile(EMAIL_PATTERN);
+		}
+
+		public boolean validate(final String email) {
+
+			matcher = pattern.matcher(email);
+			return matcher.matches();
+		}
+		
+		public static EmailFormatValidator getInstance(){
+			if (mThis == null)
+			{
+				mThis = new EmailFormatValidator();
+			}
+			return mThis;
+		}
+}
+	
+	private class EmailFbAdapter extends BaseAdapter {
+		private ArrayList<NotificationEmailFacebookData> mData;
+
+		public EmailFbAdapter(ArrayList<NotificationEmailFacebookData> data) {
+			this.mData = data;
+		}
+
+		@Override
+		public int getCount() {
+			if (mData != null)
+				return mData.size();
+			return 0;
+		}
+
+		@Override
+		public Object getItem(int position) {
+			if (mData != null)
+				mData.get(position);
+			return null;
+		}
+
+		@Override
+		public long getItemId(int position) {
+			return 0;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			final Viewgroup viewHolder;
+			if (convertView == null) {
+				LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+				convertView = inflater.inflate(R.layout.setting_device_email_adapter, null);
+				viewHolder = new Viewgroup();
+				viewHolder.imageView = (Button) convertView.findViewById(R.id.setting_email_notification_delete_imageview);
+				viewHolder.nameStatusTV = (TextView) convertView.findViewById(R.id.setting_textview_alarm_list);
+				viewHolder.nameEmailAndFbTV = (TextView) convertView.findViewById(R.id.setting_textview_email_list);
+				convertView.setTag(viewHolder);
+			}
+			else {
+				viewHolder = (Viewgroup) convertView.getTag();
+			}
+
+			if (mData != null && mData.size() > 0) {
+					final StringBuilder status = new StringBuilder();
+					if (mData.get(position).getmMotion_ONOFF().equals("enabled")) {
+						status.append("Motion Detect ");
+					}
+					if (mData.get(position).getmDoorControl_ONOFF().equals("enabled")) {
+						status.append("Door Control");
+					}
+					// --------Status----------
+					viewHolder.nameStatusTV.setText(status);
+					// --------Email-----------
+					viewHolder.nameEmailAndFbTV.setText(mData.get(position).getmEmail());
+					// --------Delete Button-------
+					final int mPosition = position;
+					viewHolder.imageView.setOnClickListener(new OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							displayDeleteAlertDialog(mPosition);
+						}
+					});
+			}
+
+			return convertView;
+		}
+
+		public void addData(NotificationEmailFacebookData data) {
+			if (mData != null)
+				if (data != null) {
+					if (!isEmailExist(mData, data.getmEmail()))
+					{
+						mData.add(data);
+						mNotificationData.add(data);
+					}
+					for (NotificationEmailFacebookData mdata : mData) {
+						Log.d("mData", "Data " + mdata.getmEmail());
+					}
+				}
+			notifyDataSetChanged();
+		}
+		
+		public boolean checkIfExist(String email)
+		{
+			if (isEmailExist(mData, email))
+			{
+				return true;
+			}
+			
+			return false;
+		}
+
+		private class Viewgroup 
+		{
+			private Button imageView;
+			private TextView nameStatusTV;
+			private TextView nameEmailAndFbTV;
+		}
+
+		private void displayDeleteAlertDialog(final int position) {
+			AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
+			mBuilder.setTitle("Delete").setMessage("Are you sure you want to delete it?").setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+						mData.remove(position);
+						mNotificationData.get(position).setDelete(true);
+						notifyDataSetChanged();
+				}
+			}).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.dismiss();
+				}
+			});
+			Dialog mDialog = mBuilder.create();
+			mDialog.show();
+		}
+	}
+	
+	private boolean isEmailExist(ArrayList<NotificationEmailFacebookData> list, String email){
+		for (NotificationEmailFacebookData model : list)
+		{
+			if (model != null)
+			{
+				if (model.getmEmail().equals(email))
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+}
+ 

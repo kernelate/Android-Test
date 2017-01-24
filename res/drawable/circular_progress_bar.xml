@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rotate xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/ic_preloader"
+    android:fromDegrees="0"
+    android:indeterminateDuration="50"
+    android:pivotX="50%"
+    android:pivotY="50%"
+    android:toDegrees="720" />

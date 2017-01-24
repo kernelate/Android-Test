@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_white" >
+
+    <!-- client setup -->
+
+    <Button
+        android:id="@+id/dt_setting_client_setup_btn"
+        android:layout_width="fill_parent"
+        android:layout_height="96dp"
+        android:layout_marginLeft="32dp"
+        android:background="@color/color_white"
+        android:gravity="center_vertical"
+        android:text="Client Setup"
+        android:textColor="#a3a3a3"
+        android:textSize="36sp" />
+
+    <Button
+        android:id="@+id/dt_setting_client_setup_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="800dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/ic_arrow_right" />
+
+    <!-- dt setup -->
+
+    <Button
+        android:id="@+id/dt_setting_dt_setup"
+        android:layout_width="fill_parent"
+        android:layout_height="96dp"
+        android:layout_below="@+id/dt_setting_client_setup_btn"
+        android:layout_marginLeft="32dp"
+        android:background="@color/color_white"
+        android:gravity="center_vertical"
+        android:text="Doortalk Setup"
+        android:textColor="#a3a3a3"
+        android:textSize="36sp" />
+
+    <Button
+        android:id="@+id/dt_setting_dt_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dt_setting_client_setup_arrow"
+        android:layout_marginLeft="800dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/ic_arrow_right" />
+
+    <!-- smart setup -->
+
+    <Button
+        android:id="@+id/dt_setting_smart_setup"
+        android:layout_width="fill_parent"
+        android:layout_height="96dp"
+        android:layout_below="@+id/dt_setting_dt_setup"
+        android:layout_marginLeft="32dp"
+        android:background="@color/transparent"
+        android:gravity="center_vertical"
+        android:text="Smart Setup Option"
+        android:textColor="#a3a3a3"
+        android:visibility="gone"
+        android:textSize="36sp" />
+
+    <Button
+        android:id="@+id/manual_setup_btn_reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dt_setting_dt_arrow"
+        android:layout_marginLeft="800dp"
+        android:visibility="gone"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/ic_arrow_right" />
+
+</RelativeLayout>

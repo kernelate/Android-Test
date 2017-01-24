@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:background="#e0e0e0"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:background="#e0e0e0" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10px"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/common_setting_sipsetting"
+                android:layout_width="match_parent"
+                android:layout_height="74dp"
+                android:background="@drawable/settings_selector"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="32dp"
+                android:text="@string/sip_settings"
+                android:textColor="#212121"
+                android:textSize="26sp" />
+
+            <Button
+                android:id="@+id/common_setting_myprofile"
+                android:layout_width="fill_parent"
+                android:layout_height="74dp"
+                android:background="@drawable/settings_selector"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="32dp"
+                android:text="@string/My_Profile"
+                android:textColor="#212121"
+                android:textSize="26sp" />
+
+            <Button
+                android:id="@+id/common_setting_dtsetting"
+                android:layout_width="fill_parent"
+                android:layout_height="74dp"
+                android:background="@drawable/settings_selector"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="32dp"
+                android:text="@string/doortalk_setting"
+                android:textColor="#212121"
+                android:textSize="26sp" />
+            
+            <Button
+                android:id="@+id/common_setting_security"
+                android:layout_width="fill_parent"
+                android:layout_height="74dp"
+                android:background="@drawable/settings_selector"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="32dp"
+                android:text="@string/Security"
+                android:textColor="#212121"
+                android:textSize="26sp" />
+
+            <Button
+                android:id="@+id/common_setting_others"
+                android:layout_width="fill_parent"
+                android:layout_height="74dp"
+                android:background="@drawable/settings_selector"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="32dp"
+                android:text="@string/Other"
+                android:textColor="#212121"
+                android:textSize="26sp" />
+
+            <TextView
+                android:id="@+id/common_settings_sipsetting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8px"
+                android:layout_marginLeft="5px"
+                android:layout_marginTop="32px"
+                android:text="@string/string_sip_setting"
+                android:textColor="#ffffff"
+                android:textSize="16px"
+                android:textStyle="bold"
+                android:visibility="gone" />
+            
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="3px"
+                android:layout_marginLeft="5px"
+                android:background="#1a000000"
+                android:visibility="gone"
+                android:orientation="vertical" >
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/fragment_common_setting_sip_setting_button_my_sip"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8px"
+                android:layout_marginTop="8px"
+                android:background="@drawable/button_selector"
+                android:gravity="left|center"
+                android:paddingLeft="30px"
+                android:text="@string/string_my_sip"
+                android:textSize="18px"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/common_setting_eventsetting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8px"
+                android:layout_marginLeft="5px"
+                android:text="@string/string_event_setting"
+                android:textColor="#ffffff"
+                android:textSize="16px"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="3px"
+                android:layout_marginLeft="5px"
+                android:background="#1a000000"
+                android:orientation="vertical"
+                android:visibility="gone" >
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/fragment_common_setting_event_setting_button_automatic"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8px"
+                android:layout_marginTop="8px"
+                android:background="@drawable/button_selector"
+                android:gravity="left|center"
+                android:paddingLeft="30px"
+                android:text="@string/string_automatic"
+                android:textSize="18px"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="5px"
+                android:background="#1a000000"
+                android:orientation="vertical"
+                android:visibility="gone" >
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/fragment_common_setting_event_setting_button_manual"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8px"
+                android:layout_marginTop="8px"
+                android:background="@drawable/button_selector"
+                android:gravity="left|center"
+                android:paddingLeft="30px"
+                android:text="@string/string_manual"
+                android:textSize="18px"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/common_setting_serversetting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8px"
+                android:layout_marginLeft="5px"
+                android:text="SERVER SETTING"
+                android:textColor="#ffffff"
+                android:textSize="16px"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="3px"
+                android:layout_marginLeft="5px"
+                android:background="#1a000000"
+                android:orientation="vertical"
+                android:visibility="gone" >
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/fragment_common_setting_server_configuration_button_automatic"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8px"
+                android:layout_marginTop="8px"
+                android:background="@drawable/button_selector"
+                android:gravity="left|center"
+                android:paddingLeft="30px"
+                android:text="@string/string_automatic"
+                android:textSize="18px"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="5px"
+                android:background="#1a000000"
+                android:orientation="vertical"
+                android:visibility="gone" >
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/fragment_common_setting_server_configuration_button_manual"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8px"
+                android:background="@drawable/button_selector"
+                android:gravity="left|center"
+                android:paddingLeft="30px"
+                android:text="@string/string_manual"
+                android:textSize="18px"
+                android:visibility="gone" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

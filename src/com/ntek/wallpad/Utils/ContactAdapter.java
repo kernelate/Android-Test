@@ -1,0 +1,389 @@
+package com.ntek.wallpad.Utils;
+
+import java.io.File;
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
+
+import org.doubango.ngn.NgnEngine;
+import org.doubango.ngn.model.NgnContact;
+import org.doubango.ngn.services.impl.NgnContactService;
+import org.doubango.ngn.utils.NgnObservableList;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
+import android.util.LruCache;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.Filter;
+import android.widget.Filter.FilterListener;
+import android.widget.Filterable;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.ntek.wallpad.R;
+
+public class ContactAdapter extends BaseAdapter implements Observer, OnChangeDataListener, Filterable {
+	
+	public static final String TAG = ContactAdapter.class.getCanonicalName();
+
+	private LruCache<String, Bitmap> mMemoryCache;
+	public static enum FilterType {
+		None,
+		All,
+		Phone,
+		Security
+		
+	}
+	
+	private static ContactAdapter instance = null;
+	
+	private ArrayList<Contacts> mContactList;
+	private ArrayList<Contacts> filteredContacts;
+	private NgnObservableList<NgnContact> mContactPhoneList;
+	private NgnContactService mContactService;
+	private Handler mHandler;
+	private Context mContext;
+	private EventFilter mFilter = new EventFilter();
+	private String constraint = FilterType.All.toString();
+	private int selectedItem = -1;
+	private List<NgnContact> contacts;
+	private ContactManager contactManager;
+	private LayoutInflater inflater;
+	private Typeface font; 
+	
+	public static ContactAdapter getContactAdapter(Context context){
+		if(instance == null){
+			instance = new ContactAdapter(context);
+		}
+		return instance;
+	}
+	
+	private ContactAdapter() { }
+	
+	private ContactAdapter(Context context) {
+		Log.d("ContactAdapter", "ContactAdapter(context)");
+		contactManager = ContactManager.getInstance(context);
+		this.mContext = context;
+		this.mContactList = contactManager.getAllContacts();
+		this.filteredContacts = mContactList;
+		this.mHandler = new Handler();
+		mContactService = new NgnContactService();
+		mContactPhoneList = mContactService.getObservableContacts();
+		contactManager.setOnChangeDataListener(this);
+		inflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+		
+		// Get max available VM memory, exceeding this amount will throw an
+	    // OutOfMemory exception. Stored in kilobytes as LruCache takes an
+	    // int in its constructor.
+        final int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
+ 
+        // Use 1/8th of the available memory for this memory cache.
+        final int cacheSize = maxMemory / 8;
+        
+		mMemoryCache = new LruCache<String, Bitmap>(cacheSize) {
+
+			protected int sizeOf(String key, Bitmap bitmap) {
+				// The cache size will be measured in kilobytes rather than number of items.
+				return bitmap.getByteCount();
+			}
+		};
+		
+		font = Typeface.createFromAsset(context.getAssets(), "fonts/OpenSansRegular.ttf");
+	}
+	
+	public ArrayList<Contacts> getList() {
+		return filteredContacts;
+	}
+	
+	@Override
+	public int getCount() {
+		return filteredContacts.size();
+	}
+
+	@Override
+	public Contacts getItem(int position) {
+		return filteredContacts.get(position);
+	}
+
+	@Override
+	public long getItemId(int position) {
+		return position;
+	}
+	
+	public NgnObservableList<NgnContact> getmContactPhoneList() {
+		return mContactPhoneList;
+	}
+
+	public void setmContactPhoneList(NgnObservableList<NgnContact> mContactPhoneList) {
+		this.mContactPhoneList = mContactPhoneList;
+	}
+	
+	public void setSelectedItem(int selectedItem){
+		this.selectedItem = selectedItem;
+	}
+	
+	private void highlightItem(int position, View result){
+		if (position == selectedItem) {
+			result.setBackgroundColor(Color.parseColor("#66009587"));
+		}
+		else {
+			result.setBackground(mContext.getResources().getDrawable(R.color.color_white));
+		}
+	}
+	
+	private static class ViewHolder {
+		public TextView titleText;
+		public TextView subTitleText;
+		public ImageView profileImage;
+	}
+
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+		ViewHolder viewHolder;
+		
+		if(convertView == null) {
+			convertView = inflater.inflate(R.layout.child_phone_contact_list, null);
+			viewHolder = new ViewHolder();
+			
+			viewHolder.titleText = (TextView) convertView.findViewById(R.id.contact_display_name_text_view);
+			viewHolder.subTitleText = (TextView) convertView.findViewById(R.id.contact_device_number_text_view);
+			viewHolder.profileImage = (ImageView) convertView.findViewById(R.id.contact_image_image_view);
+			viewHolder.titleText.setTypeface(font);
+			viewHolder.subTitleText.setTypeface(font);
+			convertView.setTag(viewHolder);
+		}
+		else {
+			viewHolder = (ViewHolder) convertView.getTag();
+		}
+		
+		if (filteredContacts != null && filteredContacts.size() > 0)
+		{
+			highlightItem(position, convertView);
+
+			if (filteredContacts.get(position).getNgnContact() != null)
+			{
+				String name = filteredContacts.get(position).getNgnContact().getDisplayName();
+				String number = filteredContacts.get(position).getNgnContact().getPrimaryNumber();
+
+				viewHolder.titleText.setText(CommonUtilities.checkIfEmpty(name) ? "Unknown" : name);
+				viewHolder.subTitleText.setText(CommonUtilities.checkIfEmpty(number) ? "Unknown" : number);
+				
+				final Bitmap avatar = filteredContacts.get(position).getNgnContact().getPhoto();
+				if(avatar == null){
+					viewHolder.profileImage.setImageResource(CommonUtilities.getImage(DeviceType.CLIENT_TALK));
+				}
+				else{
+					viewHolder.profileImage.setImageBitmap(avatar);
+				}
+			}	
+			else
+			{
+				String name = filteredContacts.get(position).getDisplayName();
+				int number = filteredContacts.get(position).getPhoneNumber();
+
+				viewHolder.titleText.setText(CommonUtilities.checkIfEmpty(name) ? "Unknown" : name);
+				viewHolder.subTitleText.setText(number > 0 ? Integer.toString(number) : "0");
+
+				final DeviceType type = filteredContacts.get(position).getDeviceType();
+				loadContactPhotoBitmap(filteredContacts.get(position).getPhoto().getFilename(), viewHolder.profileImage, type);
+			}
+		}
+		return convertView;
+	}
+
+	@Override
+	public void update(Observable observable, Object data) {
+		mHandler.post(new Runnable() {
+			@Override
+			public void run() {
+				contacts = mContactPhoneList.getList();
+				
+				for (NgnContact ngnContact : contacts) 
+				{
+					Contacts contact = new Contacts();
+					contact.setNgnContact(ngnContact);
+					mContactList.add(contact);
+				}
+			}
+		});
+		
+		if (Thread.currentThread() == Looper.getMainLooper().getThread()) {
+			contacts = NgnEngine.getInstance().getContactService().getObservableContacts().getList();
+			getFilter().filter(constraint);
+			notifyDataSetChanged();
+		}
+		else {
+			mHandler.post(new Runnable() {
+				@Override
+				public void run() {
+					contacts = NgnEngine.getInstance().getContactService().getObservableContacts().getList();
+					getFilter().filter(constraint);
+					
+					notifyDataSetChanged();
+				}
+			});
+		}
+	}
+
+	@Override
+	public void onSync() {
+		mContactList = contactManager.getAllContacts();
+		getFilter().filter(constraint, new FilterListener() {
+			@Override
+			public void onFilterComplete(int count) {
+				mContext.sendBroadcast(new Intent("com.ntek.wallpad.CONTACT_UPDATE").putExtra("count", count));
+			}
+		});
+	}
+
+	public Bitmap getBitmapFromMemCache(String key) {
+		return mMemoryCache.get(key);
+	}
+
+	public void addBitmapToMemoryCache(String key, Bitmap bitmap) {
+		synchronized (mMemoryCache) {
+			if (getBitmapFromMemCache(key) == null) {
+				mMemoryCache.put(key, bitmap);
+			}
+		}
+	}
+
+	public void loadContactPhotoBitmap(String imagePath, ImageView imageView, DeviceType type) {
+		final String imageKey = imagePath;
+		final Bitmap bitmap = getBitmapFromMemCache(imageKey);
+		if (bitmap != null) {
+			imageView.setImageBitmap(bitmap);
+		}
+		else {
+			final BitmapWorkerTask task = new BitmapWorkerTask(imageView,type);
+			task.execute(imagePath);
+		}
+	}
+
+	class BitmapWorkerTask extends AsyncTask<String, Void, Bitmap> {
+		public String dataPath = "";
+		private DeviceType type;
+		private final WeakReference<ImageView> imageViewReference;
+
+		public BitmapWorkerTask(ImageView imageView, DeviceType type) {
+			// Use a WeakReference to ensure the ImageView can be garbage
+			// collected
+			imageViewReference = new WeakReference<ImageView>(imageView);
+			this.type = type;
+		}
+
+		// Decode image in background or get it from memory cache. for either client or DoorTalk
+		@Override
+		protected Bitmap doInBackground(String... params) {
+			dataPath = params[0];
+			final Bitmap bitmap;
+			
+			File file = new File(dataPath);
+			if(file.exists()) {
+				Log.d(TAG, " datapath " + dataPath);
+				bitmap = BitmapDecoder.decodeSampledBitmapFromFile(dataPath, 100, 100);
+			} else {
+				bitmap = BitmapDecoder.decodeSampledBitmapFromResource(
+						mContext.getResources(), CommonUtilities.getImage(type), 100, 100);
+			}
+			addBitmapToMemoryCache(String.valueOf(params[0]), bitmap);
+			
+			return bitmap;
+		}
+
+		// Once complete, see if ImageView is still around and set bitmap.
+		@Override
+		protected void onPostExecute(Bitmap bitmap) {
+			if (imageViewReference != null && bitmap != null) {
+				final ImageView imageView = imageViewReference.get();
+				if (imageView != null) {
+					imageView.setImageBitmap(bitmap);
+				}
+			}
+		}
+	}
+
+	@Override
+	public Filter getFilter() {
+		return mFilter;
+	}
+	
+	private class EventFilter extends Filter {
+
+		@Override
+		protected FilterResults performFiltering(CharSequence constraint) {
+			ContactAdapter.this.constraint = String.valueOf(constraint);
+//			FilterType type = FilterType.valueOf(constraint.toString());
+			FilterResults results = new FilterResults();
+			
+			final List<Contacts> list = mContactList;
+			
+			int count = list.size();
+			final ArrayList<Contacts> nlist = new ArrayList<Contacts>(count);
+			
+			Contacts filterableEvent;
+			
+			for (int i = 0; i < count; i++) {
+        		filterableEvent = list.get(i);
+        		if (filterableEvent.getDisplayName().contains(ContactAdapter.this.constraint))
+        		{
+        			nlist.add(filterableEvent);
+        			
+        		}
+			}
+			
+//			switch (type) {
+//			case All:
+//			case Phone:
+//			case Security:
+//				for (int i = 0; i < count; i++) {
+//            		filterableEvent = list.get(i);
+//            		if (type == FilterType.All)
+//            		{
+//            			nlist.add(filterableEvent);
+//            		}
+//            		else if (type == FilterType.Phone && filterableEvent.getDeviceType() == DeviceType.CLIENT_TALK)
+//            		{
+//            			nlist.add(filterableEvent);
+//            		}
+//            		else if (type == FilterType.Security && filterableEvent.getDeviceType() == DeviceType.SERVER_TALK)
+//            		{
+//            			nlist.add(filterableEvent);
+//            		}
+//				}
+//				break;
+//
+//			default:
+//				break;
+//			}
+			
+			results.values = nlist;
+			results.count = nlist.size();
+			
+			return results;
+		}
+
+		@SuppressWarnings("unchecked")
+		@Override
+		protected void publishResults(CharSequence constraint,
+				FilterResults results) {
+			filteredContacts = (ArrayList<Contacts>) results.values;
+			notifyDataSetChanged();
+			
+		}
+		
+	}
+}

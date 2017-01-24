@@ -1,0 +1,148 @@
+package com.ntek.wallpad.Screens.Fragment;
+
+import com.ntek.wallpad.R;
+import com.ntek.wallpad.Utils.OnChangeFragmentListener;
+
+import android.app.Activity;
+import android.app.Fragment;
+import android.graphics.Typeface;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.TextView;
+
+public class FragmentCommonSetting extends Fragment implements OnClickListener{
+	
+	private final static String TAG = FragmentCommonSetting.class.getCanonicalName();
+	
+	private Button btnMySip;
+	private Button btnEventAutomatic;
+	private Button btnEventManual;
+	private Button btnServerAutomatic;
+	private Button btnServerManual;
+	private Button btnCurrentTab;
+	
+	private TextView tvSipSetting;
+	private TextView tvEventSetting;
+	private TextView tvServerSetting;
+	
+	public static final int SERVER_CONFIG = 1;
+	public static final int EVENT_SETTING = 2;
+	public static int selectType;
+	public static boolean isDoorDeviceApMode;
+	
+	private OnChangeFragmentListener mOnFragmentClick;
+	
+	View view;
+	
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		try {
+			mOnFragmentClick = (OnChangeFragmentListener) activity;
+		} catch (Exception e) {
+			Log.e(TAG, e.getMessage());
+		}
+	}
+	
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState)
+	{
+		view = inflater.inflate(R.layout.fragment_common_setting, container, false);
+		initializeUI();
+		
+		return view;
+	}
+	
+	
+	private void initializeUI()
+	{
+		btnEventAutomatic = (Button) view.findViewById(R.id.fragment_common_setting_event_setting_button_automatic);
+		btnMySip = (Button) view.findViewById(R.id.fragment_common_setting_sip_setting_button_my_sip);
+		btnEventManual = (Button) view.findViewById(R.id.fragment_common_setting_event_setting_button_manual);
+		btnServerAutomatic = (Button) view.findViewById(R.id.fragment_common_setting_server_configuration_button_automatic);
+		btnServerManual = (Button) view.findViewById(R.id.fragment_common_setting_server_configuration_button_manual);
+		tvSipSetting = (TextView) view.findViewById(R.id.common_settings_sipsetting);
+		tvEventSetting = (TextView) view.findViewById(R.id.common_setting_eventsetting);
+		tvServerSetting = (TextView) view.findViewById(R.id.common_setting_serversetting);
+		
+		btnMySip.setOnClickListener(this);
+		btnEventAutomatic.setOnClickListener(this);
+		btnEventManual.setOnClickListener(this);
+		btnServerAutomatic.setOnClickListener(this);
+		btnServerManual.setOnClickListener(this);
+		
+		Typeface tfOpenSansRegular = Typeface.createFromAsset(getActivity().getAssets(), "fonts/OpenSansRegular.ttf");
+		btnEventAutomatic.setTypeface(tfOpenSansRegular);
+		btnEventManual.setTypeface(tfOpenSansRegular);
+		btnServerAutomatic.setTypeface(tfOpenSansRegular);
+		btnServerManual.setTypeface(tfOpenSansRegular);
+		
+		Typeface tfOpenSansSemibold = Typeface.createFromAsset(getActivity().getAssets(), "fonts/OpenSansSemibold.ttf");
+		tvEventSetting.setTypeface(tfOpenSansSemibold);
+		tvServerSetting.setTypeface(tfOpenSansSemibold);
+		tvSipSetting.setTypeface(tfOpenSansSemibold);
+		btnCurrentTab = btnMySip;
+		setSelectedTab(btnCurrentTab);
+		
+	}
+
+	private void setSelectedTab(Button button)
+	{
+		btnCurrentTab.setSelected(false);
+		btnCurrentTab = button;
+		btnCurrentTab.setSelected(true);
+	}
+	
+	
+	@Override
+	public void onClick(View v) {
+			switch (v.getId())
+			{
+			case R.id.fragment_common_setting_sip_setting_button_my_sip:
+				setSelectedTab(btnMySip);
+				if (mOnFragmentClick != null)
+				{
+					mOnFragmentClick.changeFragment(null, new FragmentSettingsSip(), false);
+				}
+				break;
+			case R.id.fragment_common_setting_event_setting_button_automatic:
+				setSelectedTab(btnEventAutomatic);
+				if (mOnFragmentClick != null)
+				{
+					selectType = EVENT_SETTING;
+					mOnFragmentClick.changeFragment(null, new FragmentSettingAuto(), false);
+				}
+				break;
+			case R.id.fragment_common_setting_event_setting_button_manual:
+				setSelectedTab(btnEventManual);
+				if (mOnFragmentClick != null)
+				{
+					selectType = EVENT_SETTING;
+					mOnFragmentClick.changeFragment(null, new FragmentSettingManual(), false);
+				}
+				break;
+			case R.id.fragment_common_setting_server_configuration_button_automatic:
+				setSelectedTab(btnServerAutomatic);
+				if (mOnFragmentClick != null)
+				{
+					selectType = SERVER_CONFIG;
+					mOnFragmentClick.changeFragment(null, new FragmentSettingAuto(), false);
+				}
+				break;
+			case R.id.fragment_common_setting_server_configuration_button_manual:
+				setSelectedTab(btnServerManual);
+				if (mOnFragmentClick != null)
+				{
+					selectType = SERVER_CONFIG;
+					mOnFragmentClick.changeFragment(null, new FragmentSettingManual(), false);
+				}
+				break;
+			}
+	}
+
+}

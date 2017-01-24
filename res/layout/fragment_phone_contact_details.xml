@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:layout_centerInParent="true"
+    android:orientation="horizontal"
+    android:background="#FFFFFF"
+    android:layout_margin="25dp">
+    
+    	<ImageView 
+    	    android:id="@+id/phone_contacts_imageview_image"
+    	    android:layout_height="160dp"
+    	    android:layout_width="160dp"/>
+    
+    	<LinearLayout 
+    	    android:layout_height="wrap_content"
+    	    android:layout_width="wrap_content"
+    	    android:orientation="vertical"
+    	    android:layout_marginLeft="20dp">
+    	    
+			 <TextView 
+			     android:id="@+id/phone_contacts_textview_contactname"
+			     android:layout_height="wrap_content"
+			     android:layout_width="400dp"
+			     android:textSize="34sp"
+			     android:textColor="#000000"
+			     android:text="@string/phone_contact_name"/>
+			 
+			 <TextView 
+			     android:id="@+id/phone_contacts_textview_contactdetails"
+			     android:layout_height="wrap_content"
+			     android:layout_width="400dp"
+			     android:textSize="24sp"
+			     android:textColor="#90908f"
+			     android:layout_marginTop="10dp"
+			     android:text="@string/phone_contact_detail"/>
+			 
+			 <LinearLayout 
+			     android:layout_height="wrap_content"
+			     android:layout_width="wrap_content"
+			     android:layout_marginTop="30dp"
+			     android:layout_alignLeft="@+id/phone_contacts_textview_contactname"
+			     android:layout_below="@+id/phone_contacts_textview_contactdetails">
+			     
+			     <ImageButton 
+			     android:id="@+id/phone_contacts_button_videocall"
+			     android:layout_height="56px"
+			     android:layout_width="168px"
+			     android:text="@string/phone_video_call"
+			     android:src="@drawable/ic_video_call"
+			     android:background="@drawable/border_video_voice_style"/>
+			 
+			 <ImageButton 
+			     android:id="@+id/phone_contacts_button_voicecall"
+			     android:layout_height="56px"
+			     android:layout_width="168px"
+			     android:layout_marginLeft="30dp"
+			     android:text="@string/phone_voice_call"
+			     android:src="@drawable/ic_voice_call"
+			     android:background="@drawable/border_video_voice_style"/>
+			 </LinearLayout>
+		 </LinearLayout>
+		 
+ </LinearLayout>

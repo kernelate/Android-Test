@@ -1,0 +1,446 @@
+package com.ntek.wallpad.Screens.Fragment;
+
+
+import org.doubango.ngn.NgnEngine;
+import org.doubango.ngn.services.INgnConfigurationService;
+import org.doubango.ngn.utils.NgnConfigurationEntry;
+import org.doubango.tinyWRAP.MediaSessionMgr;
+
+import android.app.Activity;
+import android.app.Fragment;
+import android.graphics.Typeface;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.ntek.wallpad.R;
+import com.ntek.wallpad.RegularSipRegister;
+import com.ntek.wallpad.Screens.Fragment.FragmentSettingsHeader.OnAddConfigurationListener;
+import com.ntek.wallpad.network.Global;
+
+public class FragmentSettingsSip extends Fragment
+{
+	public final static String TAG = FragmentSettingsSip.class.getCanonicalName();
+	
+	private INgnConfigurationService mConfigurationService;
+	private View view;
+	
+	//TODO Remove this
+//	private EditText edDislpayName; 
+//	private EditText edCallId;
+//	private EditText edPassword;
+//	private EditText edSipServerAddress;
+//	private EditText edSipServerPort;
+	
+	// NATT SETTINGS
+	private CheckBox mCbHackAoR;
+	private CheckBox mCbEnableStun;
+	private CheckBox mCbEnableIce;
+	private LinearLayout mRlStunServer;
+	private RadioButton mRbDiscoStun;
+	private RadioButton mRbSetStun;
+	private EditText mEtStunServer;
+	private EditText mEtStunPort;
+
+	private EditText mEtDisplayName;
+	private EditText mEtIMPU;
+	private EditText mEtIMPI;
+	private EditText mEtPassword;
+	private EditText mEtPort;
+	
+	private EditText mEtRealm;
+//	private EditText mEtCallNumber;
+	private CheckBox mCbEarlyIMS;
+	private Button save;
+	
+	private TextView tvMyProfile;
+	private TextView tvMyDisplayName;
+	private TextView tvMyNumber;
+	private TextView tvSIP;
+	private TextView tvIPAddress;
+	private TextView tvPassword;
+	private TextView tvPort;
+	private TextView tvAdvance;
+	private TextView tvServerOptions;
+	private TextView tvServerPort;
+	private TextView tvServerAddress;
+	
+	private String compareNumber;
+	
+	private OnAddConfigurationListener mOnAddConfig;
+	
+//	private EditText etDislpayName;
+//	private EditText etCallId;
+//	private EditText etPassword;
+//	private EditText etSipServerAddress;
+//	private EditText etSipServerPort;
+//	private Button btnSave;
+
+	
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		try {
+			mOnAddConfig = (OnAddConfigurationListener)activity;
+		} catch (Exception e) {
+			e.printStackTrace();
+			Log.e(TAG, e.getMessage());
+		}
+	}
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+		if (mConfigurationService == null)
+		{
+			mConfigurationService = NgnEngine.getInstance().getConfigurationService();
+		} 
+	}
+	
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		view = inflater.inflate(R.layout.fragment_setting_sip_setup, container, false);
+//		view = inflater.inflate(R.layout.fragment_setting_sip, container, false);
+		initializeUi();
+		return view;
+	}
+
+	protected void initializeUi() 
+	{
+		
+		mCbHackAoR = (CheckBox) view.findViewById(R.id.setting_screen_natt_checkBox_hack_aor);
+		mCbEnableStun = (CheckBox) view.findViewById(R.id.setting_screen_natt_checkBox_stun);
+		mCbEnableIce = (CheckBox) view.findViewById(R.id.setting_screen_natt_checkBox_ice);
+		mRlStunServer = (LinearLayout) view.findViewById(R.id.setting_screen_natt_relativeLayout_stun_server);
+		mRbDiscoStun = (RadioButton) view.findViewById(R.id.setting_screen_natt_radioButton_stun_disco);
+		mRbSetStun = (RadioButton) view.findViewById(R.id.setting_screen_natt_radioButton_stun_set);
+		mEtStunServer = (EditText) view.findViewById(R.id.setting_screen_natt_editText_stun_server);
+		mEtStunPort = (EditText) view.findViewById(R.id.setting_screen_natt_editText_stun_port);
+
+		mEtDisplayName = (EditText) view.findViewById(R.id.setting_screen_identity_editText_displayname);
+		mEtIMPI = (EditText) view.findViewById(R.id.setting_screen_identity_editText_impi);
+		mEtPassword = (EditText) view.findViewById(R.id.setting_screen_identity_editText_password);
+		mEtPort = (EditText) view.findViewById(R.id.setting_screen_identity_editText_port);
+		mEtRealm = (EditText) view.findViewById(R.id.setting_screen_identity_editText_realm);
+		
+		
+		tvMyProfile = (TextView) view.findViewById(R.id.setting_identity_textview_myprofile);
+		tvMyDisplayName = (TextView) view.findViewById(R.id.screen_identity_textView_displayname);
+		tvMyNumber = (TextView) view.findViewById(R.id.screen_identity_textView_impi);
+		tvSIP = (TextView) view.findViewById(R.id.settings_identity_sip);
+		tvIPAddress = (TextView) view.findViewById(R.id.screen_callnumbuer_TextView);
+		tvPassword = (TextView) view.findViewById(R.id.settings_identity_ipaddress);
+		tvPort = (TextView) view.findViewById(R.id.settings_identity_port);
+		tvAdvance = (TextView) view.findViewById(R.id.settings_identity_advance);
+		tvServerOptions = (TextView) view.findViewById(R.id.settings_identity_serveroptions);
+		tvServerPort = (TextView) view.findViewById(R.id.settings_identity_serverport);
+//		tvServerAddress = (TextView) view.findViewById(R.id.settings_identity_serveraddress);
+		
+		save = (Button) view.findViewById(R.id.setting_button_save_sip);
+		
+		Typeface tfOpenSansRegular = Typeface.createFromAsset(getActivity().getAssets(), "fonts/OpenSansRegular.ttf");
+		mCbHackAoR.setTypeface(tfOpenSansRegular);
+		mCbEnableStun.setTypeface(tfOpenSansRegular);
+		mCbEnableIce.setTypeface(tfOpenSansRegular);
+		mRbDiscoStun.setTypeface(tfOpenSansRegular);
+		mRbSetStun.setTypeface(tfOpenSansRegular);
+		mEtStunPort.setTypeface(tfOpenSansRegular);
+		mEtDisplayName.setTypeface(tfOpenSansRegular);
+		mEtIMPI.setTypeface(tfOpenSansRegular);
+		mEtPassword.setTypeface(tfOpenSansRegular);
+		mEtPassword.setTypeface(tfOpenSansRegular);
+		mEtRealm.setTypeface(tfOpenSansRegular);
+		mEtRealm.setTypeface(tfOpenSansRegular);
+		
+		Typeface tfOpenSansSemibold = Typeface.createFromAsset(getActivity().getAssets(), "fonts/OpenSansSemibold.ttf");
+		tvMyProfile.setTypeface(tfOpenSansSemibold);
+		tvMyDisplayName.setTypeface(tfOpenSansSemibold);
+		tvMyNumber.setTypeface(tfOpenSansSemibold);
+		tvSIP.setTypeface(tfOpenSansSemibold);
+		tvIPAddress.setTypeface(tfOpenSansSemibold);
+		tvPassword.setTypeface(tfOpenSansSemibold);
+		tvPort.setTypeface(tfOpenSansSemibold);
+		tvAdvance.setTypeface(tfOpenSansSemibold);
+		tvServerOptions.setTypeface(tfOpenSansSemibold);
+		tvServerPort.setTypeface(tfOpenSansSemibold);
+//		tvServerAddress.setTypeface(tfOpenSansSemibold);
+		
+		
+		save.setOnClickListener(new SaveClick());
+	
+		String name = mConfigurationService.getString(
+				NgnConfigurationEntry.IDENTITY_DISPLAY_NAME,
+				NgnConfigurationEntry.DEFAULT_IDENTITY_DISPLAY_NAME);
+		// 2014.08.25 SmartBean_SHCHO : CHANGE IMPI > CLIENT'S IMPI
+		String client_impi = mConfigurationService.getString(
+				NgnConfigurationEntry.IDENTITY_CLIENT_IMPI,
+				NgnConfigurationEntry.DEFAULT_IDENTITY_CLIENT_IMPI);
+		String password = mConfigurationService.getString(
+				NgnConfigurationEntry.IDENTITY_PASSWORD,
+				NgnConfigurationEntry.DEFAULT_IDENTITY_PASSWORD);
+		int port = mConfigurationService.getInt(
+				NgnConfigurationEntry.NETWORK_PCSCF_PORT,
+				NgnConfigurationEntry.DEFAULT_NETWORK_PCSCF_PORT);
+		String network_realm = mConfigurationService.getString(
+				NgnConfigurationEntry.NETWORK_REALM,
+				NgnConfigurationEntry.DEFAULT_NETWORK_REALM);
+		String callnumber = mConfigurationService.getString(
+				NgnConfigurationEntry.IDENTITY_CALLNUMBER,
+				NgnConfigurationEntry.DEFAULT_IDENTITY_CALLNUMBER);
+
+		mCbHackAoR.setChecked(mConfigurationService.getBoolean(
+				NgnConfigurationEntry.NATT_HACK_AOR,
+				NgnConfigurationEntry.DEFAULT_NATT_HACK_AOR));
+		mCbEnableStun.setChecked(mConfigurationService.getBoolean(
+				NgnConfigurationEntry.NATT_USE_STUN,
+				NgnConfigurationEntry.DEFAULT_NATT_USE_STUN));
+		mCbEnableIce.setChecked(mConfigurationService.getBoolean(
+				NgnConfigurationEntry.NATT_USE_ICE,
+				NgnConfigurationEntry.DEFAULT_NATT_USE_ICE));
+		mRbDiscoStun.setChecked(mConfigurationService.getBoolean(
+				NgnConfigurationEntry.NATT_STUN_DISCO,
+				NgnConfigurationEntry.DEFAULT_NATT_STUN_DISCO));
+		mEtStunServer.setText(mConfigurationService.getString(
+				NgnConfigurationEntry.NATT_STUN_SERVER,
+				NgnConfigurationEntry.DEFAULT_NATT_STUN_SERVER));
+		mEtStunPort.setText(mConfigurationService.getString(
+						NgnConfigurationEntry.NATT_STUN_PORT,
+						Integer.toString(NgnConfigurationEntry.DEFAULT_NATT_STUN_PORT)));
+		
+		mRlStunServer.setVisibility(mRbSetStun.isChecked() ? View.VISIBLE : View.INVISIBLE);
+
+		if (name != null && name.length() > 0) {
+			if (name.length() > 8 && !name.substring(0, 9).equals("IDENTITY_")) {
+				mEtDisplayName.setText(name);
+			} else if (name.length() < 8) {
+				mEtDisplayName.setText(name);
+			} else {
+				mEtDisplayName.setHint("alice");
+			}
+		} else {
+			mEtDisplayName.setHint("alice");
+		}
+
+		if (client_impi != null && client_impi.length() > 0) {
+			if (client_impi.length() > 8
+					&& !client_impi.substring(0, 9).equals("IDENTITY_")) {
+				mEtIMPI.setText(client_impi);
+			} else if (client_impi.length() < 8) {
+				mEtIMPI.setText(client_impi);
+			} else {
+				mEtIMPI.setHint("111");
+			}
+		} else {
+			mEtIMPI.setHint("111");
+		}
+
+		if (password != null && password.length() > 0) {
+			if (password.length() > 8
+					&& !password.substring(0, 9).equals("IDENTITY_")) {
+				mEtPassword.setText(password);
+			} else if (password.length() < 8) {
+				mEtPassword.setText(password);
+			} else {
+				mEtPassword.setHint("password123");
+			}
+		} else {
+			mEtPassword.setHint("password123");
+		}
+		
+		if (port > 0) {
+			mEtPort.setText(String.valueOf(port));
+		} else {
+			mEtPort.setHint("1234");
+		}
+
+		if (network_realm != null && network_realm.length() > 0) 
+		{
+			if (network_realm.length() > 8 && !network_realm.substring(0, 9).equals("IDENTITY_")) 
+			{
+				mEtRealm.setText(network_realm);
+			} else if (network_realm.length() < 8) 
+			{
+				mEtRealm.setText(network_realm);
+			} else 
+			{
+				mEtRealm.setHint("www.sbean.co.kr");
+			}
+		} else {
+			mEtRealm.setHint("www.sbean.co.kr");
+		}
+
+		
+		//CHECK DATA - END
+		if (mOnAddConfig != null)
+		{
+			mOnAddConfig.addConfigListener(new CheckBox[] {mCbHackAoR, mCbEnableIce, mCbEnableStun});
+			mOnAddConfig.addConfigListener(new EditText[] {mEtStunServer, mEtStunPort, mEtDisplayName, mEtIMPI, mEtPassword, mEtRealm});
+		}
+		
+		mRbSetStun.setOnCheckedChangeListener(mRbSetStun_OnCheckedChangeListener);
+	}
+	
+    private class SaveClick implements OnClickListener
+	{
+		@Override
+		public void onClick(View v) {
+
+			if ((mEtDisplayName.getText().toString() != null && mEtDisplayName
+					.getText().toString().length() > 0)
+					&& (mEtIMPI.getText().toString() != null && mEtIMPI
+							.getText().toString().length() > 0)
+					&& (mEtPassword.getText().toString() != null && mEtPassword
+							.getText().toString().length() > 0)
+					&& (mEtRealm.getText().toString() != null && mEtRealm
+							.getText().toString().length() > 0)){
+//					&& (mEtCallNumber.getText().toString() != null && mEtCallNumber
+//							.getText().toString().length() > 0)) {
+
+				saveToConfigurationService(); // save to configuration
+												// service
+
+			} else { // 2014.07.18 SmartBean_SHCHO : INPUTBOX DATA IS WRONG
+						// > DISPLAY TOAST MESSAGE
+				if (mEtDisplayName.getText().toString() == null
+						|| mEtDisplayName.getText().toString().length() < 1) {
+					Toast.makeText(getActivity(),
+							// 2014.09.26 SmartBean_SHCHO : CHANGE NORMAL
+							// TEXT TO RESOURCE STRING.XML
+							getString(R.string.string_identity_name_empty),
+							Toast.LENGTH_SHORT).show();
+				} else if (mEtIMPI.getText().toString() == null
+						|| mEtIMPI.getText().toString().length() < 1) {
+					Toast.makeText(
+							getActivity(),
+							// 2014.09.26 SmartBean_SHCHO : CHANGE NORMAL
+							// TEXT TO RESOURCE STRING.XML
+							getString(R.string.string_identity_mynumber_empty),
+							Toast.LENGTH_SHORT).show();
+				} else if (mEtPort.getText().toString() == null
+						|| mEtPort.getText().toString().length() < 1) {
+					Toast.makeText(
+							getActivity(),
+							// 2014.09.26 SmartBean_SHCHO : CHANGE NORMAL
+							// TEXT TO RESOURCE STRING.XML
+							getString(R.string.string_identity_port_empty),
+							Toast.LENGTH_SHORT).show();
+				} else if (mEtPassword.getText().toString() == null
+						|| mEtPassword.getText().toString().length() < 1) {
+					Toast.makeText(
+							getActivity(),
+							// 2014.09.26 SmartBean_SHCHO : CHANGE NORMAL
+							// TEXT TO RESOURCE STRING.XML
+							getString(R.string.string_identity_password_empty),
+							Toast.LENGTH_SHORT).show();
+				} else if (mEtRealm.getText().toString() == null
+						|| mEtRealm.getText().toString().length() < 1) {
+					Toast.makeText(
+							getActivity(),
+							// 2014.09.26 SmartBean_SHCHO : CHANGE NORMAL
+							// TEXT TO RESOURCE STRING.XML
+							getString(R.string.string_identity_ipaddress_empty),
+							Toast.LENGTH_SHORT).show();
+				} else {
+					MediaSessionMgr.defaultsSetIceEnabled(mCbEnableIce
+							.isChecked());
+					MediaSessionMgr.defaultsSetStunEnabled(mCbEnableStun
+							.isChecked());
+				}
+			}
+		}
+		
+		protected void saveToConfigurationService() {
+			//FIXME ScreenIdentity.super.mComputeConfiguration
+			if (true) {
+				mConfigurationService.putString(
+						NgnConfigurationEntry.IDENTITY_IMPI, mEtIMPI.getText()
+								.toString().trim());
+				mConfigurationService.putString(
+						NgnConfigurationEntry.IDENTITY_CLIENT_IMPI, mEtIMPI
+								.getText().toString().trim());
+				Global.getInstance().set_client_Impi(mEtIMPI.getText().toString().trim());
+				mConfigurationService.putString(
+						NgnConfigurationEntry.IDENTITY_DISPLAY_NAME, mEtDisplayName
+								.getText().toString().trim());
+				mConfigurationService.putString(
+						NgnConfigurationEntry.IDENTITY_IMPU, String.format(
+								"sip:%s@%s", mEtIMPI.getText().toString(), mEtRealm
+										.getText().toString()));
+				mConfigurationService.putString(
+						NgnConfigurationEntry.IDENTITY_PASSWORD, mEtPassword
+								.getText().toString().trim());
+				mConfigurationService.putString(
+						NgnConfigurationEntry.NETWORK_REALM, mEtRealm.getText()
+								.toString().trim());
+				mConfigurationService.putString(
+						NgnConfigurationEntry.NETWORK_PCSCF_HOST, mEtRealm
+								.getText().toString().trim());
+				mConfigurationService.putInt(
+						NgnConfigurationEntry.NETWORK_PCSCF_PORT, Integer.parseInt(mEtPort.getText().toString().trim()));
+				mConfigurationService
+						.putBoolean(NgnConfigurationEntry.NATT_HACK_AOR,
+								mCbHackAoR.isChecked());
+				mConfigurationService.putBoolean(
+						NgnConfigurationEntry.NATT_USE_STUN,
+						mCbEnableStun.isChecked());
+				mConfigurationService.putBoolean(
+						NgnConfigurationEntry.NATT_USE_ICE,
+						mCbEnableIce.isChecked());
+				mConfigurationService.putBoolean(
+						NgnConfigurationEntry.NATT_STUN_DISCO,
+						mRbDiscoStun.isChecked());
+				mConfigurationService.putString(
+						NgnConfigurationEntry.NATT_STUN_SERVER, mEtStunServer
+								.getText().toString());
+				mConfigurationService.putString(
+						NgnConfigurationEntry.NATT_STUN_PORT, mEtStunPort.getText()
+								.toString());
+
+				// Compute
+				mConfigurationService.commit();
+				// Compute
+				if (!mConfigurationService.commit()) 
+				{
+					Log.e(TAG, "Failed to Commit() configuration");
+				}
+				
+				new RegularSipRegister(getActivity()).start();
+
+//				ScreenIdentity.super.mComputeConfiguration = false; FIXME mComputeConfiguration
+			}
+
+			// 2014.09.26 SmartBean_SHCHO : CHANGE NORMAL TEXT TO RESOURCE
+			// STRING.XML
+			Toast.makeText(getActivity(),
+					getString(R.string.string_identity_setting_save),
+					Toast.LENGTH_SHORT).show();
+		}
+
+	}
+	
+	private OnCheckedChangeListener mRbSetStun_OnCheckedChangeListener = new OnCheckedChangeListener() {
+		@Override
+		public void onCheckedChanged(CompoundButton buttonView,
+				boolean isChecked) {
+			mRlStunServer.setVisibility(isChecked ? View.VISIBLE : View.INVISIBLE);
+			//mComputeConfiguration = true; FIXME cant call this in BaseScreen
+		}
+	};
+	
+}

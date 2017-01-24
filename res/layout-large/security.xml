@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_white" >
+
+    <Button
+        android:id="@+id/security_none"
+        android:layout_width="fill_parent"
+        android:layout_height="96dp"
+        android:background="@drawable/settings_selector"
+        android:gravity="center_vertical"
+        android:paddingLeft="32dp"
+        android:text="None"
+        android:textColor="#a3a3a3"
+        android:textSize="36sp" />
+
+    <Button
+        android:id="@+id/security_slide"
+        android:layout_width="fill_parent"
+        android:layout_height="96dp"
+        android:layout_below="@+id/security_none"
+        android:background="@drawable/settings_selector"
+        android:gravity="center_vertical"
+        android:paddingLeft="32dp"
+        android:text="Slide"
+        android:textColor="#a3a3a3"
+        android:textSize="36sp" />
+
+    <Button
+        android:id="@+id/security_pattern"
+        android:layout_width="fill_parent"
+        android:layout_height="96dp"
+        android:layout_below="@+id/security_slide"
+        android:background="@drawable/settings_selector"
+        android:gravity="center_vertical"
+        android:paddingLeft="32dp"
+        android:text="Pattern"
+        android:textColor="#a3a3a3"
+        android:textSize="36sp" />
+
+    <Button
+        android:id="@+id/security_pin"
+        android:layout_width="fill_parent"
+        android:layout_height="96dp"
+        android:layout_below="@+id/security_pattern"
+        android:background="@drawable/settings_selector"
+        android:gravity="center_vertical"
+        android:paddingLeft="32dp"
+        android:text="PIN"
+        android:textColor="#a3a3a3"
+        android:textSize="36sp" />
+
+    <Button
+        android:id="@+id/security_password"
+        android:layout_width="fill_parent"
+        android:layout_height="96dp"
+        android:layout_below="@+id/security_pin"
+        android:background="@drawable/settings_selector"
+        android:gravity="center_vertical"
+        android:paddingLeft="32dp"
+        android:text="Password"
+        android:textColor="#a3a3a3"
+        android:textSize="36sp" />
+
+</RelativeLayout>

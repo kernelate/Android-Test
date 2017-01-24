@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" 
+    android:background="@drawable/call_menu_background">
+    
+    <LinearLayout 
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
+    
+	    <ToggleButton 
+	        android:id="@+id/phone_call_menu_toggle_resume"
+	        android:layout_height="wrap_content"
+	        android:layout_width="wrap_content"
+	        android:background="@drawable/phone_call_toggle_play"
+	        android:textOn=""
+	        android:textOff=""/>
+	    
+	    <ToggleButton 
+	        android:id="@+id/phone_call_menu_toggle_volume"
+	        android:layout_height="wrap_content"
+	        android:layout_width="wrap_content"
+	        android:background="@drawable/phone_call_toggle_volume"
+	        android:textOn=""
+	        android:textOff=""
+	        android:layout_marginLeft="10dp"/>
+	    
+	    <ToggleButton 
+	        android:id="@+id/phone_call_menu_toggle_mic_video"
+	        android:layout_height="wrap_content"
+	        android:layout_width="wrap_content"
+	        android:background="@drawable/phone_call_toggle_mic"
+	        android:textOn=""
+	        android:textOff=""
+	        android:layout_marginLeft="10dp"/>
+	    
+	    <Button 
+	        android:id="@+id/phone_call_menu_button_endcall"
+	        android:layout_height="wrap_content"
+	        android:layout_width="wrap_content"
+	        android:background="@drawable/ic_end_call"
+	        android:layout_marginLeft="150dp"
+	        android:layout_marginRight="150dp"/>
+	    
+	    <Button 
+	        android:id="@+id/phone_call_menu_button_screenshot"
+	        android:layout_height="wrap_content"
+	        android:layout_width="wrap_content"
+	        android:background="@drawable/ic_screenshot"
+	        android:layout_marginRight="10dp"/>
+	    
+	    <Button 
+	        android:id="@+id/phone_call_menu_button_doorlock"
+	        android:layout_height="wrap_content"
+	        android:layout_width="wrap_content"
+	        android:background="@drawable/ic_doorcontrol"
+	        android:layout_marginRight="10dp"/>
+	    
+	    <ToggleButton 
+	        android:id="@+id/phone_call_menu_toggle_record"
+	        android:layout_height="wrap_content"
+	        android:layout_width="wrap_content"
+	        android:background="@drawable/phone_call_toggle_video"
+	        android:textOn=""
+	        android:textOff=""/>
+	</LinearLayout>
+</RelativeLayout>

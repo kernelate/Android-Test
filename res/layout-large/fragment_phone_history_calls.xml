@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="horizontal"
+        android:weightSum="2" >
+
+        <Button
+            android:id="@+id/phone_history_call_calls"
+            android:layout_width="fill_parent"
+            android:layout_height="55px"
+            android:layout_weight="1"
+            android:background="@drawable/border_selected_subtab"
+            android:text="CALLS"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/phone_history_call_security"
+            android:layout_width="fill_parent"
+            android:layout_height="55px"
+            android:layout_marginLeft="1dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:text="SECURITY"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/llButtons"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:weightSum="4" >
+
+            <ImageButton
+                android:id="@+id/phone_history_call_all"
+                android:layout_width="fill_parent"
+                android:layout_height="55px"
+                android:layout_weight="1"
+                android:background="@drawable/dialpad_all_selector"
+                android:src="@drawable/ic_all_call" />
+
+            <ImageButton
+                android:id="@+id/phone_history_call_incoming"
+                android:layout_width="fill_parent"
+                android:layout_height="55px"
+                android:layout_weight="1"
+                android:background="@drawable/dialpad_incoming_outgoing_selector"
+                android:src="@drawable/ic_incoming_call" />
+
+            <ImageButton
+                android:id="@+id/phone_history_call_outgoing"
+                android:layout_width="fill_parent"
+                android:layout_height="55px"
+                android:layout_weight="1"
+                android:background="@drawable/dialpad_incoming_outgoing_selector"
+                android:src="@drawable/ic_outgoing_call" />
+
+            <ImageButton
+                android:id="@+id/phone_history_call_missed"
+                android:layout_width="fill_parent"
+                android:layout_height="55px"
+                android:layout_weight="1"
+                android:background="@drawable/dialpad_missed_selector"
+                android:src="@drawable/ic_missed_call" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/llButtons" >
+
+            <ListView
+                android:id="@+id/phone_history_call_listview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:divider="@drawable/custom_list_divider_phone"
+                android:dividerHeight="2dp" />
+
+            <TextView
+                android:id="@+id/no_history_calls_caption_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textColor="#90908f"
+                android:textSize="18sp"
+                android:visibility="visible" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>

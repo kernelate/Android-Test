@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/call_menu_background" >
+    
+    <LinearLayout 
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerInParent="true">
+        
+        <ImageButton 
+            android:id="@+id/phone_call_incoming_menu_button_answer"
+            android:layout_width="220px"
+            android:layout_height="64px"
+            android:src="@drawable/ic_voice_call"
+            android:background="@drawable/border_call_button_answer"/>
+        
+        <ImageButton 
+            android:id="@+id/phone_call_incoming_menu_button_decline"
+            android:layout_width="220px"
+            android:layout_height="64px"
+            android:src="@drawable/ic_decline_call"
+            android:background="@drawable/border_call_button_decline"
+            android:layout_marginLeft="15dp"/>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical" >
+
+        <!--
+             <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="2"
+            android:text="SIP ACCOUNT"
+            android:textColor="#616161"
+            android:textSize="16sp" />
+        -->
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="96dp"
+            android:gravity="center_vertical"
+            android:text="SIP Setup"
+            android:textColor="#607d8b"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/fragment_settings_sip_button_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_weight="7"
+            android:background="@drawable/btn_save_diskette" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:background="#1a000000"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:isScrollContainer="true" >
+
+            <TextView
+                android:id="@+id/fragment_settings_sip_tv_display_name"
+                android:layout_width="fill_parent"
+                android:layout_height="96dp"
+                android:background="@drawable/settings_selector"
+                android:gravity="center_vertical"
+                android:paddingLeft="32dp"
+                android:text="Display Name"
+                android:textColor="#a3a3a3"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/fragment_settings_sip_et_display_name"
+                android:layout_width="430dp"
+                android:layout_height="52dp"
+                android:layout_alignBaseline="@+id/fragment_settings_sip_tv_display_name"
+                android:layout_marginLeft="430dp"
+                android:layout_marginRight="32dp"
+                android:background="@drawable/rect_selector"
+                android:hint="Sample Name"
+                android:textColor="@color/color_black"
+                android:textSize="24sp" />
+
+            <!-- account -->
+
+            <TextView
+                android:id="@+id/fragment_settings_sip_tv_account"
+                android:layout_width="fill_parent"
+                android:layout_height="96dp"
+                android:layout_below="@+id/fragment_settings_sip_tv_display_name"
+                android:gravity="center_vertical"
+                android:paddingLeft="32dp"
+                android:text="Account"
+                android:textColor="#607d8b"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/fragment_settings_sip_tv_callid"
+                android:layout_width="fill_parent"
+                android:layout_height="96dp"
+                android:layout_below="@+id/fragment_settings_sip_tv_account"
+                android:background="@drawable/settings_selector"
+                android:gravity="center_vertical"
+                android:paddingLeft="32dp"
+                android:text="Call ID"
+                android:textColor="#a3a3a3"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/fragment_settings_sip_et_callid"
+                android:layout_width="430dp"
+                android:layout_height="52dp"
+                android:layout_alignBaseline="@+id/fragment_settings_sip_tv_callid"
+                android:layout_marginLeft="430dp"
+                android:layout_marginRight="32dp"
+                android:background="@drawable/rect_selector"
+                android:textColor="@color/color_black"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/fragment_settings_sip_tv_password"
+                android:layout_width="fill_parent"
+                android:layout_height="96dp"
+                android:layout_below="@+id/fragment_settings_sip_tv_callid"
+                android:background="@drawable/settings_selector"
+                android:gravity="center_vertical"
+                android:paddingLeft="32dp"
+                android:text="Password"
+                android:textColor="#a3a3a3"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/fragment_settings_sip_et_password"
+                android:layout_width="430dp"
+                android:layout_height="52dp"
+                android:layout_alignBaseline="@+id/fragment_settings_sip_tv_password"
+                android:layout_marginLeft="430dp"
+                android:layout_marginRight="32dp"
+                android:background="@drawable/rect_selector"
+                android:hint="Password"
+                android:password="true"
+                android:textColor="@color/color_black"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/pwShopSip"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="790dp"
+                android:layout_marginTop="305dp" />
+            <!-- account -->
+
+
+            <!--
+                 <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="100px"
+                android:layout_marginRight="40px"
+                android:background="#1a000000"
+                android:orientation="vertical" />
+            -->
+
+
+            <!-- sip server -->
+
+            <TextView
+                android:id="@+id/fragment_settings_sip_tv_sipserver"
+                android:layout_width="fill_parent"
+                android:layout_height="96dp"
+                android:layout_below="@+id/fragment_settings_sip_tv_password"
+                android:gravity="center_vertical"
+                android:paddingLeft="32dp"
+                android:text="SIP Server Address"
+                android:textColor="#607d8b"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/fragment_settings_sip_tv_ipadd"
+                android:layout_width="fill_parent"
+                android:layout_height="96dp"
+                android:layout_below="@+id/fragment_settings_sip_tv_sipserver"
+                android:background="@drawable/settings_selector"
+                android:gravity="center_vertical"
+                android:paddingLeft="32dp"
+                android:text="IP Address"
+                android:textColor="#a3a3a3"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/fragment_settings_sip_et_ipadd"
+                android:layout_width="430dp"
+                android:layout_height="52dp"
+                android:layout_alignBaseline="@+id/fragment_settings_sip_tv_ipadd"
+                android:layout_marginLeft="430dp"
+                android:layout_marginRight="32dp"
+                android:background="@drawable/rect_selector"
+                android:hint="IP Address"
+                android:textColor="@color/color_black"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/fragment_settings_sip_tv_port"
+                android:layout_width="fill_parent"
+                android:layout_height="96dp"
+                android:layout_below="@+id/fragment_settings_sip_tv_ipadd"
+                android:background="@drawable/settings_selector"
+                android:gravity="center_vertical"
+                android:paddingLeft="32dp"
+                android:text="Port"
+                android:textColor="#a3a3a3"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/fragment_settings_sip_et_port"
+                android:layout_width="430dp"
+                android:layout_height="52dp"
+                android:layout_alignBaseline="@+id/fragment_settings_sip_tv_port"
+                android:layout_marginLeft="430dp"
+                android:layout_marginRight="32dp"
+                android:background="@drawable/rect_selector"
+                android:hint="Port Number"
+                android:textColor="@color/color_black"
+                android:textSize="24sp" />
+
+            <!-- sip server -->
+
+
+            <!-- Volume Control -->
+
+            <TextView
+                android:id="@+id/fragment_settings_sip_tv_volume"
+                android:layout_width="fill_parent"
+                android:layout_height="96dp"
+                android:layout_below="@+id/fragment_settings_sip_tv_port"
+                android:gravity="center_vertical"
+                android:paddingLeft="32dp"
+                android:text="Volume Control"
+                android:textColor="#607d8b"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/fragment_settings_sip_tv_notif"
+                android:layout_width="fill_parent"
+                android:layout_height="96dp"
+                android:layout_below="@+id/fragment_settings_sip_tv_volume"
+                android:background="@drawable/settings_selector"
+                android:gravity="center_vertical"
+                android:paddingLeft="32dp"
+                android:text="Notification Volume"
+                android:textColor="#a3a3a3"
+                android:textSize="24sp" />
+
+            <LinearLayout
+                android:id="@+id/fragment_settings_sip_ll_notif"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/fragment_settings_sip_tv_notif"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="20dp"
+                android:orientation="horizontal"
+                android:weightSum="5" >
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/volume_selector" />
+
+                <SeekBar
+                    android:id="@+id/soundSeekBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:padding="20dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20px"
+                    android:background="#616161" >
+
+                    <EditText
+                        android:id="@+id/dialog_volume_control_edittext_sound"
+                        android:layout_width="104px"
+                        android:layout_height="32px"
+                        android:layout_margin="1px"
+                        android:background="#ffffff"
+                        android:clickable="false"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:text="50"
+                        android:textColor="#000000"
+                        android:textCursorDrawable="@null"
+                        android:textSize="18sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/fragment_settings_sip_tv_call"
+                android:layout_width="fill_parent"
+                android:layout_height="96dp"
+                android:layout_below="@+id/fragment_settings_sip_ll_notif"
+                android:background="@drawable/settings_selector"
+                android:gravity="center_vertical"
+                android:paddingLeft="32dp"
+                android:text="Call Volume"
+                android:textColor="#a3a3a3"
+                android:textSize="24sp" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/fragment_settings_sip_tv_call"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="20dp"
+                android:orientation="horizontal"
+                android:weightSum="5" >
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/volume_selector" />
+
+                <SeekBar
+                    android:id="@+id/callSeekBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:padding="20dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20px"
+                    android:background="#616161" >
+
+                    <EditText
+                        android:id="@+id/dialog_volume_control_edittext_speech"
+                        android:layout_width="104px"
+                        android:layout_height="32px"
+                        android:layout_margin="1px"
+                        android:background="#ffffff"
+                        android:clickable="false"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:text="50"
+                        android:textColor="#000000"
+                        android:textCursorDrawable="@null"
+                        android:textSize="18sp" />
+                </LinearLayout>
+            </LinearLayout>
+            <!-- Volume Control -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="8dp"
+                android:text="SIP number"
+                android:textColor="@color/color_black"
+                android:textSize="18sp"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/fragment_settings_sip_edittext_call_id"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:layout_marginRight="40px"
+                android:layout_marginTop="8dp"
+                android:hint="101"
+                android:inputType="number"
+                android:textColor="@color/color_black"
+                android:textSize="18sp"
+                android:visibility="gone" />
+
+            <!--
+                 <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="100px"
+                android:layout_marginRight="40px"
+                android:background="#1a000000"
+                android:orientation="vertical" />
+            -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="8dp"
+                android:text="SIP password"
+                android:textColor="@color/color_black"
+                android:textSize="18sp"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/fragment_settings_sip_edittext_password"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:layout_marginRight="40px"
+                android:layout_marginTop="8dp"
+                android:hint="101"
+                android:textColor="@color/color_black"
+                android:textSize="18sp"
+                android:visibility="gone" />
+
+            <!--
+                 <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="100px"
+                android:layout_marginRight="40px"
+                android:background="#1a000000"
+                android:orientation="vertical" />
+            -->
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40px"
+                android:layout_marginRight="40px"
+                android:layout_marginTop="20px"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/settings_identity_sip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="SIP SERVER"
+                    android:textColor="#616161"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="3px"
+                    android:layout_marginTop="8px"
+                    android:background="#1a000000"
+                    android:orientation="vertical" >
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="8dp"
+                android:text="Address"
+                android:textColor="@color/color_black"
+                android:textSize="18sp"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/fragment_settings_sip_edittext_sip_server_address"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:layout_marginRight="40px"
+                android:layout_marginTop="8dp"
+                android:hint="doubango.org"
+                android:textColor="@color/color_black"
+                android:textSize="18sp"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="100px"
+                android:layout_marginRight="40px"
+                android:background="#1a000000"
+                android:orientation="vertical"
+                android:visibility="gone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="8dp"
+                android:text="Port"
+                android:textColor="@color/color_black"
+                android:textSize="18sp"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/fragment_settings_sip_edittext_sip_server_port"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:layout_marginRight="40px"
+                android:layout_marginTop="8dp"
+                android:hint="5060"
+                android:inputType="number"
+                android:textColor="@color/color_black"
+                android:textSize="18sp"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="100px"
+                android:layout_marginRight="40px"
+                android:background="#1a000000"
+                android:orientation="vertical" />
+        </RelativeLayout>
+    </ScrollView>
+
+</LinearLayout>

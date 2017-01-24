@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/deviceListLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40px"
+        android:layout_marginRight="40px"
+        android:layout_marginTop="16px"
+        android:orientation="vertical"
+        android:visibility="invisible" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="5dp" >
+
+            <TextView
+                android:id="@+id/textviewTitleDeviceList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Device List"
+                android:textColor="#607d8b"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <!--
+                 <Button
+                android:id="@+id/automation_button_listview_scan"
+                android:layout_width="104px"
+                android:layout_height="32px"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/corner_button_style"
+                android:text="Scan"
+                android:textSize="16sp" />
+            -->
+
+            <Button
+                android:id="@+id/automation_button_listview_scan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/btn_refresh_selector"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/automation_button_listview_manual"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/automation_button_listview_scan"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:layout_toLeftOf="@+id/automation_button_listview_scan"
+                android:background="@drawable/btn_manual_add_selector"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="770dp"
+            android:layout_height="3dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="3dp"
+            android:background="#616161"
+            android:orientation="vertical" >
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/automation_listview_devicelist"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="8dp" >
+        </ListView>
+        <!--  -->
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/hideScanButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:weightSum="2" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="96dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="45dp"
+                android:text="Device List"
+                
+                android:textSize="30sp"
+                android:textColor="#607d8b"
+                android:layout_marginTop="3dp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/automation_button_scan"
+                android:layout_width="104px"
+                android:layout_height="40px"
+                android:layout_marginLeft="600dp"
+                android:background="@drawable/corner_button_style"
+                android:text="@string/string_scan"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="770dp"
+            android:layout_height="3dp"
+            android:layout_marginLeft="45dp"
+            android:background="#616161"
+            android:orientation="vertical" >
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/messageDeviceList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="250dp"
+                android:layout_marginTop="250dp"
+                android:text="No available device found, please try again"
+                android:textColor="@color/color_black"
+                android:textSize="20sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="16px"
+        android:weightSum="7" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="96dp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="2"
+            android:gravity="center_vertical"
+            android:text="@string/string_network_setup_button"
+            android:textColor="#607d8b"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/phone_setting_button_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="30px"
+            android:background="@drawable/btn_save_diskette" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="4px"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="8px"
+        android:background="#1a000000"
+        android:orientation="vertical" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="72dp"
+                android:layout_marginLeft="32dp"
+                android:gravity="center_vertical"
+                android:text="Network"
+                android:textColor="#607d8b"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="70dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp" >
+
+                <Button
+                    android:id="@+id/networkTypeButton"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@color/color_white" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="72dp"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/string_network_setup"
+                        android:textColor="#a3a3a3"
+                        android:textSize="24sp" />
+
+                    <!--
+                         <TextView
+                        android:id="@+id/phone_setting_textview_network_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/Ethernet_cable"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+                    -->
+
+                    <ToggleButton
+                        android:id="@+id/phone_setting_network_type_tb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/btn_wifi_ethernet_toggle"
+                        android:textColor="@android:color/black"
+                        android:textOff=""
+                        android:textOn=""
+                        android:textSize="16sp" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <!--
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="2px"
+                android:layout_marginLeft="70px"
+                android:layout_marginRight="40px"
+                android:background="#1a000000"
+                android:orientation="vertical" >
+            </LinearLayout>
+            -->
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="70dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp" >
+
+                <Button
+                    android:id="@+id/ipsetting_button"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@color/color_white" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="@string/string_ip_settings"
+                        android:textColor="#a3a3a3"
+                        android:textSize="24sp" />
+
+                    <TextView
+                        android:id="@+id/phone_setting_textview_ip_setting"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:text="@string/Static"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+
+                    <ToggleButton
+                        android:id="@+id/phone_setting_ip_setting_tb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/btn_static_dhcp_toggle"
+                        android:textColor="@android:color/black"
+                        android:textOff=""
+                        android:textOn=""
+                        android:textSize="16sp" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <!--
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="2px"
+                android:layout_marginLeft="70px"
+                android:layout_marginRight="40px"
+                android:background="#1a000000"
+                android:orientation="vertical" >
+            </LinearLayout>
+            -->
+
+            <LinearLayout
+                android:id="@+id/setting_layout_hide_ethernet"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8px"
+                    android:orientation="horizontal" >
+
+                    <Button
+                        android:id="@+id/phone_setting_button_scan_ssid"
+                        android:layout_width="104px"
+                        android:layout_height="32px"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/corner_button_style"
+                        android:text="@string/string_scan"
+                        android:textSize="16sp" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="72dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:text="@string/string_ssid"
+                        android:textColor="#a3a3a3"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/phone_setting_edittext_wifi_network"
+                        android:layout_width="430dp"
+                        android:layout_height="52dp"
+                        android:layout_marginLeft="350dp"
+                        android:background="@drawable/rect_selector"
+                        android:textColor="@color/color_black"
+                        android:textSize="30sp" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/string_Password"
+                        android:textColor="#a3a3a3"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/phone_setting_edittext_password"
+                        android:layout_width="430dp"
+                        android:layout_height="52dp"
+                        android:layout_marginLeft="405dp"
+                        android:background="@drawable/rect_selector"
+                        android:textColor="@color/color_black"
+                        android:password="true"
+                        android:textSize="30sp" />
+
+                    <Button
+                        android:id="@+id/pwShow"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="780dp"
+                        />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/setting_linear_layout_to_hide"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40px"
+                android:layout_marginRight="40px"
+                android:layout_marginTop="20px"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="72dp"
+                    android:gravity="center_vertical"
+                    android:text="Advanced Option"
+                    android:textColor="#607d8b"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <!--
+                     <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="4px"
+                    android:layout_marginBottom="8px"
+                    android:layout_marginTop="8px"
+                    android:background="#1a000000"
+                    android:orientation="vertical" />
+                -->
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="72dp"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/string_IP_Address"
+                        android:textColor="#a3a3a3"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/phone_setting_edittext_ip_address"
+                        android:layout_width="430dp"
+                        android:layout_height="52dp"
+                        android:layout_marginLeft="270dp"
+                        android:background="@drawable/rect_selector"
+                        android:inputType="number|phone"
+                        android:textColor="@color/color_black"
+                        android:textSize="30sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="72dp"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/string_gateway"
+                        android:textColor="#a3a3a3"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/phone_setting_edittext_gateway"
+                        android:layout_width="430dp"
+                        android:layout_height="52dp"
+                        android:layout_marginLeft="295dp"
+                        android:background="@drawable/rect_selector"
+                        android:hint="192.168.1.1"
+                        android:inputType="number|phone"
+                        android:textColor="@color/color_black"
+                        android:textSize="30sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="72dp"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/string_subnet"
+                        android:textColor="#a3a3a3"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/phone_setting_edittext_subnetmask"
+                        android:layout_width="430dp"
+                        android:layout_height="52dp"
+                        android:layout_marginLeft="250dp"
+                        android:background="@drawable/rect_selector"
+                        android:hint="255.255.255.0"
+                        android:inputType="number|phone"
+                        android:textColor="@color/color_black"
+                        android:textSize="30sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="72dp"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/string_dns_one"
+                        android:textColor="#a3a3a3"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/phone_setting_edittext_dns_one"
+                        android:layout_width="430dp"
+                        android:layout_height="52dp"
+                        android:layout_marginLeft="315dp"
+                        android:background="@drawable/rect_selector"
+                        android:hint="8.8.8.8"
+                        android:inputType="number|phone"
+                        android:textColor="@color/color_black"
+                        android:textSize="30sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="72dp"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/string_dns_two"
+                        android:textColor="#a3a3a3"
+                        android:textSize="24sp" />
+
+                    <EditText
+                        android:id="@+id/phone_setting_edittext_dns_two"
+                        android:layout_width="430dp"
+                        android:layout_height="52dp"
+                        android:layout_marginLeft="315dp"
+                        android:background="@drawable/rect_selector"
+                        android:hint="8.8.4.4"
+                        android:inputType="number|phone"
+                        android:textColor="@color/color_black"
+                        android:textSize="30sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

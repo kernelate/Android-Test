@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="828dp"
+    android:layout_height="541dp"
+    android:background="@color/color_white"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="108dp"
+        android:layout_marginLeft="32dp"
+        android:gravity="center_vertical"
+        android:text="Add Email"
+        android:textColor="@color/color_black"
+        android:textSize="30sp" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="108dp"
+        android:layout_marginLeft="100dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:textColor="@color/color_gray"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/dialog_add_email_client_edittext_email"
+            android:layout_width="534dp"
+            android:layout_height="64dp"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/rect_selector"
+            android:ems="10"
+            android:hint="ntekuser@ntek.com"
+            android:inputType="textEmailAddress"
+            android:singleLine="true"
+            android:textColor="@color/color_black"
+            android:textColorHint="@color/color_gray"
+            android:textCursorDrawable="@null"
+            android:textSize="24sp" >
+
+            <requestFocus />
+        </EditText>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="72dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center_vertical"
+        android:text="Notification"
+        android:textColor="#607d8b"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="108dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="20dp" >
+
+        <!-- motion -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="10dp"
+            android:text="Motion detection"
+            android:textColor="@color/color_black"
+            android:textSize="24sp" />
+
+        <!--
+             <ToggleButton
+            android:id="@+id/dialog_add_email_client_toggle_motion_detection"
+            android:layout_width="104px"
+            android:layout_height="32px"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/doorlock_toggle_style_on_off"
+            android:checked="true"
+            android:orientation="vertical"
+            android:textOff=""
+            android:textOn="" />
+        -->
+
+        <CheckBox
+            android:id="@+id/dialog_add_email_client_toggle_motion_detection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/checkbox" />
+
+        <!-- motion -->
+
+
+        <!-- door control -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="500dp"
+            android:layout_marginTop="10dp"
+            android:text="Door control"
+            android:textColor="@color/color_black"
+            android:textSize="24sp" />
+
+        <CheckBox
+            android:id="@+id/dialog_add_email_client_toggle_door_control"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="400dp"
+            android:button="@drawable/checkbox" />
+
+        <!-- door control -->
+    </RelativeLayout>
+
+    <!--
+    <RelativeLayout
+        android:id="@+id/dialog_add_email_client_rel"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8px"
+        android:layout_marginLeft="32px"
+        android:layout_marginRight="16px"
+        android:orientation="horizontal" >
+
+        
+             <ToggleButton
+            android:id="@+id/dialog_add_email_client_toggle_door_control"
+            android:layout_width="104px"
+            android:layout_height="32px"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/doorlock_toggle_style_on_off"
+            android:checked="true"
+            android:orientation="vertical"
+            android:textOff=""
+            android:textOn="" />
+       
+
+    </RelativeLayout>
+    -->
+
+
+    <!--
+         <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="#b2b2b2"
+        android:orientation="vertical"
+        android:textColor="#29b6f6" >
+    </LinearLayout>
+    -->
+
+
+    <!--
+        <Button
+        android:id="@+id/dialog_add_email_client_button_ok"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/corner_layout_style"
+        android:text="OK"
+        android:textColor="@color/color_black"
+        android:textSize="22sp" />
+    -->
+
+    <LinearLayout
+        android:id="@+id/sipsetting_pbx_linear"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/dialog_add_email_client_button_no"
+            android:layout_width="216dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="380dp"
+            android:background="@android:color/transparent"
+            android:text="Cancel"
+            android:textColor="#607d8b"
+            android:textSize="36sp" />
+
+        <Button
+            android:id="@+id/dialog_add_email_client_button_ok"
+            android:layout_width="216dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:text="OK"
+            android:textColor="#607d8b"
+            android:textSize="36sp" />
+    </LinearLayout>
+
+</LinearLayout>

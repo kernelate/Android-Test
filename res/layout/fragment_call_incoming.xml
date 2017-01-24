@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <LinearLayout 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="20dp">
+        
+        <TextView 
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textColor="#ffffff"
+            android:textSize="24px"
+            android:text="Incoming Call"/>
+        
+        <ImageView 
+            android:id="@+id/phone_call_incoming_imageview_caller"
+            android:layout_height="224px"
+            android:layout_width="224px"
+            android:background="@drawable/ic_thumbnail_xlarge"
+            android:layout_marginTop="15dp"/>
+        
+        <TextView 
+            android:id="@+id/phone_call_incoming_textview_caller"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textColor="#ffffff"
+            android:textSize="34px"
+            android:text="Alexandra Dadario"
+            android:layout_marginTop="15dp"/>
+        
+        <TextView 
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textColor="#ffffff"
+            android:textSize="24px"
+            android:text="Calling.."
+            android:layout_marginTop="10dp"/>
+    </LinearLayout>
+    
+
+</RelativeLayout>

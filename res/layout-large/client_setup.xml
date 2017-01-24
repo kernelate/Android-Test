@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_white" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent" >
+
+            <LinearLayout
+                android:id="@+id/client_setup_header"
+                android:layout_width="match_parent"
+                android:layout_height="96dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="32dp"
+                    android:text="Client Setup"
+                    android:textColor="#607d8b"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/client_setup_btn_save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="570dp"
+                    android:background="@drawable/btn_save_selector" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="3dp"
+                android:layout_below="@+id/client_setup_header"
+                android:layout_marginLeft="5dp"
+                android:background="#616161"
+                android:orientation="vertical" >
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/client_setup_tv_displayname"
+                android:layout_width="fill_parent"
+                android:layout_height="96dp"
+                android:layout_below="@+id/client_setup_header"
+                android:background="@drawable/settings_selector"
+                android:gravity="center_vertical"
+                android:paddingLeft="32dp"
+                android:text="Display Name"
+                android:textColor="#a3a3a3"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/client_setup_et_displayname"
+                android:layout_width="430dp"
+                android:layout_height="52dp"
+                android:layout_alignBaseline="@+id/client_setup_tv_displayname"
+                android:layout_marginLeft="430dp"
+                android:background="@drawable/rect_selector"
+                android:textColor="@color/color_black"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/client_setup_tv_sip"
+                android:layout_width="fill_parent"
+                android:layout_height="96dp"
+                android:layout_below="@+id/client_setup_tv_displayname"
+                android:background="@drawable/settings_selector"
+                android:gravity="center_vertical"
+                android:paddingLeft="32dp"
+                android:text="SIP Number"
+                android:textColor="#a3a3a3"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/client_setup_et_sip"
+                android:layout_width="430dp"
+                android:layout_height="52dp"
+                android:layout_alignBaseline="@+id/client_setup_tv_sip"
+                android:layout_below="@+id/client_setup_et_displayname"
+                android:layout_marginLeft="430dp"
+                android:background="@drawable/rect_selector"
+                android:textColor="@color/color_black"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/client_setup_tv_ipadd"
+                android:layout_width="fill_parent"
+                android:layout_height="96dp"
+                android:layout_below="@+id/client_setup_tv_sip"
+                android:background="@drawable/settings_selector"
+                android:gravity="center_vertical"
+                android:paddingLeft="32dp"
+                android:text="SIP Server IP Address"
+                android:textColor="#a3a3a3"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/client_setup_et_ipadd"
+                android:layout_width="430dp"
+                android:layout_height="52dp"
+                android:layout_alignBaseline="@+id/client_setup_tv_ipadd"
+                android:layout_below="@+id/client_setup_et_sip"
+                android:layout_marginLeft="430dp"
+                android:background="@drawable/rect_selector"
+                android:textColor="@color/color_black"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/client_setup_tv_port"
+                android:layout_width="fill_parent"
+                android:layout_height="96dp"
+                android:layout_below="@+id/client_setup_tv_ipadd"
+                android:background="@drawable/settings_selector"
+                android:gravity="center_vertical"
+                android:paddingLeft="32dp"
+                android:text="Port"
+                android:textColor="#a3a3a3"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/client_setup_et_port"
+                android:layout_width="430dp"
+                android:layout_height="52dp"
+                android:layout_alignBaseline="@+id/client_setup_tv_port"
+                android:layout_below="@+id/client_setup_et_ipadd"
+                android:layout_marginLeft="430dp"
+                android:background="@drawable/rect_selector"
+                android:textColor="@color/color_black"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/client_setup_tv_password"
+                android:layout_width="fill_parent"
+                android:layout_height="96dp"
+                android:layout_below="@+id/client_setup_tv_port"
+                android:background="@drawable/settings_selector"
+                android:gravity="center_vertical"
+                android:paddingLeft="32dp"
+                android:text="Password"
+                android:textColor="#a3a3a3"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/client_setup_et_password"
+                android:layout_width="430dp"
+                android:layout_height="52dp"
+                android:layout_alignBaseline="@+id/client_setup_tv_password"
+                android:layout_below="@+id/client_setup_et_port"
+                android:layout_marginLeft="430dp"
+                android:password="true"
+                android:background="@drawable/rect_selector"
+                android:textColor="@color/color_black"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/showpass"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="780dp"
+                android:layout_marginTop="490dp" />
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

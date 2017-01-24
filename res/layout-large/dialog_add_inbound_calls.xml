@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="600px"
+    android:layout_height="wrap_content"
+    android:background="@drawable/corner_layout_style"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="16px"
+        android:layout_marginTop="16px"
+        android:text="@string/string_add"
+        android:textColor="#29b6f6"
+        android:textSize="22sp" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="2px"
+        android:layout_marginTop="16px"
+        android:background="#29b6f6"
+        android:orientation="vertical"
+        android:textColor="#29b6f6" >
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16px"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/dialog_add_inbound_calls_textview_receive_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16px"
+            android:text="@string/string_receive_number"
+            android:textColor="@color/color_black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/dialog_add_inbound_calls_edittext_receive_number"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16px"
+            android:background="@drawable/edittext_selector"
+            android:hint="@string/string_type_receive_number"
+            android:inputType="number"
+            android:singleLine="true"
+            android:textColor="@color/color_black"
+            android:textCursorDrawable="@null"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="16px"
+        android:background="#b2b2b2"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16px"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/dialog_add_inbound_calls_textview_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16px"
+            android:text="@string/string_information"
+            android:textColor="@color/color_black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/dialog_add_inbound_calls_edittext_email"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16px"
+            android:background="@drawable/edittext_selector"
+            android:hint="@string/string_type_name"
+            android:singleLine="true"
+            android:textColor="@color/color_black"
+            android:textCursorDrawable="@null"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="16px"
+        android:background="#b2b2b2"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/dialog_add_inbound_calls_button_save"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/corner_layout_style"
+        android:text="OK"
+        android:textColor="@color/color_black"
+        android:textSize="22px" />
+
+</LinearLayout>

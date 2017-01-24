@@ -1,0 +1,331 @@
+package com.ntek.wallpad.Screens.Fragment;
+
+import java.util.List;
+
+import android.app.Activity;
+import android.app.Dialog;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.ntek.wallpad.R;
+import com.ntek.wallpad.Utils.CommonUtilities;
+import com.ntek.wallpad.Utils.OnChangeFragmentListener;
+import com.ntek.wallpad.Utils.RingProgressDialogManager;
+import com.ntek.wallpad.network.AsyncClient;
+import com.ntek.wallpad.network.Global;
+import com.ntek.wallpad.network.LoginGlobal;
+import com.ntek.wallpad.network.ServerData;
+import com.ntek.wallpad.network.SocClient;
+
+public class FragmentSettingAuto extends Fragment{
+	
+	private final static String TAG = FragmentSettingAuto.class.getCanonicalName();
+
+	private BroadcastReceiver mBroadCastRecv;
+	private OnChangeFragmentListener mOnSettingClick;
+	
+	private Button btnScan;
+	private Button btnRescan;
+	private ListView lvDeviceList;
+	private Dialog loginDialog;
+	private String loginID, loginPassword;
+	private LinearLayout layoutScanButton;
+	private LinearLayout layoutDeviceList;
+	
+	View view;
+	
+	private static FragmentSettingAuto mThis;
+	
+	public FragmentSettingAuto()
+	{
+		Log.d(TAG, TAG);
+	}
+	
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		try {
+			mOnSettingClick = (OnChangeFragmentListener)activity;
+		} catch (Exception e) {
+			// TODO: handle exception
+			Log.e(TAG, e.getMessage());
+		}
+	}
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		
+		mBroadCastRecv = new BroadcastReceiver() {
+			@Override
+			public void onReceive(Context context, Intent intent) {
+				final String action = intent.getAction();
+				Log.d(TAG, "onReceive() : " + action);
+				RingProgressDialogManager.hide();
+				if(action.equals(Global.TCP_CONNECT_CALLBACK)) {
+					final String response = intent.getStringExtra("connect");
+					Log.d(TAG, "getStringExtra() : " + response);
+					if (response.equals("success")) {
+						if(FragmentCommonSetting.selectType == FragmentCommonSetting.SERVER_CONFIG) {
+							loginDialog.show();
+						}
+						else if(FragmentCommonSetting.selectType == FragmentCommonSetting.EVENT_SETTING) {
+							if (mOnSettingClick != null)
+							{
+								mOnSettingClick.changeFragment(null, new FragmentSettingEventNotificationForm(), true);
+							};
+						}
+					}
+					else {
+						showToast(getString(R.string.string_connection_fail));
+					}
+				}
+				else if(action.equals(LoginGlobal.TCP_LOGIN_CALLBACK)) {
+					final String response = intent.getStringExtra("login");
+					Log.d(TAG, "getStringExtra() : " + response);
+
+					if (response.equals("true") || response.equals("false") || response.equals("success")) {
+						new Thread(new SocClient("doortalk", CommonUtilities.soc_port,getActivity())).start();
+						FragmentCommonSetting.isDoorDeviceApMode = Boolean.parseBoolean(response);
+					}
+					else {
+						RingProgressDialogManager.hide();
+						if (response.equals("invalid_id"))
+							showToast(getString(R.string.string_invalid_login_id));
+						else if (response.equals("invalid_password"))
+							showToast(getString(R.string.string_invalid_login_password));
+						else if (response.equals("connection_lost"))
+							showToast(getString(R.string.string_connection_lost));
+					}
+				}
+				else if (action.equals(Global.TCP_GET_DOORTALK_DATA_CALLBACK)) {
+					final String response = intent.getStringExtra("doortalk");
+					Log.d(TAG, "getStringExtra() : " + response);
+
+					RingProgressDialogManager.hide();
+					if (response.equals("success")) 
+					{
+						if (mOnSettingClick != null)
+						{
+							mOnSettingClick.changeFragment(null, new FragmentSetUpDoorTalkSelectUser(), true);
+						}
+					}
+					else
+						showToast(getString(R.string.string_connection_lost));
+				}
+				else if(action.equals(ServerData.UPD_SEARCH_SERVER_END_CALLBACK)) {
+					if (ServerData.getList().size() > 0)
+					{
+						layoutScanButton.setVisibility(View.GONE);
+						layoutDeviceList.setVisibility(View.VISIBLE);
+						displayListOfDevices();
+					}
+					else
+					{
+						layoutScanButton.setVisibility(View.VISIBLE);
+						layoutDeviceList.setVisibility(View.GONE);
+					}
+				}
+			}
+		};
+		
+		loginDialog = new Dialog(getActivity());
+		loginDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		loginDialog.setContentView(R.layout.dialog_login);
+
+		final EditText loginIDEditText = (EditText) loginDialog.findViewById(R.id.loginIDEditText);
+		final EditText loginPasswordEditText = (EditText) loginDialog.findViewById(R.id.loginPasswordEditText);
+		final Button loginButton = (Button) loginDialog.findViewById(R.id.loginButton);
+
+		loginButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				loginID = loginIDEditText.getText().toString();
+				loginPassword = loginPasswordEditText.getText().toString();
+
+				if (!loginID.trim().isEmpty()) {
+					if (!loginPassword.trim().isEmpty()) {
+						LoginGlobal.getInstance().setLoginID(loginID);
+						LoginGlobal.getInstance().setLoginPassword(loginPassword);
+
+						loginDialog.dismiss();
+						RingProgressDialogManager.show(getActivity(), "Please wait...", "Trying to Login...");
+						new Thread(new SocClient("login", CommonUtilities.soc_port,getActivity())).start();
+					}
+					else {
+						showToast(getString(R.string.string_password_empty));
+					}
+				}
+				else {
+					showToast(getString(R.string.string_id_empty));
+				}
+			}
+		});
+	}
+	
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState)
+	{
+		view = inflater.inflate(R.layout.fragment_setting_devicelist, container, false);
+		initializeUI();
+		return view;
+	}
+	
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+	}
+	
+	@Override
+	public void onViewStateRestored(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onViewStateRestored(savedInstanceState);
+		Log.d(TAG, "onViewStateRestored(Bundle savedInstanceState)");
+	}
+	
+	protected void initializeUI()
+	{
+		btnScan = (Button) view.findViewById(R.id.automation_button_scan);
+		btnRescan = (Button) view.findViewById(R.id.automation_button_listview_scan);
+		lvDeviceList = (ListView) view.findViewById(R.id.automation_listview_devicelist);
+		layoutScanButton = (LinearLayout) view.findViewById(R.id.hideScanButton);
+		layoutDeviceList = (LinearLayout) view.findViewById(R.id.deviceListLayout);
+		
+		btnRescan.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				scanForDevices();
+			}
+		});
+		
+		btnScan.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				scanForDevices();
+			}
+		});
+		
+		lvDeviceList.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+				Global.getInstance().setData(ServerData.getList().get(arg2).getIp());
+				RingProgressDialogManager.show(getActivity(), getString(R.string.string_please_wait), getString(R.string.string_connecting_device));
+
+				new Thread(new SocClient("connect", CommonUtilities.soc_port, getActivity())).start();
+			}
+		});
+	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		Log.d(TAG, "onResume()");
+		final IntentFilter intentFilter = new IntentFilter();
+		intentFilter.addAction(Global.TCP_CONNECT_CALLBACK);
+		intentFilter.addAction(ServerData.UPD_SEARCH_SERVER_END_CALLBACK);
+		intentFilter.addAction(LoginGlobal.TCP_LOGIN_CALLBACK);
+		intentFilter.addAction(Global.TCP_GET_DOORTALK_DATA_CALLBACK);
+		intentFilter.addAction("com.ntek.wallpad.thread.message");
+		getActivity().registerReceiver(mBroadCastRecv, intentFilter);
+	}
+	
+	@Override
+	public void onPause() {
+		super.onPause();
+		getActivity().unregisterReceiver(mBroadCastRecv);
+	}
+	
+	public void scanForDevices() {
+//		DialogRingProgressManager.getInstance(getActivity()).show(getString(R.string.string_please_wait), getString(R.string.string_scanning_network));
+//		new Thread(new Client(CommonUtilities.port)).start();
+		new AsyncClient(CommonUtilities.port, getActivity()).execute();
+	}
+	
+	protected void displayListOfDevices() {
+		CustomArrayAdapter adapter = new CustomArrayAdapter(getActivity(), ServerData.getList());
+		lvDeviceList.setAdapter(adapter);
+	}
+	
+	private void showToast(String message) {
+		Toast toast = Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT);
+		toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL, 0, 0);
+		toast.show();
+	}
+
+	private class CustomArrayAdapter extends ArrayAdapter<ServerData> {
+		private Context  context;
+		private List<ServerData> serverDataList;
+		
+		public CustomArrayAdapter(Context context, List<ServerData> serverDataList) {
+			super(context, 0, serverDataList);
+			this.context = context;
+			this.serverDataList = serverDataList;
+		}
+		
+		@Override
+		public ServerData getItem(int position) {
+			return serverDataList.get(position);
+		}
+		
+		public class ViewHolder {
+			TextView displayName;
+			TextView ipAddr;
+			ImageView dtImage;
+		}
+		
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			View view = convertView;
+			ViewHolder viewHolder = new ViewHolder();
+			if (view == null) {
+				LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+				view = layoutInflater.inflate(R.layout.list_single2, null);
+				viewHolder.displayName = (TextView) view.findViewById(R.id.displayNameTextView);
+				viewHolder.ipAddr = (TextView) view.findViewById(R.id.ipAddressTextView);
+//				viewHolder.dtImage = (ImageView) view.findViewById(R.id.dtIconImageView);
+				view.setTag(viewHolder);
+			}
+			else {
+				viewHolder = (ViewHolder) view.getTag();
+			}
+
+			final ServerData serverData = getItem(position);
+			if (serverData != null) {
+				if (viewHolder.displayName != null) {
+					viewHolder.displayName.setText(serverData.getName());
+				}
+				if (viewHolder.ipAddr != null) {
+					viewHolder.ipAddr.setText(serverData.getIp());
+				}
+//				if (viewHolder.dtImage != null) {
+//					viewHolder.dtImage.setImageResource(R.drawable.dt_doortalk_device_icon_rev1); //FIXME IMPORT DRAWABLE
+//				}
+			}
+			return view;
+		}
+	}
+}

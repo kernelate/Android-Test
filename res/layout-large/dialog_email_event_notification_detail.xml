@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="400px"
+    android:layout_height="wrap_content"
+    android:layout_margin="10px"
+    android:background="@drawable/corner_layout_style"
+    android:gravity="center_vertical"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16px"
+        android:text="ntekuser@ntek.com"
+        android:textColor="#29b6f6"
+        android:textSize="22sp" />
+
+    <View
+        android:id="@+id/v1"
+        android:layout_width="wrap_content"
+        android:layout_height="2px"
+        android:background="#29b6f6" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16px"
+        android:layout_marginTop=" 16px"
+        android:text="NOTIFICATIONS"
+        android:textColor="@color/color_gray"
+        android:textSize="18sp" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8px"
+        android:layout_marginLeft="32px"
+        android:layout_marginRight="16px" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:text="Motion detection"
+            android:textColor="@color/color_black"
+            android:textSize="16sp" />
+
+        <ToggleButton
+            android:id="@+id/dialog_email_event_notification_detail_toggle_motion_detection"
+            android:layout_width="104px"
+            android:layout_height="32px"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/doorlock_toggle_style_on_off"
+            android:orientation="vertical"
+            android:textOff=""
+            android:textOn="" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="16dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:text="Door control"
+            android:textColor="@color/color_black"
+            android:textSize="16sp" />
+
+        <ToggleButton
+            android:id="@+id/dialog_email_event_notification_detail_toggle_door_control"
+            android:layout_width="104px"
+            android:layout_height="32px"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/doorlock_toggle_style_on_off"
+            android:orientation="vertical"
+            android:textOff=""
+            android:textOn="" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="#b2b2b2"
+        android:orientation="vertical"
+        android:textColor="#29b6f6" >
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/dialog_add_email_client_button_ok"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/corner_layout_style"
+        android:text="OK"
+        android:textColor="@color/color_black"
+        android:textSize="22sp" />
+
+</LinearLayout>

@@ -1,0 +1,206 @@
+package com.ntek.wallpad.Screens.Fragment;
+
+import android.app.Fragment;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.ntek.wallpad.R;
+import com.ntek.wallpad.Utils.CommonUtilities;
+import com.ntek.wallpad.Utils.RingProgressDialogManager;
+import com.ntek.wallpad.network.Global;
+import com.ntek.wallpad.network.SocClient;
+
+public class FragmentSettingSipConfiguration extends Fragment
+{
+	private static final String TAG = FragmentSettingSipConfiguration.class.getCanonicalName();
+
+	private View view;
+	
+	private Button btnSaveSip;
+	private EditText etDoorTalkName;
+	private EditText etDoorTalkCallID;
+	private EditText etDoorTalkPassword;
+	private EditText etDoorTalkAddress;
+	private EditText etDoorTalkPortNumber;
+	
+	private BroadcastReceiver mBroadcastReceiver;
+	
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		
+		
+		mBroadcastReceiver = new BroadcastReceiver() {
+			@Override
+			public void onReceive(Context context, Intent intent) {
+				final String action = intent.getAction();
+				final String response = intent.getStringExtra("sip");
+				Log.d(TAG, "onReceive() : " + action);
+				Log.d(TAG, "getStringExtra() : " + response);
+
+				RingProgressDialogManager.hide();
+				if (response.equals("success")) {
+//					back(); FIXME CHANGE THIS
+					showToast("Success");
+				}
+				else {
+					showToast(getString(R.string.string_connection_fail));
+				}
+			}
+		};
+	}
+	
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		view = inflater.inflate(R.layout.fragment_setting_sip, container, false);
+		
+		initializedUI();
+		
+		return view;
+	}
+	
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		final IntentFilter intentFilter = new IntentFilter();
+		intentFilter.addAction(Global.TCP_SETUP_SIP_CALLBACK);
+		getActivity().registerReceiver(mBroadcastReceiver, intentFilter);
+
+		super.onResume();
+	}
+	
+	@Override
+	public void onPause() {
+		// TODO Auto-generated method stub
+		if (mBroadcastReceiver != null) {
+			getActivity().unregisterReceiver(mBroadcastReceiver);
+		}
+		super.onPause();
+	}
+
+	private void initializedUI() 
+	{
+		btnSaveSip = (Button) view.findViewById(R.id.fragment_settings_sip_button_save);
+		
+		etDoorTalkName = (EditText) view.findViewById(R.id.fragment_settings_sip_edittext_display_name);
+		etDoorTalkCallID = (EditText) view.findViewById(R.id.fragment_settings_sip_edittext_call_id);
+		etDoorTalkPassword = (EditText) view.findViewById(R.id.fragment_settings_sip_edittext_password);
+		etDoorTalkAddress = (EditText) view.findViewById(R.id.fragment_settings_sip_edittext_sip_server_address);
+		etDoorTalkPortNumber = (EditText) view.findViewById(R.id.fragment_settings_sip_edittext_sip_server_port);
+		
+		String name = Global.getInstance().getName();
+		String server_impi = Global.getInstance().get_server_Impi();
+		String password = Global.getInstance().getPw();
+		String proxy = Global.getInstance().getProxyHost();
+		int proxyPort = Global.getInstance().getConfPort();
+		
+		if ((!CommonUtilities.checkIfEmpty(name))
+				&& ((name.length() > 8 && !name.substring(0, 9).equals("IDENTITY_")) || (name.length() < 9)))
+		{
+			etDoorTalkName.setText(name);
+		}
+
+		if ((!CommonUtilities.checkIfEmpty(server_impi))
+				&& ((server_impi.length() > 8 && !server_impi.substring(0, 9).equals("IDENTITY_")) || (server_impi.length() < 9)))
+		{
+			etDoorTalkCallID.setText(server_impi);
+		}
+
+		if ((CommonUtilities.checkIfEmpty(password))
+				&& ((password.length() > 8 && !password.substring(0, 9).equals("IDENTITY_")) || (password.length() < 9)))
+		{
+			etDoorTalkPassword.setText(password);
+		}
+
+		if ((!CommonUtilities.checkIfEmpty(proxy)) && ((proxy.length() > 8 && !proxy.substring(0, 9).equals("IDENTITY_")) || (proxy.length() < 9)))
+		{
+			etDoorTalkAddress.setText(proxy);
+		}
+		
+		etDoorTalkPortNumber.setText(String.valueOf(proxyPort));
+		
+		btnSaveSip.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				if ((etDoorTalkCallID.getText().toString() != null && etDoorTalkCallID.getText()
+						.toString().length() > 0)
+						&& (etDoorTalkAddress.getText().toString() != null && etDoorTalkAddress
+								.getText().toString().length() > 0)
+						&& (etDoorTalkName.getText().toString() != null && etDoorTalkName.getText()
+								.toString().length() > 0)
+						&& (etDoorTalkPassword.getText().toString() != null && etDoorTalkPassword
+								.getText().toString().length() > 0)
+						&& (etDoorTalkPortNumber.getText().toString() != null && etDoorTalkPortNumber
+								.getText().toString().length() > 0)		
+						)
+				{
+					Global.getInstance().setName(etDoorTalkName.getText().toString());
+					Global.getInstance().set_server_Impi(etDoorTalkCallID.getText().toString());
+					Global.getInstance().setPw(etDoorTalkPassword.getText().toString());
+					Global.getInstance().setAdress(etDoorTalkAddress.getText().toString());
+					Global.getInstance().setProxyHost(etDoorTalkAddress.getText().toString());
+					Global.getInstance().setConfPort(Integer.parseInt(etDoorTalkPortNumber.getText().toString()));
+					
+					RingProgressDialogManager.show(getActivity(), getString(R.string.string_please_wait), getString(R.string.string_send_data));
+					Thread cThread = new Thread(new SocClient("sip", CommonUtilities.soc_port, getActivity()));
+					cThread.start();
+
+				}
+				else
+				{ // 2014.07.18 SmartBean_SHCHO : CHECK INPUTBOX DATA IS WRONG
+					if (etDoorTalkName.getText().toString() == null
+							|| etDoorTalkName.getText().toString().length() < 1)
+					{
+						showToast(getString(R.string.string_setupsipdoortalk_displayname_empty));
+					}
+					else if (etDoorTalkCallID.getText().toString() == null
+							|| etDoorTalkCallID.getText().toString().length() < 1)
+					{
+						showToast(getString(R.string.string_setupsipdoortalk_doortalknumber_empty));
+					}
+					else if (etDoorTalkPassword.getText().toString() == null
+							|| etDoorTalkPassword.getText().toString().length() < 1)
+					{
+						showToast(getString(R.string.string_setupsipdoortalk_password_empty));
+					}
+					else if (etDoorTalkAddress.getText().toString() == null
+							|| etDoorTalkAddress.getText().toString().length() < 1)
+					{
+						showToast(getString(R.string.string_setupsipdoortalk_ipaddress_empty));
+					}
+					else if (etDoorTalkPortNumber.getText().toString() == null
+							|| etDoorTalkPortNumber.getText().toString().length() < 1)
+					{
+						showToast(getString(R.string.string_setupsipdoortalk_port_empty));
+					}
+				}
+			}
+			
+		});
+		
+		
+	}
+	
+	protected void showToast(String message)
+	{
+		Toast toast = Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT);
+		toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL, 0, 0);
+		toast.show();
+	}
+	
+}

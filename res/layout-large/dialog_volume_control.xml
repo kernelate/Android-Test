@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="600dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/corner_layout_style"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left|center"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:padding="10dp"
+            android:text="Device Volume Control"
+            android:textColor="#29b6f6"
+            android:textSize="22sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="#29b6f6"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:text="SOUND"
+        android:textColor="@color/color_black"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal"
+        android:weightSum="5" >
+
+        <SeekBar
+            android:id="@+id/soundSeekBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:padding="20dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20px"
+            android:background="#616161" >
+
+            <EditText
+                android:id="@+id/dialog_volume_control_edittext_sound"
+                android:layout_width="104px"
+                android:layout_height="32px"
+                android:layout_margin="1px"
+                android:background="#ffffff"
+                android:clickable="false"
+                android:gravity="center"
+                android:inputType="number"
+                android:text="50"
+                android:textColor="#000000"
+                android:textCursorDrawable="@null"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:text="SPEECH"
+        android:textColor="@color/color_black"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal"
+        android:weightSum="5" >
+
+        <SeekBar
+            android:id="@+id/callSeekBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:padding="20dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20px"
+            android:background="#616161" >
+
+            <EditText
+                android:id="@+id/dialog_volume_control_edittext_speech"
+                android:layout_width="104px"
+                android:layout_height="32px"
+                android:layout_margin="1px"
+                android:background="#ffffff"
+                android:clickable="false"
+                android:gravity="center"
+                android:inputType="number"
+                android:text="50"
+                android:textColor="#000000"
+                android:textCursorDrawable="@null"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="#b2b2b2"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/dialog_volume_control_ok_btn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/corner_layout_style"
+        android:text="@string/string_ok"
+        android:textColor="#000000"
+        android:textSize="22sp" />
+
+</LinearLayout>

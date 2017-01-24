@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="@android:color/white">
+
+    <TextView
+        android:layout_marginTop="16px"
+        android:layout_marginLeft="40px"
+        android:layout_marginRight="40px"
+        android:textColor="@android:color/black"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/string_network_setting"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:layout_marginLeft="40px"
+        android:layout_marginRight="40px"
+        android:layout_marginTop="8px"
+        android:layout_width="fill_parent"
+        android:layout_height="3px"
+        android:background="#1a000000"
+        android:orientation="vertical" />
+
+    <Button
+        android:layout_marginLeft="40px"
+        android:layout_marginRight="40px"
+        android:textSize="18px"
+        android:textColor="@android:color/black"
+        android:id="@+id/phone_setting_button_network_setup"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:gravity="left|center_vertical"
+        android:text="@string/string_network_setup_button" />
+
+    <LinearLayout
+        android:layout_marginLeft="40px"
+        android:layout_marginRight="40px"
+        android:layout_width="fill_parent"
+        android:layout_height="2px"
+        android:background="#1a000000"
+        android:orientation="vertical" />
+
+</LinearLayout>

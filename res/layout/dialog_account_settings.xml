@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="350dp"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="55dp"
+        android:background="#006341" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center"
+            android:layout_marginLeft="5dp"
+            android:text="Account Settings"
+            android:textColor="@color/color_black"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="15dp"
+        android:text="ID"
+        android:textColor="@color/color_black"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="5dp"
+        android:background="@color/color_black"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:text="Current: "
+                android:textColor="@color/color_black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:text="New:"
+                android:textColor="@color/color_black"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/oldIdTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="16dp"
+                android:text="Name"
+                android:textColor="@color/color_black"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/newIdEditText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:hint="New Id"
+                android:textColor="@color/color_black"
+                android:textSize="15sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="15dp"
+        android:text="Password"
+        android:textColor="@color/color_black"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="5dp"
+        android:background="@color/color_black"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:text="Current: "
+                android:textColor="@color/color_black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:text="New:"
+                android:textColor="@color/color_black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center_vertical"
+                android:text="Retype:"
+                android:textColor="@color/color_black"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+          <!--   <TextView
+                android:id="@+id/oldIdTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_weight="3"
+                android:text="Name"
+                android:textColor="#58595B"
+                android:textSize="20sp" /> -->
+            
+          <!--   <EditText
+                android:id="@+id/newIdEditText"
+                android:layout_width="198dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_weight="7"
+                android:ems="10"
+                android:hint="New Id"
+                android:inputType="text"
+                android:cursorVisible="true"
+                android:singleLine="true"
+                android:textColor="@color/color_black"
+                android:textSize="15sp" /> -->
+
+
+            <!-- <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Password"
+                android:textColor="#58595B"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:visibility="invisible" /> -->
+
+            <EditText
+                android:id="@+id/oldPasswordEditText"
+                android:layout_width="198dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_weight="6"
+                android:ems="10"
+                android:hint="Old password"
+                android:singleLine="true"
+                android:cursorVisible="true"
+                android:textColor="@color/color_black"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/newPasswordEditText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_weight="6"
+                android:ems="10"
+                android:hint="New Password"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:cursorVisible="true"
+                android:textColor="@color/color_black"
+                android:textSize="15sp" />
+
+            <EditText
+                android:id="@+id/retypePasswordEditText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_weight="6"
+                android:ems="10"
+                android:hint="Retype password"
+                android:singleLine="true"
+                android:textColor="@color/color_black"
+                android:cursorVisible="true"
+                android:textSize="15sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="55dp"
+        android:layout_marginTop="20dp"
+        android:background="#EBEBEB"
+        android:orientation="horizontal"
+        android:weightSum="2" >
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="left|center"
+            android:text="    Save Changes"
+            android:textColor="#000000"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="#999999"
+            android:orientation="vertical" >
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/cancelButton"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="left|center"
+            android:text="          Cancel"
+            android:textColor="#000000"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+</LinearLayout>

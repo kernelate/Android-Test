@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="10" >
+
+    <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:weightSum="2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        <Button 
+            android:background="@android:color/transparent"
+            android:layout_weight="1"
+            android:layout_width="fill_parent"
+            android:layout_height="55px"
+            android:text="CALLS"
+            android:textColor="#000000"
+	        android:textSize="16sp"
+            android:id="@+id/phone_history_calls"/>
+        <Button
+            android:background="@drawable/border_selected_subtab"
+            android:layout_weight="1"
+            android:layout_width="fill_parent"
+            android:layout_height="55px"
+            android:text="SECURITY"
+            android:textColor="#000000"
+	        android:textSize="16sp"
+            android:id="@+id/phone_history_security"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+        
+		<LinearLayout 
+		    android:layout_marginLeft="40dp"
+		    android:layout_marginRight="40dp"
+		    android:layout_marginTop="5dp"
+		    android:id="@+id/llButtons"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal"
+		    android:weightSum="2">
+		    <Button
+		        android:background="@drawable/dialpad_all_selector"
+		        android:layout_weight="1"
+		        android:layout_width="fill_parent"
+		        android:layout_height="55px"
+		        android:text="Motion Detect"
+		        android:textColor="#000000"
+		        android:textSize="14sp"
+		        android:id="@+id/phone_history_motion_detect"/>
+		    <Button 
+		        android:background="@drawable/dialpad_missed_selector"
+		        android:layout_weight="1"
+		        android:layout_width="fill_parent"
+		        android:layout_height="55px"
+		        android:text="Door Control"
+		       android:textColor="#000000"
+		        android:textSize="14sp"
+		        android:id="@+id/phone_history_door_control"/>
+		</LinearLayout>        
+	        
+		<RelativeLayout
+	            android:layout_width="match_parent"
+	            android:layout_height="match_parent"
+	            android:layout_below="@id/llButtons" >
+	            
+		    <ListView 
+		        android:layout_width="match_parent"
+		        android:layout_height="match_parent"
+		        android:id="@+id/phone_history_list_view"
+		        android:layout_marginTop="20dp"
+                android:divider="@drawable/custom_list_divider_phone"
+                android:dividerHeight="2dp" />
+		        
+            <TextView
+                android:id="@+id/no_history_security_caption_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textColor="#90908f"
+                android:textSize="18sp"
+                android:visibility="visible" />
+		    
+		</RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

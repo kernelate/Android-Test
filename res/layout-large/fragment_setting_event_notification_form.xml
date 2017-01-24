@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical" >
+
+        <!--
+             <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="MY DEVICE"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+        -->
+
+
+        <!--
+             <TextView
+            android:id="@+id/fragment_setting_event_notification_form_textview_title_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10px"
+            android:layout_toLeftOf="@+id/fragment_setting_event_notification_form_button_submit"
+            android:text=" Please fill out all info below and submit it"
+            android:textColor="#ff0000"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+        -->
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="96dp"
+            android:gravity="center_vertical"
+            android:text="Event Setting"
+            android:textColor="#607d8b"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+        
+        <Button
+            android:id="@+id/fragment_setting_event_notification_form_button_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/fragment_setting_event_notification_form_button_invi"
+            android:layout_weight="7"
+            android:background="@drawable/ic_delete_bluegray" />
+
+        <Button
+            android:id="@+id/fragment_setting_event_notification_form_button_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_weight="7"
+            android:background="@drawable/btn_save_diskette" />
+        
+        <Button
+            android:id="@+id/fragment_setting_event_notification_form_button_invi"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignLeft="@+id/fragment_setting_event_notification_form_button_submit"
+            android:layout_marginRight="10dp"
+            android:visibility="invisible"
+            android:layout_weight="7"
+            android:background="@drawable/btn_save_diskette" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:isScrollContainer="true"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginTop="8px"
+                android:background="#616161"
+                android:orientation="vertical" />
+
+            <TextView
+                android:id="@+id/approval_status_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:textSize="18sp" />
+
+            <!--
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal" >
+
+                
+                     <TextView
+                    android:id="@+id/fragment_setting_event_notification_form_my_device_textview_user"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Benjie&apos;s device for wallpad-rtc(810)"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+               
+
+
+                
+                     <TextView
+                    android:id="@+id/fragment_setting_event_notification_detail_my_device_textview_description_part_three"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/fragment_setting_event_notification_form_my_device_textview_user"
+                    android:text="The information required below will be sent to this device to allow event notifications."
+                    android:textColor="#616161"
+                    android:textSize="18sp" />
+               
+            </RelativeLayout>
+            -->
+
+
+            <!--
+                 <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="20dp"
+                android:background="#616161"
+                android:orientation="vertical" />
+            -->
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="96dp"
+                    android:gravity="center_vertical"
+                    android:text="Push Notification Account"
+                    android:textColor="#607d8b"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <!--
+                     <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Provide a name that will serve as your identification. This will allow the administrator to identify\nyou when you send notification requests."
+                    android:textColor="#616161"
+                    android:textSize="18sp" />
+                -->
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:orientation="horizontal" >
+
+                <!--
+                     <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/about_48"
+                    android:padding="5dp" />
+                -->
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="72dp"
+                    android:gravity="center_vertical"
+                    android:text="Email"
+                    android:textColor="#a3a3a3"
+                    android:textSize="24sp" />
+
+                <EditText
+                    android:id="@+id/setting_edittext_email_info"
+                    android:layout_width="430dp"
+                    android:layout_height="52dp"
+                    android:layout_marginLeft="330dp"
+                    android:background="@drawable/rect_selector"
+                    android:singleLine="true"
+                    android:textColor="@color/color_black"
+                    android:textSize="24sp" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="96dp"
+                    android:gravity="center_vertical"
+                    android:text="Push Notification Activities"
+                    android:textColor="#607d8b"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/event_setting_button_save"
+                    android:layout_width="104px"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="8"
+                    android:background="@drawable/corner_button_style"
+                    android:text="@string/string_save"
+                    android:textSize="16sp"
+                    android:visibility="invisible" />
+            </RelativeLayout>
+            <!--
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:background="#616161"
+                android:orientation="vertical" />
+            -->
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:orientation="horizontal" >
+
+                <!--
+                     <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="9"
+                    android:text="Enable this feature to receive notifications when the device detects\nany kind of movement within its sensor’s range."
+                    android:textColor="#616161"
+                    android:textSize="18sp" />
+                -->
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="72dp"
+                    android:gravity="center_vertical"
+                    android:text="Motion Detection"
+                    android:textColor="#a3a3a3"
+                    android:textSize="24sp" />
+
+                <ToggleButton
+                    android:id="@+id/setting_togglebutton_motion_detect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="530dp"
+                    android:background="@drawable/toggle_style_on_off"
+                    android:gravity="center_vertical"
+                    android:textOff=""
+                    android:textOn="" />
+            </LinearLayout>
+
+            <!--
+                 <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="20dp"
+                android:background="#616161"
+                android:orientation="vertical" />
+            -->
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:orientation="horizontal" >
+
+                <!--
+                     <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="9"
+                    android:text="Enable this feature to receive notifications when the device detects\nlocking or unlocking of a linked electronic door lock system."
+                    android:textColor="#616161"
+                    android:textSize="18sp" />
+                -->
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="72dp"
+                    android:gravity="center_vertical"
+                    android:text="Door Control"
+                    android:textColor="#a3a3a3"
+                    android:textSize="24sp" />
+
+                <ToggleButton
+                    android:id="@+id/setting_togglebutton_door_control"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="580dp"
+                    android:background="@drawable/toggle_style_on_off"
+                    android:gravity="center_vertical"
+                    android:textOff=""
+                    android:textOn="" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

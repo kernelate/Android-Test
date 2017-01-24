@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_white" >
+    
+    
+     <TextView
+        android:id="@+id/other_title"
+        android:layout_width="fill_parent"
+        android:layout_height="96dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="32dp"
+        android:text="Other"
+        android:textColor="#607d8b"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="3dp"
+        android:layout_below="@+id/other_title"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:background="#e0e0e0"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <!-- ringtone -->
+
+    <Button
+        android:id="@+id/other_ringtone"
+        android:layout_width="fill_parent"
+        android:layout_height="96dp"
+        android:paddingLeft="32dp"
+        android:background="@drawable/settings_selector"
+        android:gravity="center_vertical"
+        android:layout_below="@+id/other_title"
+        android:text="Ringtone"
+        android:textColor="#a3a3a3"
+        android:textSize="36sp" />
+
+
+    <!-- video -->
+
+    <Button
+        android:id="@+id/other_videos"
+        android:layout_width="fill_parent"
+        android:layout_height="96dp"
+        android:layout_below="@+id/other_ringtone"
+        android:paddingLeft="32dp"
+        android:background="@drawable/settings_selector"
+        android:gravity="center_vertical"
+        android:text="Videos"
+        android:textColor="#a3a3a3"
+        android:textSize="36sp" />
+    
+     <Button
+        android:id="@+id/other_screen_lock"
+        android:layout_width="fill_parent"
+        android:layout_height="96dp"
+        android:layout_below="@+id/other_videos"
+        android:paddingLeft="32dp"
+        android:background="@drawable/settings_selector"
+        android:gravity="center_vertical"
+        android:text="Screen Lock"
+        android:visibility="gone"
+        android:textColor="#a3a3a3"
+        android:textSize="36sp" />
+
+
+
+</RelativeLayout>

@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ntek.wallpad"
+    android:versionCode="8"
+    android:versionName="1.0.7" >
+
+    <!-- android:versionName="2.581.1247" > -->
+
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="19" />
+
+    <!-- GCM requires a Google account. -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+
+    <!-- Creates a custom permission so only this app can receive its messages. -->
+    <permission
+        android:name="com.ntek.wallpad.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.ntek.wallpad.permission.C2D_MESSAGE" />
+    <!-- This app has permission to register and receive data message. -->
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <application
+        android:name="WallPad"
+        android:hardwareAccelerated="true"
+        android:icon="@drawable/wallpad_icon"
+        android:label="@string/app_name"
+        android:persistent="true" >
+        <service android:name=".NativeService" />
+
+        <activity
+            android:name=".Main"
+            android:label="@string/app_name"
+            android:launchMode="singleTop"
+            android:screenOrientation="landscape"
+            android:windowSoftInputMode="adjustPan" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".FragmentPhone" >
+            <intent-filter>
+                <action android:name="com.ntek.wallpad.FragmentPhone" />
+
+                <category
+                    android:name="android.intent.category.DEFAULT"
+                    android:screenOrientation="landscape" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".FragmentAutomation"
+            android:screenOrientation="landscape" >
+            <intent-filter>
+                <action android:name="com.ntek.wallpad.FragmentAutomation" />
+
+                <category
+                    android:name="android.intent.category.DEFAULT"
+                    android:screenOrientation="landscape" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".FragmentGallery"
+            android:screenOrientation="landscape" >
+            <intent-filter>
+                <action android:name="com.ntek.wallpad.FragmentGallery" />
+
+                <category
+                    android:name="android.intent.category.DEFAULT"
+                    android:screenOrientation="landscape" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".FragmentBaseScreenSettings"
+            android:screenOrientation="landscape" >
+            <intent-filter>
+                <action android:name="com.ntek.wallpad.FragmentBasesScreenSettings" />
+
+                <category
+                    android:name="android.intent.category.DEFAULT"
+                    android:screenOrientation="landscape" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".FragmentCall"
+            android:screenOrientation="landscape" >
+            <intent-filter>
+                <action android:name="com.ntek.wallpad.FragmentCall" />
+
+                <category
+                    android:name="android.intent.category.DEFAULT"
+                    android:screenOrientation="landscape" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".AutomationDoorlock"
+            android:screenOrientation="landscape" >
+            <intent-filter>
+                <action android:name="com.ntek.wallpad.AutomationDoorlock" />
+
+                <category
+                    android:name="android.intent.category.DEFAULT"
+                    android:screenOrientation="landscape" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".WebViewActivity"
+            android:screenOrientation="landscape" >
+            <intent-filter>
+                <action android:name="com.ntek.wallpad.WebViewActivity" />
+
+                <category
+                    android:name="android.intent.category.DEFAULT"
+                    android:screenOrientation="landscape" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.ntek.wallpad.lockscreen.LockScreenPatternActivity"
+            android:screenOrientation="landscape" >
+            <intent-filter>
+                <action android:name="com.ntek.wallpad.lockscreen.LockScreenPatternActivity" />
+                <category
+                    android:name="android.intent.category.DEFAULT"
+                    android:screenOrientation="landscape" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.ntek.wallpad.lockscreen.LockScreenPasswordActivity"
+            android:screenOrientation="landscape" >
+            <intent-filter>
+                <action android:name="com.ntek.wallpad.lockscreen.LockScreenPasswordActivity" />
+
+                <category
+                    android:name="android.intent.category.DEFAULT"
+                    android:screenOrientation="landscape" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.ntek.wallpad.lockscreen.LockScreenPinActivity"
+            android:screenOrientation="landscape" >
+            <intent-filter>
+                <action android:name="com.ntek.wallpad.lockscreen.LockScreenPinActivity" />
+
+                <category
+                    android:name="android.intent.category.DEFAULT"
+                    android:screenOrientation="landscape" />
+            </intent-filter>
+        </activity>
+         <activity
+            android:name="com.ntek.wallpad.lockscreen.LockScreenSwipeActivity"
+            android:screenOrientation="landscape"
+               android:theme="@style/Theme.Transparent" 
+            >
+            <intent-filter>
+                <action android:name="com.ntek.wallpad.lockscreen.LockScreenSwipeActivity" />
+
+                <category
+                    android:name="android.intent.category.DEFAULT"
+                    android:screenOrientation="landscape" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.ntek.wallpad.Screens.Fragment.FragmentSettingScreenLockBase"
+            android:screenOrientation="landscape" >
+            <intent-filter>
+                <action android:name="com.ntek.wallpad.Screens.Fragment.FragmentSettingScreenLockBase" />
+
+                <category
+                    android:name="android.intent.category.DEFAULT"
+                    android:screenOrientation="landscape" />
+            </intent-filter>
+        </activity>
+
+        <service android:name="com.ntek.wallpad.lockscreen.LockscreenPatternService" >
+        </service>
+
+        <receiver
+            android:name="com.ntek.wallpad.lockscreen.LockscreenPatternIntentReceiver"
+            android:enabled="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".gcm.GCMMessageActivity"
+            android:exported="true"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity android:name=".Screens.ScreenSplash" />
+        <activity android:name=".Screens.ScreenHome" />
+        <activity android:name=".Screens.ScreenTabDialer" >
+        </activity>
+        <activity android:name=".Screens.ScreenTabHistory" >
+        </activity>
+        <activity android:name=".Screens.ScreenTabInfo" >
+        </activity>
+        <activity android:name=".Screens.ScreenTabContacts" >
+        </activity>
+        <activity android:name=".Screens.ScreenTabOnline" >
+        </activity>
+        <activity android:name=".Screens.ScreenAV" >
+        </activity>
+        <activity android:name=".Screens.ScreenInterceptCall" >
+            <intent-filter>
+
+                <!-- <action android:name="android.intent.action.CALL" /> -->
+                <!-- <category android:name="android.intent.category.DEFAULT"/> -->
+                <!-- <data android:scheme="sip" /> -->
+            </intent-filter>
+        </activity>
+        <activity android:name=".Screens.ScreenSettings" >
+        </activity>
+        <activity android:name=".Screens.ScreenTabMessages" >
+        </activity>
+        <activity android:name=".Screens.ScreenGeneral" >
+        </activity>
+        <activity android:name=".Screens.ScreenIdentity" >
+        </activity>
+        <activity android:name=".Screens.ScreenNetwork" >
+        </activity>
+        <activity android:name=".Screens.ScreenCodecs" >
+        </activity>
+        <activity android:name=".Screens.ScreenSecurity" >
+        </activity>
+        <activity android:name=".Screens.ScreenContacts" >
+        </activity>
+        <activity android:name=".Screens.ScreenPresence" >
+        </activity>
+        <activity android:name=".Screens.ScreenMessaging" >
+        </activity>
+        <activity android:name=".Screens.ScreenNatt" >
+        </activity>
+        <activity android:name=".Screens.ScreenQoS" >
+        </activity>
+        <activity android:name=".Screens.ScreenAbout" >
+        </activity>
+        <activity android:name=".Screens.ScreenChat" >
+        </activity>
+        <activity android:name=".Screens.ScreenFileTransferQueue" >
+        </activity>
+        <activity android:name=".Screens.ScreenFileTransferView" >
+        </activity>
+        <activity android:name=".Screens.ScreenAVQueue" >
+        </activity>
+        <activity android:name=".Screens.ScreenChatQueue" >
+        </activity>
+
+        <receiver
+            android:name=".GlobalBroadcastReceiver"
+            android:label="GlobalBroadcastReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="com.ntek.wallpad.NativeService.ACTION_STATE_EVENT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".watcher.CrashApplicationRestarter"
+            android:process=":alarm" >
+        </receiver>
+        <receiver
+            android:name="com.google.android.gcm.GCMBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+
+                <!-- Receives the actual messages. -->
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <!-- Receives the registration id. -->
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <category android:name="com.ntek.wallpad" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.ntek.wallpad.sip.registration.StatusReceiver"
+            android:label="StatusReceiver" >
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="org.doubango.ngn.events.NgnStackEventArgs.ACTION_STACK_EVENT" />
+                <action android:name="org.doubango.ngn.events.NgnRegistrationEventArgs.ACTION_REGISTRATION_CHANGED" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name=".GCMIntentService" />
+        <service android:name="com.ntek.wallpad.sip.registration.RegistrationIntentService" />
+    </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.RAISED_THREAD_PRIORITY" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.audio.low_latency"
+        android:required="false" />
+
+</manifest>

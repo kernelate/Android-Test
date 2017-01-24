@@ -1,0 +1,113 @@
+package com.ntek.wallpad.Screens.Fragment;
+
+import android.app.Fragment;
+import android.app.FragmentTransaction;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
+
+import com.ntek.wallpad.R;
+
+public class FragmentPhoneHeader extends Fragment implements OnClickListener {
+	private ImageButton btnContacts;
+	private ImageButton btnDialpad;
+	private ImageButton btnVideoSecurity;
+	private ImageButton btnHistory;
+	private ImageButton btnAdd;
+	private ImageButton btnCurrentTab;
+	private View view;
+	
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		
+		view = inflater.inflate(R.layout.fragment_phone_header, container,
+				false);
+
+//		initializeUI();
+		btnCurrentTab = btnContacts;
+		return view;
+	}
+
+//	private void initializeUI() {
+//		FragmentTransaction ft = getFragmentManager().beginTransaction();
+//		ft.add(R.id.phone_leftpanel, new FragmentPhoneContactList());
+//		ft.add(R.id.phone_rightpanel, new FragmentPhoneContactInformation());
+//		ft.commit();
+//
+//		btnContacts = (ImageButton) view
+//				.findViewById(R.id.phone_header_contacts);
+//		btnDialpad = (ImageButton) view.findViewById(R.id.phone_header_dialpad);
+//		btnVideoSecurity = (ImageButton) view
+//				.findViewById(R.id.phone_header_videosecurity);
+//		btnHistory = (ImageButton) view.findViewById(R.id.phone_header_history);
+//		btnAdd = (ImageButton) view.findViewById(R.id.phone_header_add);
+//
+//		btnContacts.setOnClickListener(this);
+//		btnDialpad.setOnClickListener(this);
+//		btnVideoSecurity.setOnClickListener(this);
+//		btnHistory.setOnClickListener(this);
+//		btnAdd.setOnClickListener(this);
+//	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.phone_header_contacts:
+//			replaceFragment(new FragmentPhoneContactList(),	new FragmentPhoneContactInformation());
+			visibilityAddAction(View.VISIBLE);
+			setSelectedTab(btnContacts);
+			break;
+
+		case R.id.phone_header_dialpad:
+//			replaceFragment(new FragmentPhoneDialpadCallHistory(), new FragmentPhoneDialpad());
+			visibilityAddAction(View.VISIBLE);
+			setSelectedTab(btnDialpad);
+			break;
+
+//		case R.id.phone_header_videosecurity:
+//			replaceFragment(new FragmentPhoneSecurityList(), 	new FragmentPhoneContactInformation());
+//			visibilityAddAction(View.INVISIBLE);
+//			setSelectedTab(btnVideoSecurity);
+//			break;
+
+		case R.id.phone_header_history:
+//			replaceFragment(new FragmentPhoneHistoryCalls(), new FragmentPhoneContactInformation());
+			visibilityAddAction(View.INVISIBLE);
+			setSelectedTab(btnHistory);
+			break;
+
+//		case R.id.phone_header_add:
+//			Bundle bundle = new Bundle();
+//			bundle.putString("title", "Add Contact");
+//			
+//			DialogPhoneContactsAddEdit dialogContacts = new DialogPhoneContactsAddEdit();
+//			dialogContacts.setArguments(bundle);
+//			dialogContacts.show(getFragmentManager(), "add");
+//			break;
+
+		default:
+			break;
+		}
+	}
+	
+//	private void replaceFragment(Fragment frmList, Fragment frmView) {
+//		FragmentTransaction ft = getFragmentManager().beginTransaction();
+//		ft.replace(R.id.phone_leftpanel, frmList);
+//		ft.replace(R.id.phone_rightpanel, frmView);
+//		ft.commit();
+//	}
+
+	private void visibilityAddAction(int i) {
+		btnAdd.setVisibility(i);
+	}
+
+	private void setSelectedTab(ImageButton imageButton) {
+		btnCurrentTab.setBackgroundColor(0xFF009587);
+		btnCurrentTab = imageButton;
+		btnCurrentTab.setBackgroundResource(R.drawable.borded_selected_tab);
+	}
+}

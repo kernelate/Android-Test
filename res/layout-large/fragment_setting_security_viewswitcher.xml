@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ViewSwitcher xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ViewSwitcher"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FF000000"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin" >
+
+        <DigitalClock
+            android:id="@+id/digitalClock1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="100dp"
+            android:textColor="#ffffff"
+            android:textSize="72px" />
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/digitalClock1"
+            android:layout_marginLeft="100dp"
+            android:text="DATE"
+            android:textColor="#ffffff"
+            android:textSize="22px" />
+
+        <Button
+            android:id="@+id/testbtn"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/screenlock_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/pattern_screenlock"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="150dp"
+            android:text="Wrong Pattern"
+            android:textColor="@color/color_white"
+            android:textSize="20sp" />
+
+        <com.ntek.wallpad.lockscreen.MaterialLockView
+            xmlns:lockview="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/pattern_screenlock"
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="100dp"
+            lockview:CORRECT_COLOR="#00ff00"
+            lockview:LOCK_COLOR="#fff"
+            lockview:WRONG_COLOR="#ff0000" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#8C000000"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin" >
+
+        <DigitalClock
+            android:id="@+id/pwDigitalClock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="200dp"
+            android:textColor="#ffffff"
+            android:textSize="72px" />
+
+        <TextView
+            android:id="@+id/pwtvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pwDigitalClock"
+            android:layout_marginLeft="100dp"
+            android:text="DATE"
+            android:textColor="#ffffff"
+            android:textSize="22sp" />
+
+        <Button
+            android:id="@+id/btntest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/pwEt"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="150dp"
+            android:layout_marginTop="230dp"
+            android:background="@drawable/rect_selector"
+            android:inputType="textPassword"
+            android:textColor="@color/color_black"
+            android:textSize="30sp" />
+    </RelativeLayout>
+
+</ViewSwitcher>

@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40px"
+        android:layout_marginRight="40px"
+        android:layout_marginTop="16px"
+        android:visibility="gone"
+        android:weightSum="7" >
+
+        <TextView
+            android:id="@+id/setting_identity_textview_myprofile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_weight="2"
+            android:text="SIP ACCOUNT"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/setting_button_save_sip"
+            android:layout_width="104px"
+            android:layout_height="32px"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15px"
+            android:layout_weight="7"
+            android:background="@drawable/corner_button_style"
+            android:text="@string/string_save"
+            android:textSize="16sp"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <!--
+         <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="3px"
+        android:layout_marginLeft="40px"
+        android:layout_marginRight="40px"
+        android:layout_marginTop="8px"
+        android:background="#1a000000"
+        android:orientation="vertical" >
+    </LinearLayout>
+    -->
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <!--
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70px"
+                android:layout_marginRight="40px"
+                android:isScrollContainer="true"
+                android:orientation="vertical"
+                android:scrollbars="vertical" >
+
+                <TextView
+                    android:id="@+id/screen_identity_textView_displayname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10px"
+                    android:text="Display Name"
+                    android:textColor="@color/color_black"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/setting_screen_identity_editText_displayname"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="alice"
+                    android:singleLine="true"
+                    android:textColor="@color/color_black"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="#1a000000"
+                    android:orientation="vertical" >
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/screen_identity_textView_impi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10px"
+                    android:text="SIP Number"
+                    android:textColor="@color/color_black"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/setting_screen_identity_editText_impi"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="101"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:textColor="@color/color_black"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="#1a000000"
+                    android:orientation="vertical" >
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/settings_identity_ipaddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10px"
+                    android:focusable="false"
+                    android:text="SIP Password"
+                    android:textColor="@color/color_black"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/setting_screen_identity_editText_password"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="101"
+                    android:singleLine="true"
+                    android:textColor="@color/color_black"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="#1a000000"
+                    android:orientation="vertical" >
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40px"
+                android:layout_marginRight="40px"
+                android:layout_marginTop="20px"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/settings_identity_sip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="SIP SERVER"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="3px"
+                    android:layout_marginTop="8px"
+                    android:background="#1a000000"
+                    android:orientation="vertical" >
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70px"
+                android:layout_marginRight="40px"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/screen_callnumbuer_TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Address"
+                    android:textColor="@color/color_black"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/setting_screen_identity_editText_realm"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="doubango.org"
+                    android:singleLine="true"
+                    android:textColor="@color/color_black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/settings_identity_port"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10px"
+                    android:text="Port"
+                    android:textColor="@color/color_black"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:id="@+id/setting_screen_identity_editText_port"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:hint="5060"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:textColor="@color/color_black"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40px"
+                android:layout_marginRight="40px"
+                android:layout_marginTop="20px"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/settings_identity_advance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="SIP ADVANCED"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="3px"
+                    android:layout_marginTop="8px"
+                    android:background="#1a000000"
+                    android:orientation="vertical" >
+                </LinearLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70px"
+                android:layout_marginRight="40px"
+                android:layout_marginTop="10px" >
+
+                <CheckBox
+                    android:id="@+id/setting_screen_natt_checkBox_ice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:text="@string/string_Enable_Ice"
+                    android:textColor="@color/color_black"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="2px"
+                android:layout_marginLeft="70px"
+                android:layout_marginRight="40px"
+                android:layout_marginTop="5px"
+                android:background="#1a000000"
+                android:orientation="vertical" >
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70px"
+                android:layout_marginRight="40px"
+                android:layout_marginTop="10px" >
+
+                <CheckBox
+                    android:id="@+id/setting_screen_natt_checkBox_hack_aor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/string_Hack_Aor"
+                    android:textColor="@color/color_black"
+                    android:textSize="18sp" >
+                </CheckBox>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="2px"
+                android:layout_marginLeft="70px"
+                android:layout_marginRight="40px"
+                android:layout_marginTop="5px"
+                android:background="#1a000000"
+                android:orientation="vertical" >
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70px"
+                android:layout_marginRight="40px"
+                android:layout_marginTop="10px" >
+
+                <CheckBox
+                    android:id="@+id/setting_screen_natt_checkBox_stun"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/string_Enable_Stun"
+                    android:textColor="@color/color_black"
+                    android:textSize="18sp" >
+                </CheckBox>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="2px"
+                android:layout_marginLeft="70px"
+                android:layout_marginRight="40px"
+                android:layout_marginTop="5px"
+                android:background="#1a000000"
+                android:orientation="vertical" >
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40px"
+                android:layout_marginRight="40px"
+                android:layout_marginTop="20px"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/settings_identity_serveroptions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/string_Stun_Optiongs"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="3px"
+                    android:layout_marginTop="8px"
+                    android:background="#1a000000"
+                    android:orientation="vertical" >
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/Advance_settings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40px"
+                android:layout_marginRight="40px"
+                android:layout_marginTop="15dp"
+                android:text="@string/string_Go_to_Advance_Settings"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:visibility="gone" />
+
+            <RadioGroup
+                android:id="@+id/screen_natt_radioGroup_stun"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40px"
+                android:layout_marginRight="40px" >
+
+                <RadioButton
+                    android:id="@+id/setting_screen_natt_radioButton_stun_disco"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/string_Discover_Stun"
+                    android:textColor="#000000"
+                    android:textSize="18sp" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/setting_screen_natt_radioButton_stun_set"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp"
+                    android:checked="true"
+                    android:text="@string/string_Use_STUN"
+                    android:textColor="#000000"
+                    android:textSize="18sp" >
+                </RadioButton>
+            </RadioGroup>
+
+            <LinearLayout
+                android:id="@+id/setting_screen_natt_relativeLayout_stun_server"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/settings_identity_serverport"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="STUN/TURN SERVER"
+                        android:textColor="#000000"
+                        android:textSize="16sp" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="3px"
+                        android:layout_marginTop="8px"
+                        android:background="#1a000000"
+                        android:orientation="vertical" >
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="70px"
+                    android:layout_marginRight="40px"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/string_port"
+                        android:textColor="@color/color_black"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/setting_screen_natt_editText_stun_server"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:hint="3478"
+                        android:inputType="number"
+                        android:singleLine="true"
+                        android:textColor="@color/color_black"
+                        android:textSize="18sp" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:background="#1a000000"
+                        android:orientation="vertical" >
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Address"
+                        android:textColor="@color/color_black"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/setting_screen_natt_editText_stun_port"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20px"
+                        android:hint="Numb.viagenie.ca"
+                        android:singleLine="true"
+                        android:textColor="@color/color_black"
+                        android:textSize="18sp" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:background="#1a000000"
+                        android:orientation="vertical" >
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+        -->
+    </ScrollView>
+
+</LinearLayout>

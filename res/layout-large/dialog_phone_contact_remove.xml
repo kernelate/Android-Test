@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/corner_layout_style"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:weightSum="3" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:background="@android:color/white"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/phone_textview_remove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/string_delete"
+            android:textColor="#4caf50"
+            android:textSize="22sp" />
+
+        <View
+            android:id="@+id/v1"
+            android:layout_width="fill_parent"
+            android:layout_height="2dp"
+            android:background="#4caf50"
+            android:orientation="horizontal" />
+
+        <TextView
+            android:id="@+id/dialog_remove_textview_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:text="@string/string_delete_contact"
+            android:textColor="@color/color_black"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="#E9DCDC"
+        android:orientation="horizontal" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="2" >
+
+        <Button
+            android:id="@+id/phone_contact_button_cancel"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="fill_parent"
+            android:layout_height="100dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_weight="1"
+            android:background="@drawable/bottom_left_rounded_corner_layout_style"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="@string/string_cancel"
+            android:textColor="#000000"
+            android:textSize="22px" />
+        
+	    <View
+	       
+	        android:layout_width="2dp"
+	        android:layout_height="match_parent"
+	        android:background="#D2C7C7"
+	        android:orientation="horizontal" />
+	    
+        <Button
+            android:id="@+id/phone_contact_button_remove"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="fill_parent"
+            android:layout_height="100dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_weight="1"
+            android:textSize="22px" 
+            android:gravity="center_vertical|center_horizontal"
+            android:background="@drawable/bottom_right_rounded_corner_layout_style"
+            android:text="@string/string_delete"
+            android:textColor="#000000" />
+    </LinearLayout>
+
+</LinearLayout>

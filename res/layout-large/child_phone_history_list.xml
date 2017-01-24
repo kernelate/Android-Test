@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical" >
+
+    <LinearLayout
+        android:id="@+id/history_image_linear_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:padding="20dp" >
+
+        <ImageView
+            android:id="@+id/history_image_image_view"
+            android:layout_width="55dp"
+            android:layout_height="55dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/history_image_linear_layout"
+        android:layout_alignTop="@id/history_image_linear_layout"
+        android:layout_toRightOf="@id/history_image_linear_layout"
+        android:orientation="vertical"
+        android:paddingBottom="8dp"
+        android:paddingRight="20dp"
+        android:paddingTop="8dp" >
+
+        <TextView
+            android:id="@+id/device_display_name_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/phone_contact_name"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/device_number_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/phone_contact_detail"
+            android:textColor="#90908f"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/event_occurrence_time_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/phone_history_date_time"
+            android:textColor="#90908f"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</RelativeLayout>

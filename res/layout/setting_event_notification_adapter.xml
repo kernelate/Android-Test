@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:background="@color/transparent"
+    android:baselineAligned="false"
+    android:orientation="vertical" 
+    android:layout_gravity="center_vertical">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:weightSum="2" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/setting_event_textview_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/string_email_hint"
+                android:textColor="#ffffff"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/setting_event_textview_motion_status_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/string_motion_detection"
+                android:textColor="#eeeeee"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:orientation="horizontal" >
+
+            <ToggleButton
+                android:id="@+id/setting_togglebutton_event_notification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/doorlock_toggle_style_active_pending"
+                android:orientation="vertical"
+                android:textOff=""
+                android:textOn="" />
+
+            <LinearLayout
+                android:layout_width="2px"
+                android:layout_height="fill_parent"
+                android:layout_marginRight="8px"
+                android:background="#616161"
+                android:orientation="vertical" />
+
+            <Button
+                android:id="@+id/setting_event_button_discard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Event_Inquiry_Discard"
+                android:textColor="#ffffff" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="8px"
+        android:background="#616161"
+        android:orientation="vertical" />
+
+</LinearLayout>

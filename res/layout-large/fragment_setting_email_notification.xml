@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp" >
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/settings_email_notification_button_save"
+            android:text="@string/string_email_notif"
+            android:textColor="#607d8b"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/setting_button_add_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="700dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/btn_manual_add_selector" />
+
+        <Button
+            android:id="@+id/settings_email_notification_button_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/btn_save_diskette" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="3px"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:background="#1a000000"
+        android:orientation="vertical" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:weightSum="10" >
+
+        <ListView
+            android:id="@+id/setting_listview_email_list"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="8dp"
+            android:layout_weight="5" />
+
+       <!--  <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="5"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/setting_button_add_email"
+                android:layout_width="104px"
+                android:layout_height="32px"
+                android:layout_below="@id/setting_listview_email_list"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/corner_button_style"
+                android:text="@string/string_add"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16px"
+                android:gravity="center"
+                android:text="This is a list of client emails that currently receive event notifications."
+                android:textSize="16sp" />
+        </LinearLayout> -->
+    </LinearLayout>
+
+</LinearLayout>

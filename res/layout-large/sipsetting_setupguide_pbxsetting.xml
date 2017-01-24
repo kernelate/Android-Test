@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="828dp"
+    android:layout_height="510dp"
+    android:layout_gravity="center"
+    android:background="@android:color/white"
+    android:gravity="center" >
+
+    <LinearLayout
+        android:id="@+id/sipsetting_header"
+        android:layout_width="fill_parent"
+        android:layout_height="108dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/setupguide_pbxsetting_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="32dp"
+            android:text="Setup Guide"
+            android:textColor="#212121"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <!--
+         <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="3dp"
+        android:layout_below="@+id/setupguide_pbxsetting_txt"
+        android:layout_marginLeft="5dp"
+        android:background="#1a000000"
+        android:orientation="vertical" >
+    </LinearLayout>
+    -->
+
+    <TextView
+        android:id="@+id/setupguide_pbxsetting_question"
+        android:layout_width="wrap_content"
+        android:layout_height="250dp"
+        android:layout_below="@+id/sipsetting_header"
+        android:layout_centerInParent="true"
+        android:gravity="center_vertical"
+        android:text="Do you want to enable PBX feature ?"
+        android:textColor="@android:color/black"
+        android:textSize="30sp" />
+
+    <LinearLayout
+        android:id="@+id/sipsetting_pbx_linear"
+        android:layout_width="fill_parent"
+        android:layout_height="144dp"
+        android:layout_below="@+id/setupguide_pbxsetting_question"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/setupguide_pbxsetting_cancel"
+            android:layout_width="216dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="380dp"
+            android:background="@android:color/transparent"
+            android:text="No"
+            android:textColor="#607d8b"
+            android:textSize="36sp" />
+
+        <Button
+            android:id="@+id/setupguide_pbxsetting_ok"
+            android:layout_width="216dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:text="Yes"
+            android:textColor="#607d8b"
+            android:textSize="36sp" />
+    </LinearLayout>
+
+</RelativeLayout>

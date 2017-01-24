@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent"
+    android:orientation="vertical">
+    
+	<LinearLayout 
+	    android:layout_height="wrap_content"
+	    android:layout_width="fill_parent"
+	    android:gravity="center_horizontal"
+	    android:orientation="horizontal"
+	    android:weightSum="3"
+	    android:layout_marginLeft="5dp"
+	    android:layout_marginRight="5dp">
+	    
+	    <Button 
+	        android:id="@+id/phone_contacts_button_all"
+	        android:layout_height="match_parent"
+	        android:layout_width="fill_parent"
+	        android:layout_weight="1"
+	        android:text="@string/phone_history_all"
+	        android:textColor="#000000"
+	        android:textSize="16px"
+	        android:background="@drawable/border_selected_subtab"/>
+	    
+	    <Button 
+	        android:id="@+id/phone_contacts_button_phone"
+	        android:layout_height="match_parent"
+	        android:layout_width="fill_parent"
+	        android:layout_weight="1"
+	        android:text="@string/phone_contact_phone"
+	        android:textColor="#000000"
+	        android:textSize="16px"
+	        android:background="@android:color/transparent"/>
+	    
+	    <Button 
+	        android:id="@+id/phone_contacts_button_security"
+	        android:layout_height="match_parent"
+	        android:layout_width="fill_parent"
+	         android:layout_weight="1"
+	        android:text="@string/phone_contact_security"
+	        android:textColor="#000000"
+	        android:textSize="16px"
+	        android:background="@android:color/transparent"/>
+	</LinearLayout>
+	
+	
+	<View 
+	    android:layout_height="1dp"
+	    android:layout_width="fill_parent"
+	    android:layout_marginLeft="20dp"
+	    android:layout_marginRight="20dp"
+	    android:layout_marginTop="10dp"
+	    android:background="#bcbcbc"/>
+	<ListView
+            android:id="@+id/phone_contacts_listview_contactlist"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" 
+            android:choiceMode="singleChoice"
+            android:divider="#bcbcbc"
+            android:dividerHeight="1dp"
+			android:layout_marginRight="20dp"
+	    	android:layout_marginLeft="20dp"/>
+	
+</LinearLayout>

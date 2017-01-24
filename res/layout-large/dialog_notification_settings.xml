@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="600px"
+    android:layout_height="wrap_content"
+    android:background="@drawable/corner_layout_style"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|center"
+        android:layout_marginLeft="10px"
+        android:layout_marginTop="16px"
+        android:text="Notification Settings"
+        android:textColor="#29b6f6"
+        android:textSize="22sp" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="2px"
+        android:layout_marginTop="10px"
+        android:background="#29b6f6"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:isScrollContainer="true"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center"
+                android:layout_marginLeft="10px"
+                android:layout_marginTop="16px"
+                android:text="LOCKED"
+                android:textColor="@color/color_gray"
+                android:textSize="18sp" />
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25px"
+                android:layout_marginRight="16px"
+                android:layout_marginTop="16px"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:text="Send notification"
+                    android:textColor="@color/color_black"
+                    android:textSize="18sp" />
+
+                <ToggleButton
+                    android:id="@+id/dialog_notification_settings_locked_tb"
+                    android:layout_width="104px"
+                    android:layout_height="32px"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/doorlock_toggle_style_yes_no"
+                    android:orientation="vertical"
+                    android:textOff=""
+                    android:textOn="" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25px"
+                android:layout_marginRight="16px"
+                android:layout_marginTop="16px"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/dialog_notification_settings_event_locked_description_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="Event description"
+                    android:textColor="@color/color_black"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="50px"
+                    android:layout_marginTop="15px"
+                    android:background="#616161" >
+
+                    <EditText
+                        android:id="@+id/dialog_notification_settings_locked_event_et"
+                        android:layout_width="104px"
+                        android:layout_height="32px"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="1px"
+                        android:background="#ffffff"
+                        android:gravity="center"
+                        android:text="Locked"
+                        android:textColor="#000000"
+                        android:textCursorDrawable="@null"
+                        android:textSize="20sp" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25px"
+                android:layout_marginRight="16px"
+                android:layout_marginTop="16px" >
+
+                <TextView
+                    android:id="@+id/dialog_notification_settings_event_locked_notify_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Notifiy if status exceeds(mins)"
+                    android:textColor="@color/color_black"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="50px"
+                    android:layout_marginTop="15px"
+                    android:background="#616161" >
+
+                    <EditText
+                        android:id="@+id/dialog_notification_settings_locked_event_time"
+                        android:layout_width="104px"
+                        android:layout_height="32px"
+                        android:layout_margin="1px"
+                        android:background="#ffffff"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:text="30"
+                        android:textColor="#000000"
+                        android:textCursorDrawable="@null"
+                        android:textSize="20sp" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center"
+                android:layout_marginLeft="10px"
+                android:layout_marginTop="16px"
+                android:text="UNLOCKED"
+                android:textColor="@color/color_gray"
+                android:textSize="18sp" />
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25px"
+                android:layout_marginRight="16px"
+                android:layout_marginTop="16px"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:text="Send notification"
+                    android:textColor="@color/color_black"
+                    android:textSize="18sp" />
+
+                <ToggleButton
+                    android:id="@+id/dialog_notification_settings_unlocked_tb"
+                    android:layout_width="104px"
+                    android:layout_height="32px"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="right"
+                    android:background="@drawable/doorlock_toggle_style_yes_no"
+                    android:orientation="vertical"
+                    android:textOff=""
+                    android:textOn="" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25px"
+                android:layout_marginRight="16px"
+                android:layout_marginTop="16px"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/dialog_notification_settings_unlocked_event_description_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="Event description"
+                    android:textColor="@color/color_black"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="50px"
+                    android:layout_marginTop="15px"
+                    android:background="#616161" >
+
+                    <EditText
+                        android:id="@+id/dialog_notification_settings_unlocked_event_et"
+                        android:layout_width="104px"
+                        android:layout_height="32px"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="1px"
+                        android:background="#ffffff"
+                        android:gravity="center"
+                        android:text="Locked"
+                        android:textColor="#000000"
+                        android:textCursorDrawable="@null"
+                        android:textSize="20sp" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16px"
+                android:layout_marginLeft="25px"
+                android:layout_marginRight="16px"
+                android:layout_marginTop="16px" >
+
+                <TextView
+                    android:id="@+id/dialog_notification_settings_unlocked_notify_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Notifiy if status exceeds(mins)"
+                    android:textColor="@color/color_black"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="50px"
+                    android:layout_marginTop="15px"
+                    android:background="#616161" >
+
+                    <EditText
+                        android:id="@+id/dialog_notification_settings_unlocked_event_time"
+                        android:layout_width="104px"
+                        android:layout_height="32px"
+                        android:layout_margin="1px"
+                        android:background="#ffffff"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:text="30"
+                        android:textColor="#000000"
+                        android:textCursorDrawable="@null"
+                        android:textSize="20sp" />
+                </LinearLayout>
+            </RelativeLayout>
+            
+             <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50px"
+        android:background="#b2b2b2"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/dialog_notification_settings_ok_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1px"
+            android:layout_marginTop="1px"
+            android:layout_weight="1"
+            android:background="@drawable/corner_layout_style"
+            android:gravity="center"
+            android:text="@string/string_ok"
+            android:textColor="#000000"
+            android:textSize="22sp" />
+    </LinearLayout>
+            
+            
+            
+            
+        </LinearLayout>
+    </ScrollView>
+
+   
+
+</LinearLayout>

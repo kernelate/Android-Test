@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_white" >
+
+    <TextView
+        android:id="@+id/fragment_security_title"
+        android:layout_width="fill_parent"
+        android:layout_height="96dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="32dp"
+        android:text="Security"
+        android:textColor="#607d8b"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="3dp"
+        android:layout_below="@+id/fragment_security_title"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:background="#e0e0e0"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <!-- dvr setup -->
+
+    <Button
+        android:id="@+id/fragment_security_dvr_btn"
+        android:layout_width="fill_parent"
+        android:layout_height="96dp"
+        android:layout_below="@+id/fragment_security_title"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/color_white"
+        android:gravity="center_vertical"
+        android:text="DVR"
+        android:textColor="#a3a3a3"
+        android:textSize="36sp" />
+
+    <Button
+        android:id="@+id/fragment_security_dvr_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="800dp"
+        android:layout_alignBottom="@+id/fragment_security_dvr_btn"
+        android:layout_marginTop="110dp"
+        android:background="@drawable/ic_arrow_right" />
+
+    <!-- emergency setup -->
+
+    <Button
+        android:id="@+id/fragment_security_emergency_btn"
+        android:layout_width="fill_parent"
+        android:layout_height="96dp"
+        android:layout_below="@+id/fragment_security_dvr_btn"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/color_white"
+        android:gravity="center_vertical"
+        android:text="Emegency"
+        android:textColor="#a3a3a3"
+        android:textSize="36sp" />
+
+    <Button
+        android:id="@+id/fragment_security_title_emegency_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/fragment_security_emergency_btn"
+        android:layout_marginLeft="800dp"
+        android:layout_marginTop="110dp"
+        android:background="@drawable/ic_arrow_right" />
+
+</RelativeLayout>

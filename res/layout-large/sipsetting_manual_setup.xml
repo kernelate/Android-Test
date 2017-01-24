@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white" >
+
+    <TextView
+        android:id="@+id/setupguide_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="Manual Setup"
+        android:textColor="@android:color/black"
+        android:textSize="40sp" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="3px"
+        android:layout_below="@+id/setupguide_txt"
+        android:layout_marginLeft="5px"
+        android:background="#1a000000"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/client_setup"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@+id/pbx_setup"
+        android:gravity="left|center"
+        android:layout_marginLeft="50dp"
+        android:background="@drawable/button_selector"
+        android:textSize="30sp"
+        android:text="Client Setup" />
+
+    <Button
+        android:id="@+id/pbx_setup"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@+id/linearLayout1"
+        android:layout_marginTop="21dp"
+        android:layout_marginLeft="50dp"
+        android:background="@drawable/button_selector"
+        android:gravity="left|center"
+        android:textSize="30sp"
+        android:text="PBX Setup" />
+    
+     <Button
+        android:id="@+id/pbx_reset"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginLeft="50dp"
+        android:layout_below="@+id/client_setup"
+        android:background="@drawable/button_selector"
+        android:gravity="left|center"
+        android:textSize="30sp"
+        android:text="Reset" />
+
+    <Button
+        android:id="@+id/pbx_back"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_alignParentTop="true"
+        android:textColor="@color/color_black"
+        android:textSize="20sp"
+        android:text="Back" />
+    
+
+</RelativeLayout>

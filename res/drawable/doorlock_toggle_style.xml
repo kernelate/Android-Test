@@ -1,0 +1,6 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="false" android:drawable="@drawable/automation_ic_disabled"/>
+    <item android:state_checked="false" android:drawable="@drawable/automation_ic_unlocked"/>
+    <item android:state_checked="true" android:drawable="@drawable/automation_ic_locked"/>
+    <item android:drawable="@drawable/automation_ic_unlocked"/>
+</selector>

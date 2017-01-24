@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="10dp"
+    android:background="@drawable/corner_layout_style"
+    android:gravity="center_vertical"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/phone_contact_button_edit"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="16px"
+        android:drawableLeft="@drawable/ic_dialog_edit"
+        android:drawablePadding="10sp"
+        android:gravity="left|center"
+        android:text="@string/string_edit"
+        android:textColor="#000000"
+        android:textSize="18sp" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="2px"
+        android:background="#009587" />
+
+    <Button
+        android:id="@+id/phone_contact_button_remove"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="16px"
+        android:drawableLeft="@drawable/ic_dialog_delete"
+        android:drawablePadding="10sp"
+        android:gravity="left|center"
+        android:text="@string/string_remove"
+       	android:textColor="#000000"
+        android:textSize="18sp" />
+
+</LinearLayout>

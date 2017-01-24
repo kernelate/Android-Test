@@ -1,0 +1,460 @@
+package com.ntek.wallpad.Screens.Fragment;
+
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.app.Fragment;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.SeekBar;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.SeekBar.OnSeekBarChangeListener;
+import com.ntek.wallpad.R;
+import com.ntek.wallpad.Utils.CommonUtilities;
+import com.ntek.wallpad.Utils.OnChangeFragmentListener;
+import com.ntek.wallpad.Utils.RingProgressDialogManager;
+import com.ntek.wallpad.network.Global;
+import com.ntek.wallpad.network.LoginGlobal;
+import com.ntek.wallpad.network.SocClient;
+
+public class FragmentSetUpDoorTalkSelectUser extends Fragment {
+	
+	private final static String TAG = FragmentSetUpDoorTalkSelectUser.class.getCanonicalName();
+	
+	private Button networkSetupButton, deviceConfigurationButton, volumeControlButton, logInSettingButton;
+	private OnChangeFragmentListener mOnChangeFragment;
+	private View view;
+	
+	@Override
+	public void onAttach(Activity activity) {
+		super.onAttach(activity);
+		try 
+		{
+		 mOnChangeFragment = (OnChangeFragmentListener) activity;	
+		} catch (ClassCastException e) {
+			Log.e(TAG, e.getMessage());
+		}
+	}
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+	}
+	
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) 
+	{
+		view = inflater.inflate(R.layout.fragment_setting_server_configuration, container, false);
+		initializeUI();
+		return view;
+	}
+	
+	protected void initializeUI() 
+	{
+		networkSetupButton =(Button) view.findViewById(R.id.phone_settings_button_network_setup);
+		deviceConfigurationButton = (Button) view.findViewById(R.id.phone_settings_button_device_configuration);
+		volumeControlButton = (Button) view.findViewById(R.id.phone_settings_button_device_volume_control);
+		logInSettingButton = (Button) view.findViewById(R.id.phone_settings_button_device_login_settings);
+		
+		if (FragmentCommonSetting.isDoorDeviceApMode)
+		{
+			deviceConfigurationButton.setEnabled(false);
+			volumeControlButton.setEnabled(false);
+			logInSettingButton.setEnabled(false);
+		}
+		else
+		{
+			deviceConfigurationButton.setEnabled(true);
+			volumeControlButton.setEnabled(true);
+			logInSettingButton.setEnabled(true);
+		}
+		
+		networkSetupButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (mOnChangeFragment != null)
+				{ 
+					mOnChangeFragment.changeFragment(null, new FragmentSettingsNetworkSetup(), true);
+				}
+			}
+		});
+		
+		deviceConfigurationButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (mOnChangeFragment != null)
+				{
+					mOnChangeFragment.changeFragment(null, new FragmentSettingsDeviceConfiguration(), true);
+				}
+			}
+		});
+		
+		volumeControlButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				final DialogFragment mDialog = VolumeControlDialog.getInstance();
+				mDialog.show(getFragmentManager(), TAG);
+			}
+		});
+		
+		logInSettingButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				showLoginChangeDialog();
+			}
+		});
+	}
+	
+	public static class VolumeControlDialog extends DialogFragment
+	{
+		private static final String TAG = VolumeControlDialog.class.getCanonicalName();
+		
+		private Button okBtn;
+		private SeekBar callSeekBar;
+		private SeekBar soundSeekBar;
+		private EditText soundET;
+		private EditText callET;
+		private View view;
+		
+		int nSpeaker_Volume_Max = 15;
+		int nCall_Volume_Max = 5;
+		
+		int nCurrent_Speaker_Volume = 0;
+		int nPre_Speaker_Volume = 0;
+		
+		int nCurrent_Call_Volume = 0;
+		int nPre_Call_Volume = 0;
+		
+		private BroadcastReceiver mBroadCastRecv;
+		
+		
+		@SuppressLint("ValidFragment")
+		private VolumeControlDialog()
+		{
+			Log.i(TAG, TAG);
+		}
+		
+		
+		@Override
+		public Dialog onCreateDialog(Bundle savedInstanceState) {
+			initializeUI();
+			AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
+			mBuilder.setView(view);
+			return mBuilder.create();
+		}
+		
+		
+		@Override
+		public void onCreate(Bundle savedInstanceState) {
+			super.onCreate(savedInstanceState);
+			nPre_Speaker_Volume = Global.getInstance().getServer_Speaker_volume();
+			if(nPre_Speaker_Volume == 0) 
+			{
+				nCurrent_Speaker_Volume = 1;
+			}
+			else 
+			{
+				nCurrent_Speaker_Volume = nPre_Speaker_Volume;
+			}
+			
+			nPre_Call_Volume = Global.getInstance().getServer_Call_volume();
+			if(nPre_Call_Volume == 0)
+			{
+				nCurrent_Call_Volume = 1;
+			}
+			else 
+			{
+				nCurrent_Call_Volume = nPre_Call_Volume;
+			}
+			
+			mBroadCastRecv = new BroadcastReceiver() {
+				@Override
+				public void onReceive(Context context, Intent intent) {
+					String action = intent.getAction();
+					Log.d(TAG, "onReceive() : " + action);
+					RingProgressDialogManager.hide();
+					if (action.equals("com.smartbean.servertalk.action.SENDING_VOLUME")) {
+						String response = intent.getStringExtra("response");
+						Log.d(TAG, "getStringExtra() : " + response);
+
+						if (response.equals("success")) {
+							showToast("Volume Value is successfully send to the server");
+						}
+						else {
+							nCurrent_Speaker_Volume = nPre_Speaker_Volume;
+							Global.getInstance().setServer_Speaker_volume(nCurrent_Speaker_Volume);
+							nCurrent_Call_Volume = nPre_Call_Volume;
+							Global.getInstance().setServer_Call_volume(nCurrent_Call_Volume);
+							showToast(getString(R.string.string_connection_lost));
+						}
+						dismiss();
+					}
+				}
+			};
+		
+		}
+		
+		@Override
+		public void onResume() {
+			super.onResume();
+			IntentFilter intentFilter = new IntentFilter();
+			intentFilter.addAction("com.smartbean.servertalk.action.SENDING_VOLUME");
+			getActivity().registerReceiver(mBroadCastRecv, intentFilter);
+		}
+		
+		@Override
+		public void onPause() {
+			super.onPause();
+			if (mBroadCastRecv != null) 
+			{
+				getActivity().unregisterReceiver(mBroadCastRecv);
+			}
+		}
+		
+		protected void initializeUI()
+		{
+			LayoutInflater inflater = getActivity().getLayoutInflater();
+			view = inflater.inflate(R.layout.dialog_volume_control, null);
+			
+			okBtn = (Button) view.findViewById(R.id.dialog_volume_control_ok_btn);
+			soundSeekBar = (SeekBar) view.findViewById(R.id.soundSeekBar);
+			callSeekBar = (SeekBar) view.findViewById(R.id.callSeekBar);
+			soundET = (EditText) view.findViewById(R.id.dialog_volume_control_edittext_sound);
+			callET = (EditText) view.findViewById(R.id.dialog_volume_control_edittext_speech);
+			
+			soundET.setText(String.valueOf(nCurrent_Speaker_Volume));
+			soundSeekBar.setMax(nSpeaker_Volume_Max);
+			soundSeekBar.setProgress(nCurrent_Speaker_Volume);
+			soundSeekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+				@Override
+				public void onStopTrackingTouch(SeekBar arg0) {
+					
+				}
+				
+				@Override
+				public void onStartTrackingTouch(SeekBar arg0) {
+					
+				}
+				
+				@Override
+				public void onProgressChanged(SeekBar seekbar, int progress, boolean fromUser) {
+					int MIN = 0;
+	                if (progress > MIN) {
+	                	nCurrent_Speaker_Volume = progress;
+	                	soundET.setText(String.valueOf(nCurrent_Speaker_Volume));
+//	    				SeekBar_Speaker_Number.setText(String.valueOf(nCurrent_Speaker_Volume));
+	                }
+	                else {
+	                	soundSeekBar.setProgress(1);
+	                }
+				}
+			});
+			
+			callET.setText(String.valueOf(nCurrent_Call_Volume));
+			callSeekBar.setMax(nCall_Volume_Max);
+			callSeekBar.setProgress(nCurrent_Call_Volume);
+			callSeekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+				@Override
+				public void onStopTrackingTouch(SeekBar arg0) {
+					
+				}
+				
+				@Override
+				public void onStartTrackingTouch(SeekBar arg0) {
+					
+				}
+				
+				@Override
+				public void onProgressChanged(SeekBar seekbar, int progress, boolean fromUser) {
+					int MIN = 0;
+	                if (progress > MIN) {
+	                	nCurrent_Call_Volume = progress;
+	                	callET.setText(String.valueOf(nCurrent_Call_Volume));
+//	    				SeekBar_Call_Number.setText(String.valueOf(nCurrent_Call_Volume));
+	                }
+	                else {
+	                	callSeekBar.setProgress(1);
+	                }
+				}
+			});
+			
+			soundET.addTextChangedListener(new TextWatcher() {
+				@Override
+				public void onTextChanged(CharSequence s, int start, int before, int count) {
+					int progress = 1;
+					if (isNumerical(s.toString()))
+					{
+						progress = Integer.valueOf(s.toString());
+					}
+					if (progress > nSpeaker_Volume_Max)
+					{
+						progress = nSpeaker_Volume_Max;
+						soundET.setText(String.valueOf(progress));
+					}
+					else if (progress < 0)
+					{
+						progress = 1;
+						soundET.setText(String.valueOf(progress));
+					}
+					soundSeekBar.setProgress(progress);
+				}
+				
+				@Override
+				public void beforeTextChanged(CharSequence s, int start, int count,
+						int after) {
+				}
+				
+				@Override
+				public void afterTextChanged(Editable s) {
+				}
+			});
+			
+			callET.addTextChangedListener(new TextWatcher() {
+				@Override
+				public void onTextChanged(CharSequence s, int start, int before, int count) {
+					int progress = 1;
+					if (isNumerical(s.toString()))
+					{
+						progress = Integer.valueOf(s.toString());
+					}
+					if (progress > nCall_Volume_Max)
+					{
+						progress = nCall_Volume_Max;
+						callET.setText(String.valueOf(progress));
+					}
+					else if (progress < 0)
+					{
+						progress = 1;
+						callET.setText(String.valueOf(progress));
+					}
+					callSeekBar.setProgress(progress);
+				}
+				
+				@Override
+				public void beforeTextChanged(CharSequence s, int start, int count,
+						int after) {
+				}
+				
+				@Override
+				public void afterTextChanged(Editable s) {
+				}
+			});
+			
+			okBtn.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View arg0) {
+					Global.getInstance().setServer_Speaker_volume(nCurrent_Speaker_Volume);
+					Global.getInstance().setServer_Call_volume(nCurrent_Call_Volume);
+					if(Global.getInstance().getServer_Speaker_volume() > 0 || Global.getInstance().getServer_Call_volume() > 0) {
+						RingProgressDialogManager.show(getActivity(), "Please wait...", "Sending Volume Value...");
+						new Thread(new SocClient("VOLUME_CONTROL", CommonUtilities.soc_port, getActivity())).start();
+					}
+				}
+			});
+			
+		}
+		
+		protected void showToast(String message) {
+			Toast toast = Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT);
+			toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL, 0, 0);
+			toast.show();
+		}	
+		
+		public static VolumeControlDialog getInstance(){
+			final VolumeControlDialog mDialog = new VolumeControlDialog();
+			return mDialog;
+		}
+		
+		private boolean isNumerical(String number)
+		{
+			try {
+				Integer.valueOf(number);
+			} catch (NumberFormatException e) {
+				return false;
+			}
+			return true;
+		}
+		
+	}
+	
+	private void showLoginChangeDialog() {
+
+		final Dialog loginChangeDialog = new Dialog(getActivity());
+		loginChangeDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		loginChangeDialog.setContentView(R.layout.dialog_account_settings);
+		loginChangeDialog.setCancelable(true);
+		loginChangeDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE); 
+		
+
+		final TextView oldIdTextView = (TextView) loginChangeDialog.findViewById(R.id.oldIdTextView);
+		final EditText newIdEditText = (EditText) loginChangeDialog.findViewById(R.id.newIdEditText);
+		final EditText oldPasswordEditText = (EditText) loginChangeDialog.findViewById(R.id.oldPasswordEditText);
+		final EditText newPasswordEditText = (EditText) loginChangeDialog.findViewById(R.id.newPasswordEditText);
+		final EditText retypePasswordEditText = (EditText) loginChangeDialog.findViewById(R.id.retypePasswordEditText);
+
+		final Button saveButton = (Button) loginChangeDialog.findViewById(R.id.saveButton);
+
+		final Button cancelButton = (Button) loginChangeDialog.findViewById(R.id.cancelButton);
+
+		oldIdTextView.setText(LoginGlobal.getInstance().getLoginID().toString());
+		cancelButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				loginChangeDialog.dismiss();
+			}
+		});
+		
+		saveButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (!oldPasswordEditText.getText().toString().equals(LoginGlobal.getInstance().getLoginPassword())) {
+					showToast(getString(R.string.string_invalid));
+					return;
+				}
+
+				if (!newPasswordEditText.getText().toString().equals(retypePasswordEditText.getText().toString())) {
+					showToast(getString(R.string.string_error));
+					return;
+				}
+
+				if(newIdEditText.getText().toString() != null && newIdEditText.getText().toString().length() > 0) {
+					LoginGlobal.getInstance().setLoginID(newIdEditText.getText().toString());
+				}
+				LoginGlobal.getInstance().setLoginPassword(newPasswordEditText.getText().toString());
+
+				RingProgressDialogManager.show(getActivity());
+				new Thread(new SocClient("login_change", CommonUtilities.soc_port, getActivity())).start();
+			}
+		});
+		loginChangeDialog.show();
+	}
+	
+	protected void showToast(String message) {
+		Toast toast = Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT);
+		toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL, 0, 0);
+		toast.show();
+	}
+	
+
+}

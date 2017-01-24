@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <ImageView
+        android:id="@+id/automation_setting_imageview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/wp_wallpad_user_icon_rev1" />
+
+    <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/automation_setting_imageview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/automation_textview_device_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/string_unnamed_doorTalk"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/automation_textview_ip_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/string_ip_hint"
+            android:textSize="16dp" />
+    </LinearLayout>
+
+
+        <Button
+            android:layout_marginRight="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/string_delete" 
+            android:textSize="18sp"
+            android:id="@+id/automation_settings_button_delete_list"/>
+
+</RelativeLayout>

@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical" >
+
+    <!--
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/fragment_setting_event_notification_titleheader_tv"
+            android:layout_width="fill_parent"
+            android:layout_height="96dp"
+            android:gravity="center_vertical"
+            android:text="Event Setting"
+            android:textColor="#607d8b"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView 
+            android:layout_width="fill_parent"
+            android:layout_height="96dp"
+            android:gravity="center_vertical"
+            android:text="Event Setting"
+            android:textColor="#607d8b"
+            android:layout_marginLeft="50dp"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            
+            
+            />
+        <Button
+            android:id="@+id/setting_button_event_notif"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/btn_save_diskette" />
+
+        
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:gravity="right"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/setting_button_event_notif"
+                android:layout_width="108dp"
+                android:layout_height="40dp"
+                android:background="@drawable/corner_button_style"
+                android:text="@string/string_save"
+                android:textColor="#ffffff" />
+        </LinearLayout>
+       
+    </LinearLayout>
+    -->
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical" >
+
+        <!--
+             <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="2"
+            android:text="SIP ACCOUNT"
+            android:textColor="#616161"
+            android:textSize="16sp" />
+        -->
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="96dp"
+            android:gravity="center_vertical"
+            android:text="Event Setting"
+            android:textColor="#607d8b"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/setting_button_event_notif"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_weight="7"
+            android:background="@drawable/btn_save_diskette" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:layout_marginLeft="40px"
+        android:layout_marginRight="40px"
+        android:background="#1a000000"
+        android:orientation="vertical" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="96dp"
+        android:background="@drawable/settings_selector"
+        android:gravity="center_vertical"
+        android:paddingLeft="32dp"
+        android:text="Event Server"
+        android:textColor="#a3a3a3"
+        android:textSize="24sp" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="96dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:orientation="horizontal" >
+
+       <!--  <EditText
+            android:id="@+id/fragment_settings_event_et1"
+            android:layout_width="144dp"
+            android:layout_height="52dp"
+            android:background="@drawable/rect_selector"
+            android:hint="http: //"
+            android:textColor="@color/color_black"
+            android:textSize="24sp" /> -->
+
+        <ToggleButton
+            android:id="@+id/fragment_settings_event_et1"
+             android:layout_width="144dp"
+            android:layout_height="52dp"
+            android:background="@drawable/rect_selector"
+            android:textColor="@color/color_black"
+            android:textOn="http: //"
+            android:textOff="https: //"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/fragment_settings_event_et2"
+            android:layout_width="484dp"
+            android:layout_height="52dp"
+            android:layout_marginLeft="32dp"
+            android:background="@drawable/rect_selector"
+            android:hint="IP Address"
+            android:singleLine="true"
+            android:textColor="@color/color_black"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/fragment_settings_event_et3"
+            android:layout_width="144dp"
+            android:layout_height="52dp"
+            android:layout_marginLeft="32dp"
+            android:background="@drawable/rect_selector"
+            android:hint="Port"
+            android:singleLine="true"
+            android:textColor="@color/color_black"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:text="Push Notification Accounts"
+        android:textColor="#a3a3a3"
+        android:textSize="24sp" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="96dp"
+        android:background="@drawable/bg_title"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:weightSum="3" >
+
+        <Button
+            android:id="@+id/fragment_setting_event_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:text="All"
+            android:textColor="#b2b2b2"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/fragment_setting_event_active"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:text="Active"
+            android:textColor="#b2b2b2"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/fragment_setting_event_pending"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:text="Pending"
+            android:textColor="#b2b2b2"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/setting_listview_event_notification"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40px"
+        android:layout_marginRight="40px" />
+
+</LinearLayout>

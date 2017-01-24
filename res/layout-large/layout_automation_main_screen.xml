@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/color_white"
+    android:orientation="horizontal"
+    android:weightSum="3" >
+
+    <LinearLayout
+        android:id="@+id/doorlock_linear_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="76px"
+        android:layout_weight="1"
+        android:background="#1875d1"
+        android:orientation="horizontal"
+        android:weightSum="2" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" >
+
+            <Button
+                android:layout_marginLeft="15px"
+                android:drawablePadding="10px"
+                android:drawableLeft="@drawable/ic_menu_doorcontrol"
+                android:id="@+id/doorlock_header_doorlock"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:background="@android:color/transparent"
+                android:text="@string/string_door_control" />
+            >
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="right|center_vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" 
+            >
+
+            <Button
+                android:id="@+id/doorlock_header_setting"
+                android:layout_width="70px"
+                android:layout_height="match_parent"
+                android:layout_marginRight="20px"
+                android:textSize="22px"
+                android:background="@color/transparent"
+                android:drawableRight="@drawable/ic_action_setting"
+				/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/doorlock_linear_layout"
+        android:baselineAligned="false"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="324px"
+            android:layout_height="fill_parent"
+            android:background="#414141"
+            android:orientation="vertical">
+            
+            <TextView
+                android:id="@+id/doorlock_textview_devicelist"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginBottom="8dp"
+		        android:layout_marginTop="32dp"
+		        android:layout_marginStart="16px"
+		        android:text="@string/string_door_lock_list"
+		        android:textColor="#FFFFFF"
+		        android:textSize="16sp"
+		        android:textStyle="bold" />
+		
+		    <LinearLayout
+		        android:layout_width="fill_parent"
+		        android:layout_height="2dp"
+		        android:layout_marginStart="16px"
+		        android:layout_marginRight="16px"
+		        android:background="#616161"
+		        android:orientation="vertical" >
+		    </LinearLayout>
+		
+		    <ListView
+		        android:id="@+id/doorlock_listview_devicelist"
+		        android:layout_width="fill_parent"
+		        android:layout_height="fill_parent"
+		        android:choiceMode="singleChoice"
+		        android:layout_marginStart="16px"
+		        android:layout_marginRight="16px"
+	            android:divider="#bcbcbc"
+	            android:dividerHeight="1dp">
+		    </ListView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#303030"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+		    
+            <TextView
+		       android:id="@+id/doorlock_device_status_textview_name"
+		       android:layout_width="wrap_content"
+		       android:layout_height="wrap_content"
+		       android:layout_marginTop="30px"
+		       android:text="@string/string_device_name"
+		       android:textColor="#ffffff"
+		       android:textSize="26sp" />
+		
+             <TextView
+               android:id="@+id/doorlock_device_textview_status"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="@string/string_locked"
+               android:textColor="#63b4f5"
+               android:textSize="18sp" />
+             
+             <ToggleButton	
+               android:layout_marginTop="20px"
+	           android:id="@+id/doorlock_device_status_toggle_onoff"
+	           android:layout_width="wrap_content"
+	           android:layout_height="wrap_content"
+	           android:background="@drawable/doorlock_toggle_style"
+	           android:orientation="vertical"
+	           android:textOff=""
+	           android:textOn="" />
+            
+	       </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

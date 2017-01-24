@@ -1,0 +1,546 @@
+package com.ntek.wallpad.Screens.Fragment;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
+
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.app.Fragment;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
+
+import com.ntek.wallpad.R;
+import com.ntek.wallpad.Model.EventInquiryModel;
+import com.ntek.wallpad.Utils.CommonUtilities;
+import com.ntek.wallpad.Utils.OnChangeFragmentListener;
+import com.ntek.wallpad.Utils.RingProgressDialogManager;
+import com.ntek.wallpad.network.Global;
+import com.ntek.wallpad.network.SocClient;
+
+public class FragmentSettingEventNotification extends Fragment
+{
+	private final static String TAG = FragmentSettingEventNotification.class.getCanonicalName();
+	
+	private View view;
+	private Button btnSaveEvent;
+//	private Button btnAllEvent;
+//	private Button btnActiveEvent;
+//	private Button btnPendingEvent;
+	private TextView tvTitleHeader;
+	private ListView lvEventList;
+	
+	private boolean onProcess = false;
+	private String mDeviceName;
+	
+	private BroadcastReceiver mBroadCastReceiver;
+	private EventInquiryAdapter mAdapter;
+	private OnChangeFragmentListener mChangeFragment;
+	
+	public FragmentSettingEventNotification(String deviceName)
+	{
+		Log.i(TAG, "FragmentSettingEventNofication");
+		this.mDeviceName = deviceName;
+	}
+	
+	@Override
+	public void onAttach(Activity activity) {
+		// TODO Auto-generated method stub
+		super.onAttach(activity);
+		try {
+			mChangeFragment = (OnChangeFragmentListener) activity; 
+		} catch (ClassCastException e) {
+			// TODO: handle exception
+			Log.e(TAG, e.getMessage());
+		}
+	}
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		
+		mBroadCastReceiver = new BroadcastReceiver() {
+			@Override
+			public void onReceive(Context context, Intent intent) {
+				String action = intent.getAction();
+				if (action.equals("com.smartbean.servertalk.action.EVENT_INQUIRY_ERROR")) {
+					String error = intent.getStringExtra("error");
+					if (error == null)
+						error = "Undetermined";
+					Toast.makeText(getActivity(), "A following Error Occured " + error, Toast.LENGTH_LONG).show();
+				}else if (action.equals("com.smartbean.setupeventinquiry.result"))
+				{
+					String response = intent.getStringExtra("result");
+					if (response.equals("success"))
+					{
+						String gcmID = intent.getStringExtra("gcmID");
+						Global.getInstance().getEventInquiryObservableList().deleteEventInquiry(gcmID);
+						mAdapter.notifyDataSetChanged();
+					}
+					else
+					{
+						Toast.makeText(getActivity(), "Sending to Server " + response, Toast.LENGTH_LONG).show();
+					}
+				}
+				RingProgressDialogManager.hide();
+			}
+		};
+	}
+	
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		view = inflater.inflate(R.layout.fragment_setting_event_notification, container, false);
+		initializeUI();
+		return view;
+	}
+	
+	protected void initializeUI() 
+	{
+		tvTitleHeader = (TextView) view.findViewById(R.id.fragment_setting_event_notification_titleheader_tv);
+		btnSaveEvent = (Button) view.findViewById(R.id.setting_button_event_notif);
+//		btnAllEvent = (Button) view.findViewById(R.id.setting_button_event_all);
+//		btnActiveEvent = (Button) view.findViewById(R.id.setting_button_event_active);
+//		btnPendingEvent = (Button) view.findViewById(R.id.setting_button_event_pending);
+		lvEventList = (ListView) view.findViewById(R.id.setting_listview_event_notification);
+		
+		tvTitleHeader.setText("EVENT CLIENTS"); //FIXME CONVERT THIS TO @STRING RESOURCE 
+		
+		btnSaveEvent.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				if (Global.getInstance().getEventInquiryObservableList().getSize() > 0)
+				{
+					new Thread(new SocClient("event_inquiry_submit_list_changes", CommonUtilities.soc_port, getActivity())).start();
+					RingProgressDialogManager.show(getActivity(), "Loading", "Sending Data To Server Device");
+				}
+			}
+		});
+		
+//		btnAllEvent.setOnClickListener(new OnClickListener() {
+//			@Override
+//			public void onClick(View arg0) {
+//				mAdapter.setData(Global.getInstance().getEventInquiryObservableList().getList(), "All");
+//			}
+//		});
+//		
+//		btnActiveEvent.setOnClickListener(new OnClickListener() {
+//			@Override
+//			public void onClick(View arg0) {
+//				mAdapter.setData(Global.getInstance().getEventInquiryObservableList().getApproved(), "Approved");
+//			}
+//		});
+//		
+//		btnPendingEvent.setOnClickListener(new OnClickListener() {
+//			@Override
+//			public void onClick(View arg0) {
+//				mAdapter.setData(Global.getInstance().getEventInquiryObservableList().getPending(), "Pending");
+//			}
+//		});
+		
+		List<EventInquiryModel> mList = Global.getInstance().getEventInquiryObservableList().getList();
+		if (mList == null) mList = new ArrayList<EventInquiryModel>();
+		mAdapter = new EventInquiryAdapter(getActivity(), mList, "All");
+		lvEventList.setAdapter(mAdapter);
+	}
+	
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		final IntentFilter intentFilter = new IntentFilter("com.smartbean.servertalk.action.EVENT_INQUIRY_ERROR");
+		intentFilter.addAction("com.smartbean.setupeventinquiry.result");
+		getActivity().registerReceiver(mBroadCastReceiver, intentFilter);
+	}
+	
+	@Override
+	public void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		if (mBroadCastReceiver != null)
+		{
+			getActivity().unregisterReceiver(mBroadCastReceiver);
+		}
+	}
+	
+	public class EventInquiryAdapter extends BaseAdapter implements Observer {
+
+		private Context mContext;
+		private List<EventInquiryModel> mEventHolder;
+
+		private String mAction;
+
+		public EventInquiryAdapter(Context context, List<EventInquiryModel> eventList) {
+			this.mContext = context;
+			this.mEventHolder = eventList;
+		}
+
+		public EventInquiryAdapter(Context context, List<EventInquiryModel> eventList, String action) {
+			this.mContext = context;
+			this.mAction = action;
+			this.mEventHolder = eventList;
+			Global.getInstance().getEventInquiryObservableList().addObserver(this);
+//			mDbHandler.addObserver(this);
+		}
+
+		@Override
+		public int getCount() {
+			if (mEventHolder != null) return mEventHolder.size();
+			return 0;
+		}
+
+		@Override
+		public Object getItem(int position) {
+			return mEventHolder.get(position);
+		}
+
+		@Override
+		public long getItemId(int position) {
+			return 0;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			final Viewgroup viewHolder;
+			if (convertView == null) {
+				LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+				convertView = inflater.inflate(R.layout.setting_event_notification_adapter, null);
+				viewHolder = new Viewgroup();
+				viewHolder.emailText = (TextView) convertView.findViewById(R.id.setting_event_textview_list);
+				viewHolder.detailText = (TextView) convertView.findViewById(R.id.setting_event_textview_motion_status_list);
+//				viewHolder.approvedBtn = (Button) convertView.findViewById(R.id.setting_event_button_pending);
+				viewHolder.tgActivate = (ToggleButton) convertView.findViewById(R.id.setting_togglebutton_event_notification);
+				viewHolder.discardBtn = (Button) convertView.findViewById(R.id.setting_event_button_discard);
+				convertView.setTag(viewHolder);
+			}
+			else {
+				viewHolder = (Viewgroup) convertView.getTag();
+			}
+
+			if (mEventHolder != null && mEventHolder.size() > 0) {
+				viewHolder.emailText.setText(mEventHolder.get(position).getEmail());
+				final int itemPosition = position;
+				viewHolder.emailText.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						final EventInquiryModel data = (EventInquiryModel) mEventHolder.get(itemPosition);
+						DialogFragment nDialog = DialogEventNotificationDetail.createInstance(data);
+						nDialog.show(getFragmentManager(), TAG);
+					}
+				});
+
+				StringBuilder ability = new StringBuilder();
+				if (mEventHolder.get(position).getMotion_detect_enable().equals("enabled")) {
+					ability.append("Motion Detect ");
+				}
+				if (mEventHolder.get(position).getRelay_sensors_enable().equals("enabled")) {
+					ability.append("Door Control ");
+				}
+				viewHolder.detailText.setText(ability.toString());
+				
+				viewHolder.tgActivate.setOnCheckedChangeListener(new OnCheckedClick(mEventHolder.get(position).getGcmID(), mEventHolder.get(position).getActiveStatus()));
+				
+				viewHolder.discardBtn.setOnClickListener(new OnButtonClick(mEventHolder.get(position).getGcmID(), mEventHolder.get(position).getActiveStatus()));
+				
+				if (mEventHolder.get(position).getActiveStatus().equals("active"))
+				{
+					viewHolder.tgActivate.setChecked(true);
+				}
+				else
+				{
+					viewHolder.tgActivate.setChecked(false);
+				}
+				
+//				if (mAction.equals("All")) { // for All tabs
+//					String status = mEventHolder.get(position).getActiveStatus();
+//					if (status.equals("active")) {
+//						viewHolder.approvedBtn.setText(getString(R.string.Event_Inquiry_Pending));
+//						viewHolder.approvedBtn.setOnClickListener(new OnButtonClick(mEventHolder.get(position).getGcmID(), "inactive"));
+//						viewHolder.discardBtn.setText(getString(R.string.Event_Inquiry_Discard));
+//						viewHolder.discardBtn.setOnClickListener(new OnButtonClick(mEventHolder.get(position).getGcmID(), "discard"));
+//					}
+//					else {
+//						viewHolder.approvedBtn.setText(getString(R.string.Event_Inquiry_Active));
+//						viewHolder.discardBtn.setText(getString(R.string.Event_Inquiry_Discard));
+//						viewHolder.approvedBtn.setOnClickListener(new OnButtonClick(mEventHolder.get(position).getGcmID(), "active"));
+//						viewHolder.discardBtn.setOnClickListener(new OnButtonClick(mEventHolder.get(position).getGcmID(), "discard"));
+//					}
+//				}
+//				else if (mAction.equals("Approved")) { // for Approved tabs
+//					viewHolder.approvedBtn.setText(getString(R.string.Event_Inquiry_Pending));
+//					viewHolder.approvedBtn.setOnClickListener(new OnButtonClick(mEventHolder.get(position).getGcmID(), "inactive"));
+//					viewHolder.discardBtn.setText(getString(R.string.Event_Inquiry_Discard));
+//					viewHolder.discardBtn.setOnClickListener(new OnButtonClick(mEventHolder.get(position).getGcmID(), "discard"));
+//				}
+//				else if (mAction.equals("Pending")) { // for pending tabs
+//					viewHolder.approvedBtn.setText(getString(R.string.Event_Inquiry_Active));
+//					viewHolder.approvedBtn.setOnClickListener(new OnButtonClick(mEventHolder.get(position).getGcmID(), "active"));
+//					viewHolder.discardBtn.setText(getString(R.string.Event_Inquiry_Discard));
+//					viewHolder.discardBtn.setOnClickListener(new OnButtonClick(mEventHolder.get(position).getGcmID(), "discard"));
+//				}
+			}
+			return convertView;
+		}
+
+		public void setData(List<EventInquiryModel> list, String action) {
+			this.mEventHolder = list;
+			this.mAction = action;
+			this.notifyDataSetChanged();
+		}
+
+		public String getmAction() {
+			return mAction;
+		}
+
+		public void setmAction(String mAction) {
+			this.mAction = mAction;
+		}
+
+		@Override
+		public void update(Observable observable, Object data) {
+			// TODO Auto-generated method stub
+			if (mAction.equals("All")) {
+				mEventHolder = Global.getInstance().getEventInquiryObservableList().getList();
+			}
+			else if (mAction.equals("Approved")) {
+				mEventHolder = Global.getInstance().getEventInquiryObservableList().getApproved();
+			}
+			else {
+				mEventHolder = Global.getInstance().getEventInquiryObservableList().getPending();
+			}
+			this.notifyDataSetChanged();
+		}
+		
+		private class OnCheckedClick implements OnCheckedChangeListener
+		{
+			private String mStatus;
+			private String mGcmID;
+
+			public OnCheckedClick(String mGcmID, String status) {
+				this.mGcmID = mGcmID;
+				this.mStatus = status;
+			}
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if (Global.getInstance().getEventInquiryObservableList() != null)
+				{
+					if (isChecked)
+					{
+						Global.getInstance().getEventInquiryObservableList().changeStatus(mGcmID, "active");
+					}
+					else
+					{
+						Global.getInstance().getEventInquiryObservableList().changeStatus(mGcmID, "inactive");
+					}
+				}
+				Global.getInstance().setClient_inquiry_gcmID(this.mGcmID);
+				Global.getInstance().setClient_inquiry_status(this.mStatus);
+//				new Thread(new SocClient("event_inquiry_client_list_update", CommonUtilities.soc_port)).start();
+			}
+			
+		}
+		
+		private class OnButtonClick implements OnClickListener {
+			private String mStatus;
+			private String mGcmID;
+
+			public OnButtonClick(String mGcmID, String status) {
+				this.mGcmID = mGcmID;
+				this.mStatus = status;
+			}
+
+			@Override
+			public void onClick(View v) {
+				showDiscardAlertDialog(this.mGcmID, mStatus);
+			}
+		}
+	}
+	
+	
+	private void showDiscardAlertDialog(final String mGcmID, final String mStatus) {
+		AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
+		mBuilder.setMessage("Are you sure you want to discard this request?").setTitle("EventInquiry")
+				.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						Global.getInstance().setClient_inquiry_gcmID(mGcmID);
+						Global.getInstance().setClient_inquiry_status(mStatus);
+						//
+						new Thread(new SocClient("event_inquiry_delete_event_inquiry_list", CommonUtilities.soc_port, getActivity())).start();
+						RingProgressDialogManager.show(getActivity(), "Loading", "Sending Data To Server Device");
+					}
+				}).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+					}
+				});
+		mBuilder.show();
+	}
+
+	private class Viewgroup {
+		private TextView emailText;
+		private TextView detailText;
+//		private Button approvedBtn;
+		private Button discardBtn;
+		private ToggleButton tgActivate;
+	}
+	
+	public static class DialogEventNotificationDetail extends DialogFragment implements Observer
+	{
+		protected View mView;
+		
+		private ToggleButton motionDetectTB;
+		private ToggleButton doorControlTB;
+		private Button okButton;
+		private TextView userStatusTV;
+		private TextView titleTV;
+		
+		private EventInquiryModel nModel;
+		private String nUserEmail;
+		private String nCurrentMotion_Detect_Status;
+		private String nPre_CurrentMotion_Detect_Status;
+		private String nCurrentDoorControl_Detect_Status;
+		private String nPre_CurrentDoorControl_Detect_Status;
+		private String nCurrentStatus;
+		
+		private DialogEventNotificationDetail(EventInquiryModel model)
+		{
+			this.nModel = model;
+		}
+		
+		public static DialogEventNotificationDetail createInstance(EventInquiryModel model)
+		{
+			DialogEventNotificationDetail nDialog = new DialogEventNotificationDetail(model);
+			return nDialog;
+		}
+		
+		@Override
+		public void onCreate(Bundle savedInstanceState) {
+			super.onCreate(savedInstanceState);
+			
+			if (nModel != null)
+			{
+				nUserEmail = nModel.getEmail();
+				nPre_CurrentMotion_Detect_Status = nModel.getMotion_detect_enable();
+				nPre_CurrentDoorControl_Detect_Status = nModel.getRelay_sensors_enable();
+				nCurrentStatus = nModel.getActiveStatus();
+				
+				nCurrentMotion_Detect_Status = nPre_CurrentMotion_Detect_Status;
+				nCurrentDoorControl_Detect_Status = nPre_CurrentDoorControl_Detect_Status;
+			}
+		
+		}
+		
+		@Override
+		public Dialog onCreateDialog(Bundle savedInstanceState) {
+			AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
+			mBuilder.setCancelable(true);
+			initializeUI();
+			mBuilder.setView(mView);
+			return mBuilder.create();
+		}
+		
+		protected void initializeUI()
+		{
+			LayoutInflater inflater = getActivity().getLayoutInflater();
+			mView = inflater.inflate(R.layout.dialog_setting_event_notification_detail, null);
+			
+			titleTV = (TextView) mView.findViewById(R.id.dialog_setting_event_notification_detail_title_tv);
+			motionDetectTB = (ToggleButton) mView.findViewById(R.id.dialog_setting_event_notification_detail_toggle_motion_detection);
+			doorControlTB = (ToggleButton) mView.findViewById(R.id.dialog_setting_event_notification_detail_toggle_door_control);
+			userStatusTV = (TextView) mView.findViewById(R.id.dialog_setting_event_notification_detail_status_tv);
+			okButton = (Button) mView.findViewById(R.id.dialog_setting_event_notification_detail_button_ok);
+			
+			titleTV.setText(nUserEmail);
+			userStatusTV.setText(nCurrentStatus);
+			
+			if (nPre_CurrentMotion_Detect_Status.equals("enabled"))
+			{
+				motionDetectTB.setChecked(true);
+			}
+			else
+			{
+				motionDetectTB.setChecked(false);
+			}
+			
+			if (nPre_CurrentDoorControl_Detect_Status.equals("enabled"))
+			{
+				doorControlTB.setChecked(true);
+			}
+			else
+			{
+				doorControlTB.setChecked(false);
+			}
+			
+			motionDetectTB.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+				@Override
+				public void onCheckedChanged(CompoundButton arg0, boolean isChecked) {
+					if (isChecked)
+					{
+						nCurrentMotion_Detect_Status = "enabled";
+					}
+					else 
+					{
+						nCurrentMotion_Detect_Status = "disabled";
+					}
+				}
+			});
+			
+			doorControlTB.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+				@Override
+				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+					if (isChecked)
+					{
+						nCurrentDoorControl_Detect_Status = "enabled";
+					}
+					else
+					{
+						nCurrentDoorControl_Detect_Status = "disabled";
+					}
+				}
+			});
+			
+			okButton.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					if (nModel != null)
+					{
+						nModel.setMotion_detect_enable(nCurrentMotion_Detect_Status);
+						nModel.setRelay_sensors_enable(nCurrentDoorControl_Detect_Status);
+					}
+				}
+			});
+		}
+
+		@Override
+		public void update(Observable observable, Object data) 
+		{
+			
+		}
+	} //DialogEventNotificationDetail
+	
+	
+}

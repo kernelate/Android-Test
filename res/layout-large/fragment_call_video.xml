@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_callscreen"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:visibility="invisible" >
+
+        <TextView
+            android:id="@+id/phone_call_video_textview_caller"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jessica Alba"
+            android:textColor="#ffffff"
+            android:textSize="24px" />
+
+        <TextView
+            android:id="@+id/phone_call_video_textview_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="122"
+            android:textColor="#ffffff"
+            android:textSize="16px" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fragment_in_call_remote_video_frame_layout"
+        android:layout_width="870px"
+        android:layout_height="580px"
+        android:layout_alignParentTop="true" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/transparent"
+        android:gravity="center_horizontal|center_vertical" >
+
+        <!-- <ToggleButton -->
+        <!-- android:id="@+id/phone_call_menu_toggle_resume" -->
+        <!-- android:layout_width="wrap_content" -->
+        <!-- android:layout_height="wrap_content" -->
+        <!-- android:background="@drawable/phone_call_toggle_play" -->
+        <!-- android:textOff="" -->
+        <!-- android:textOn="" /> -->
+
+
+        <!-- <ToggleButton -->
+        <!-- android:id="@+id/phone_call_menu_toggle_volume" -->
+        <!-- android:layout_width="wrap_content" -->
+        <!-- android:layout_height="wrap_content" -->
+        <!-- android:layout_marginLeft="10dp" -->
+        <!-- android:background="@drawable/phone_call_toggle_volume" -->
+        <!-- android:textOff="" -->
+        <!-- android:textOn="" /> -->
+
+        <ToggleButton
+            android:id="@+id/phone_call_menu_toggle_mic_orig"
+            android:layout_width="200dp"
+            android:layout_height="72dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/btn_mic_press"
+            android:textOff=""
+            android:textOn=""
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/phone_call_menu_button_endcall_orig"
+            android:layout_width="200dp"
+            android:layout_height="72dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/btn_endcall_press"
+            android:visibility="gone" />
+
+        <ToggleButton
+            android:id="@+id/phone_video_local_view_button"
+            android:layout_width="200dp"
+            android:layout_height="72dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/btn_video_normal"
+            android:textOff=""
+            android:textOn=""
+            android:visibility="gone" />
+
+        <!-- <Button -->
+        <!-- android:id="@+id/phone_call_menu_button_screenshot" -->
+        <!-- android:layout_width="wrap_content" -->
+        <!-- android:layout_height="wrap_content" -->
+        <!-- android:layout_marginRight="10dp" -->
+        <!-- android:background="@drawable/ic_screenshot" /> -->
+
+
+        <!-- <Button -->
+        <!-- android:id="@+id/phone_call_menu_button_doorlock" -->
+        <!-- android:layout_width="wrap_content" -->
+        <!-- android:layout_height="wrap_content" -->
+        <!-- android:layout_marginRight="10dp" -->
+        <!-- android:background="@drawable/ic_doorcontrol" /> -->
+
+
+        <!-- <ToggleButton -->
+        <!-- android:id="@+id/phone_call_menu_toggle_record" -->
+        <!-- android:layout_width="wrap_content" -->
+        <!-- android:layout_height="wrap_content" -->
+        <!-- android:background="@drawable/phone_call_toggle_video" -->
+        <!-- android:textOff="" -->
+        <!-- android:textOn="" /> -->
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout"
+        android:layout_width="250px"
+        android:layout_height="250px"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="4px"
+        android:layout_marginRight="52dp"
+        android:layout_toLeftOf="@+id/fragment_in_call_remote_video_frame_layout"
+        android:padding="4px" >
+
+        <ImageView
+            android:id="@+id/fragment_pause_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/ic_thumbnail_xlarge"
+            android:visibility="gone" />
+
+        <FrameLayout
+            android:id="@+id/fragment_in_call_preview_video_frame_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+        </FrameLayout>
+    </RelativeLayout>
+
+    <ToggleButton
+        android:id="@+id/fullscreen_button_normal"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_alignLeft="@+id/fragment_in_call_remote_video_frame_layout"
+        android:background="@drawable/ic_fullscreen_exit_selected"
+        android:textOff=""
+        android:textOn="" />
+
+    <RelativeLayout
+        android:id="@+id/layout_setting_video"
+        android:layout_width="412dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true" >
+
+        <Button
+            android:id="@+id/phone_call_voice_volume_down_video"
+            android:layout_width="206dp"
+            android:layout_height="188dp"
+            android:background="@drawable/dialpad_volume_down_selector" />
+
+        <Button
+            android:id="@+id/phone_call_voice_volume_up_video1"
+            android:layout_width="206dp"
+            android:layout_height="188dp"
+            android:layout_toRightOf="@+id/phone_call_voice_volume_down_video"
+            android:background="@drawable/dialpad_volume_up_selector" />
+
+        <!--
+             <Button
+            android:id="@+id/btn_testing"
+            android:layout_width="150dp"
+            android:layout_below="@+id/phone_call_menu_button_endcall"
+            android:layout_height="150dp" />
+        -->
+
+
+        <!--
+             <ToggleButton
+            android:id="@+id/phone_call_voice_handset_video"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_below="@+id/phone_call_voice_volume_up_video"
+            android:layout_margin="10dp"
+            android:background="@drawable/btn_handset_press"
+            android:textOff=""
+            android:textOn="" 
+            android:visibility="gone"/>
+        -->
+
+        <ToggleButton
+            android:id="@+id/phone_call_voice_mute"
+            android:layout_width="206dp"
+            android:layout_height="188dp"
+            android:layout_below="@+id/phone_call_voice_volume_down_video"
+            android:background="@drawable/dialpad_mute_selector"
+            android:textOff=""
+            android:textOn="" />
+
+        <!--
+             <ToggleButton
+            android:id="@+id/phone_call_menu_toggle_mic_video"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_below="@+id/phone_call_voice_handset_video"
+            android:layout_margin="10dp"
+            android:background="@drawable/btn_mute_press"
+            android:textOff=""
+            android:textOn="" />
+        -->
+
+        <ToggleButton
+            android:id="@+id/phone_call_voice_hold_video"
+            android:layout_width="206dp"
+            android:layout_height="188dp"
+            android:layout_alignRight="@+id/phone_call_voice_volume_up_video1"
+            android:layout_below="@+id/phone_call_voice_volume_up_video1"
+            android:background="@drawable/dialpad_hold_selector"
+            android:textOff=""
+            android:textOn="" />
+
+        <ToggleButton
+            android:id="@+id/phone_call_voice_dial_video"
+            android:layout_width="206dp"
+            android:layout_height="188dp"
+            android:layout_below="@+id/phone_call_voice_mute"
+            android:background="@drawable/dialpad_selector"
+            android:textOff=""
+            android:textOn="" />
+
+        <Button
+            android:id="@+id/phone_call_menu_button_endcall"
+            android:layout_width="206dp"
+            android:layout_height="188dp"
+            android:layout_alignRight="@+id/phone_call_voice_hold_video"
+            android:layout_below="@+id/phone_call_voice_hold_video"
+            android:background="@drawable/btn_call_endcall_press_square" />
+
+        <!--
+             <Button
+            android:id="@+id/phone_call_menu_button_endcall"
+            android:layout_width="412dp"
+            android:layout_height="188dp"
+            android:layout_alignRight="@+id/phone_call_voice_hold_video"
+            android:layout_below="@+id/phone_call_menu_button_relay"
+            android:background="@drawable/dialpad_endcall_selector" />
+        
+        
+          <ToggleButton
+            android:id="@+id/phone_call_menu_button_relay"
+            android:layout_width="206dp"
+            android:layout_height="188dp"
+            android:layout_alignRight="@+id/phone_call_voice_hold_video"
+            android:layout_below="@+id/phone_call_voice_hold_video"
+            android:background="@drawable/dialpad_relay" 
+            android:textOff=""
+            android:textOn="" />
+        -->
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/onscreenkeyboard_video"
+        android:layout_width="923dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/dialpad_new_buttonside_background"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="180dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="50dp"
+            android:orientation="horizontal" >
+
+            <!--
+                 <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_number_alphabet_press"
+                android:visibility="gone" />
+            -->
+
+            <EditText
+                android:id="@+id/et_dialpad_video"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="400dp"
+                android:gravity="right"
+                android:hint="text/numbers"
+                android:textColor="@android:color/black"
+                android:textSize="30sp" />
+
+            <ImageButton
+                android:id="@+id/phone_dialpad_button_delete_video"
+                android:layout_width="200dp"
+                android:layout_height="72dp"
+                android:layout_marginLeft="600dp"
+                android:background="@drawable/dialpad_new_backspace_selector" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" >
+
+            <Button
+                android:id="@+id/phone_dialpad_button_1_video"
+                android:layout_width="220dp"
+                android:layout_height="96dp"
+                android:background="@drawable/dialpad_new_number_selector"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="@android:color/black"
+                android:textSize="34sp" />
+
+            <Button
+                android:id="@+id/phone_dialpad_button_2_video"
+                android:layout_width="220dp"
+                android:layout_height="96dp"
+                android:layout_toRightOf="@+id/phone_dialpad_button_1_video"
+                android:background="@drawable/dialpad_new_number_selector"
+                android:gravity="center"
+                android:text="2"
+                android:textColor="@android:color/black"
+                android:textSize="34sp" />
+
+            <Button
+                android:id="@+id/phone_dialpad_button_3_video"
+                android:layout_width="220dp"
+                android:layout_height="96dp"
+                android:layout_toRightOf="@+id/phone_dialpad_button_2_video"
+                android:background="@drawable/dialpad_new_number_selector"
+                android:gravity="center"
+                android:text="3"
+                android:textColor="@android:color/black"
+                android:textSize="34sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/phone_dialpad_button_4_video"
+                android:layout_width="220dp"
+                android:layout_height="96dp"
+                android:background="@drawable/dialpad_new_number_selector"
+                android:gravity="center"
+                android:text="4"
+                android:textColor="@android:color/black"
+                android:textSize="34sp" />
+
+            <Button
+                android:id="@+id/phone_dialpad_button_5_video"
+                android:layout_width="220dp"
+                android:layout_height="96dp"
+                android:layout_toRightOf="@+id/phone_dialpad_button_4_video"
+                android:background="@drawable/dialpad_new_number_selector"
+                android:gravity="center"
+                android:text="5"
+                android:textColor="@android:color/black"
+                android:textSize="34sp" />
+
+            <Button
+                android:id="@+id/phone_dialpad_button_6_video"
+                android:layout_width="220dp"
+                android:layout_height="96dp"
+                android:layout_toRightOf="@+id/phone_dialpad_button_5_video"
+                android:background="@drawable/dialpad_new_number_selector"
+                android:gravity="center"
+                android:text="6"
+                android:textColor="@android:color/black"
+                android:textSize="34sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/phone_dialpad_button_7_video"
+                android:layout_width="220dp"
+                android:layout_height="96dp"
+                android:background="@drawable/dialpad_new_number_selector"
+                android:gravity="center"
+                android:text="7"
+                android:textColor="@android:color/black"
+                android:textSize="34sp" />
+
+            <Button
+                android:id="@+id/phone_dialpad_button_8_video"
+                android:layout_width="220dp"
+                android:layout_height="96dp"
+                android:layout_toRightOf="@+id/phone_dialpad_button_7_video"
+                android:background="@drawable/dialpad_new_number_selector"
+                android:gravity="center"
+                android:text="8"
+                android:textColor="@android:color/black"
+                android:textSize="34sp" />
+
+            <Button
+                android:id="@+id/phone_dialpad_button_9_video"
+                android:layout_width="220dp"
+                android:layout_height="96dp"
+                android:layout_toRightOf="@+id/phone_dialpad_button_8_video"
+                android:background="@drawable/dialpad_new_number_selector"
+                android:gravity="center"
+                android:text="9"
+                android:textColor="@android:color/black"
+                android:textSize="34sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/phone_dialpad_button_asterisk_video"
+                android:layout_width="220dp"
+                android:layout_height="96dp"
+                android:background="@drawable/dialpad_new_number_selector"
+                android:gravity="center"
+                android:text="*"
+                android:textColor="@android:color/black"
+                android:textSize="34sp" />
+
+            <Button
+                android:id="@+id/phone_dialpad_button_0_video"
+                android:layout_width="220dp"
+                android:layout_height="96dp"
+                android:layout_toRightOf="@+id/phone_dialpad_button_asterisk_video"
+                android:background="@drawable/dialpad_new_number_selector"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@android:color/black"
+                android:textSize="34sp" />
+
+            <Button
+                android:id="@+id/phone_dialpad_button_hash_video"
+                android:layout_width="220dp"
+                android:layout_height="96dp"
+                android:layout_toRightOf="@+id/phone_dialpad_button_0_video"
+                android:background="@drawable/dialpad_new_number_selector"
+                android:gravity="center"
+                android:text="#"
+                android:textColor="@android:color/black"
+                android:textSize="34sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

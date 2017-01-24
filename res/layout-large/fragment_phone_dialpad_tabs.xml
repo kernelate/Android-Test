@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <LinearLayout 
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/llTabs"
+        android:padding="10dp"
+        android:weightSum="4">
+        
+        <ImageButton
+            android:id="@+id/phone_dialpad_button_tab_all"
+            android:layout_width="fill_parent"
+            android:layout_height="55px"
+            android:layout_weight="1"
+            android:background="@drawable/dialpad_all_selector"
+            android:src="@drawable/ic_all_call"
+            android:textColor="#000000"
+            android:textSize="18px" />
+
+        <ImageButton
+            android:id="@+id/phone_dialpad_button_tab_incoming"
+            android:layout_width="fill_parent"
+            android:layout_height="55px"
+            android:layout_weight="1"
+            android:background="@drawable/dialpad_incoming_outgoing_selector"
+            android:src="@drawable/ic_incoming_call"
+            android:textColor="#000000"
+            android:textSize="18px" />
+
+        <ImageButton
+            android:id="@+id/phone_dialpad_button_tab_outgoing"
+            android:layout_width="fill_parent"
+            android:layout_height="55px"
+            android:layout_weight="1"
+            android:background="@drawable/dialpad_incoming_outgoing_selector"
+            android:src="@drawable/ic_outgoing_call"
+            android:textColor="#000000"
+            android:textSize="18px" />
+
+        <ImageButton
+            android:id="@+id/phone_dialpad_tab_missed"
+            android:layout_width="fill_parent"
+            android:layout_height="55px"
+            android:layout_weight="1"
+            android:background="@drawable/dialpad_missed_selector"
+            android:src="@drawable/ic_missed_call"
+            android:textColor="#000000"
+            android:textSize="18px" />
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/llTabs" 
+        android:orientation="vertical"
+        android:paddingTop="10dp" >
+
+        <TextView
+            android:id="@+id/phone_dialpad_textview_tabssummary"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:text="CALL HISTORY"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <ListView
+	            android:id="@+id/phone_listview_dialpad_tab"
+	            android:layout_width="match_parent"
+	            android:layout_height="match_parent"
+	            android:layout_marginTop="20dp"
+	            android:divider="@drawable/custom_list_divider_phone"
+	            android:dividerHeight="2dp" />
+
+            <TextView
+                android:id="@+id/no_call_history_caption_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textColor="#90908f"
+                android:textSize="18sp"
+                android:visibility="visible" />
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

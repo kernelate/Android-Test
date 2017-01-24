@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="400dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/corner_layout_style"
+    android:orientation="vertical"
+    android:weightSum="3" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:gravity="left|center"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="16px"
+                android:text="Sensor Type"
+                android:textColor="#29b6f6"
+                android:textSize="22px" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="2px"
+            android:background="#29b6f6"
+            android:orientation="vertical" >
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/dialog_sensor_type_sensorname_et"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16px"
+            android:hint="Type a new type/name for your device"
+            android:textColor="#000000"
+            android:textSize="18px" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="#616161"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/dialog_sensor_type_ok_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/corner_layout_style"
+            android:text="OK"
+            android:textColor="@color/color_black"
+            android:textSize="22px" />
+    </LinearLayout>
+
+</LinearLayout>
